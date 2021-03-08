@@ -1,0 +1,336 @@
+{% extends 'site_base.html' %}
+{% load static %}
+{% block title %} Home {% endblock title %}
+{% block body_content %}
+    <section class="section"
+             style='background-image: url("{% static 'images/hero_img.jpg' %}"); background-repeat: no-repeat; background-size:cover'
+             id="home">
+        <div class=""></div>
+        <div class="container" style="margin-top: 150px;">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="text-white-50">
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <button class="btn btn-lg text-white btn-block" style="background-color:#8EA9DB ">Alle
+                                    Kategorien
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <button class="btn btn-lg text-white btn-block" style="background-color:#8EA9DB ">Neuste
+                                    Objekte
+                                </button>
+
+                            </div>
+
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-sm-4">
+                                <button class="btn btn-lg text-white btn-block" style="background-color:#8EA9DB">
+                                    Beliebteste Objekte
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-4">
+                                <input type="text" class="form-control form-control-md" placeholder="Suchen">
+
+                            </div>
+                            <div class="col-4">
+                                <input type="button" class="btn text-white" style="background-color: #FF7F23"
+                                       value="Suchen">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- hero section end -->
+
+
+    {#Products#}
+    <section class="section bg-light p-4" id="features">
+
+        <div class="row justify-content-center text-center mt-3 text-white font-weight-bolder font-size-16">
+            <div class="col-lg-10" style="background-color: #8EA9DB">
+                Wähle ein Mietobjekt
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="my-5">
+                        <div class="row">
+
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Light blue
+                                            T-shirt</a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2"><del>$240</del></span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/item-1.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Light blue
+                                            T-shirt</a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2"><del>$240</del></span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/item-2.png' %}" alt=""
+                                            >
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Light blue
+                                            T-shirt</a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2"><del>$240</del></span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end row -->
+
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+
+
+    {#How it works#}
+
+    <section class="section p-5 bg-light" id="features">
+
+        <div class="row justify-content-center text-center text-black font-weight-bolder font-size-16">
+            <div class="col-lg-10" style="background-color: #8EA9DB">
+                So Funktionierts
+            </div>
+            <div class="row">
+                {#                <div class="col-lg-12 my-2">#}
+                {#                    <div class="text-center mb-5">#}
+                {#                        <h1 class="font-weight-bolder mt-2">How does it work?</h1>#}
+                {#                    </div>#}
+                {#                </div>#}
+                <div class="row">
+                    <div class="col-sm-3 text-center">
+                        <img src="{% static 'images/core/bss.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">1. Miteobjekt suchen</h5>
+                        <p class="card-text">
+                            Suchen anch einem Objekt, dass du mieten möchtest.
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/suu.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">2. Mietanfrage senden</h5>
+                        <p class="card-text">
+                            Send a non-binding request or book via instant booking
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/fpp.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">3. Details und Bestätigung</h5>
+                        <p class="card-text">
+                            Agree on the details and finalize the booking
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/pee.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">4. Benutzen</h5>
+                        <p class="card-text">
+                            At the vehicle handover the owner explains the vehicle and then you're good to go.
+                        </p>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <img src="{% static 'images/core/pee.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">5. Zurückgeben</h5>
+                        <p class="card-text">
+                            At the vehicle handover the owner explains the vehicle and then you're good to go.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+
+
+    {#Why Horsed.ch#}
+
+    <section class="section p-5 bg-light" id="features">
+
+        <div class="row justify-content-center text-center text-dark font-weight-bolder font-size-16">
+            <div class="col-lg-10" style="background-color: #8EA9DB">
+                Warum horsed.ch?
+            </div>
+            <div class="row">
+                {#                <div class="col-lg-12 my-2">#}
+                {#                    <div class="text-center mb-5">#}
+                {#                        <h1 class="font-weight-bolder mt-2">How does it work?</h1>#}
+                {#                    </div>#}
+                {#                </div>#}
+                <div class="row">
+                    <div class="col-sm-3 text-center">
+                        <img src="{% static 'images/core/bss.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">Grosse Auswahl</h5>
+                        <p class="card-text">
+                            Bein uns findest du eine Grosse Auswahl an Pferde- und Reitartikel zum mieten
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/suu.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">Nachhaltig</h5>
+                        <p class="card-text">
+                            Mieten statt kaufen schohnt Ressourcen
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/fpp.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">Versichert</h5>
+                        <p class="card-text">
+                            Du brauchst dir keine Sorgen machen, das mietobjekt ist bei uns verichert.
+                        </p>
+                    </div>
+
+                    <div class="col-sm-2 text-center">
+                        <img src="{% static 'images/core/pee.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">Persönlich</h5>
+                        <p class="card-text">
+                            Bei Fragen oder Problemen kümmern wir uns persönlich um dein Anliegen
+                        </p>
+                    </div>
+                    <div class="col-sm-3 text-center">
+                        <img src="{% static 'images/core/pee.png' %}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">xxx</h5>
+                        <p class="card-text">
+                            xxx
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+
+
+{#        Signup Modal#}
+ <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <div class="form-title text-center">
+                         <h4>Account Erstellen</h4>
+                    <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>
+                </div>
+                <div class="d-flex flex-column mt-2">
+                                        <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal" data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren</button>
+                                        <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse Registrieren</button>
+                                        <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren</button>
+
+
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+
+                <div class="signup-section">Du hast schon einen Account ?  <a href="#a" class="text-info">Einloggen</a></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{#         Signin Modal#}
+ {% include 'authentication/login.html' %}
+
+
+
+
+    </section>
+{% endblock body_content %}
+
+
+
+
