@@ -1,0 +1,531 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0 font-size-18">Products</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Product Details</a></li>
+                                    <li class="breadcrumb-item active"></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                {#                Start From Here                   #}
+
+
+                <div class="row">
+                    <div class="col-xl-8">
+                        <div class="checkout-tabs">
+                            <div class="row">
+                                <div class="col-xl-2">
+                                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                         aria-orientation="vertical">
+                                        <a class="nav-link active" id="v-pills-shipping-tab" data-toggle="pill"
+                                           href="#v-pills-shipping" role="tab" aria-controls="v-pills-shipping"
+                                           aria-selected="true">
+                                            <i class="bx bxs-truck d-block check-nav-icon mt-4 mb-2"></i>
+                                            <p class="font-weight-bold mb-4">Personal Info</p>
+                                        </a>
+
+                                        <a class="nav-link" id="v-pills-duration-tab" data-toggle="pill"
+                                           href="#v-pills-duration" role="tab" aria-controls="v-pills-duration"
+                                           aria-selected="true">
+                                            <i class="bx bxs-watch d-block check-nav-icon mt-4 mb-2"></i>
+                                            <p class="font-weight-bold mb-4">Rental Duration</p>
+                                        </a>
+
+                                        <a class="nav-link" id="v-pills-payment-tab" data-toggle="pill"
+                                           href="#v-pills-payment" role="tab" aria-controls="v-pills-payment"
+                                           aria-selected="false">
+                                            <i class="bx bx-money d-block check-nav-icon mt-4 mb-2"></i>
+                                            <p class="font-weight-bold mb-4">Payment Info</p>
+                                        </a>
+                                        <a class="nav-link" id="v-pills-confir-tab" data-toggle="pill"
+                                           href="#v-pills-confir" role="tab" aria-controls="v-pills-confir"
+                                           aria-selected="false">
+                                            <i class="bx bx-badge-check d-block check-nav-icon mt-4 mb-2"></i>
+                                            <p class="font-weight-bold mb-4">Confirmation</p>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-10">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane fade show active" id="v-pills-shipping"
+                                                     role="tabpanel"
+                                                     aria-labelledby="v-pills-shipping-tab">
+                                                    <div>
+                                                        <h4 class="card-title">Shipping information</h4>
+                                                        <p class="card-title-desc">Fill all information below</p>
+                                                        <form>
+                                                            <div class="form-group row mb-4">
+                                                                <label for="first_name" class="col-md-2 col-form-label">First
+                                                                    Name</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control"
+                                                                           id="first_name" name="first_name"
+                                                                           placeholder="Enter your first name">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="last_name" class="col-md-2 col-form-label">Last
+                                                                    Name</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control"
+                                                                           id="last_name" name="last_name"
+                                                                           placeholder="Enter your last name">
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="street_address"
+                                                                       class="col-md-2 col-form-label">Street</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="street_address" name="street_address"
+                                                                           placeholder="Enter street address">
+                                                                </div>
+                                                                <label for="house_number"
+                                                                       class="col-md-2 col-form-label">House #</label>
+                                                                <div class="col-md-2">
+                                                                    <input type="text" class="form-control"
+                                                                           id="house_number" name="house_number"
+                                                                           placeholder="House">
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="zip_code" class="col-md-2 col-form-label">Zip
+                                                                    Code</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="text" class="form-control"
+                                                                           id="zip_code" name="zip_code"
+                                                                           placeholder="Zip">
+                                                                </div>
+                                                                <label for="city_name" class="col-md-1 col-form-label">City</label>
+                                                                <div class="col-md-6">
+                                                                    <input type="text" class="form-control"
+                                                                           id="city_name" name="city_name"
+                                                                           placeholder="City">
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="country_name"
+                                                                       class="col-md-2 col-form-label">Country
+                                                                    Name</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control"
+                                                                           id="country_name" name="country_name"
+                                                                           placeholder="Country Name">
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="email_address"
+                                                                       class="col-md-2 col-form-label">Email
+                                                                    Address</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="email" class="form-control"
+                                                                           id="email_address"
+                                                                           placeholder="Enter your email">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row mb-4">
+                                                                <label for="phone_number"
+                                                                       class="col-md-2 col-form-label">Phone
+                                                                    Number</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control"
+                                                                           id="phone_number"
+                                                                           placeholder="Enter phone number">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="date_of_birth"
+                                                                       class="col-md-2 col-form-label">Date of
+                                                                    Birth</label>
+                                                                <div class="col-md-3">
+                                                                    <input type="date" class="form-control"
+                                                                           id="date_of_birth" name="date_of_birth"
+                                                                           placeholder="Date Of Birth">
+                                                                </div>
+                                                                <label for="language" class="col-md-2 col-form-label">Language</label>
+                                                                <div class="col-md-5">
+                                                                    <input type="text" class="form-control"
+                                                                           id="language" name="language"
+                                                                           placeholder="Language">
+                                                                </div>
+
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+
+                                                {#                                            Retnal Durantion Card Starts Here                                                #}
+
+                                                <div class="tab-pane fade show active" id="v-pills-duration"
+                                                     role="tabpanel"
+                                                     aria-labelledby="v-pills-duration-tab">
+                                                    <div>
+                                                        <h4 class="card-title">Rental Duration Information</h4>
+                                                        <p class="card-title-desc">Fill all information below</p>
+                                                        <form>
+                                                            <div class="form-group row mb-4">
+                                                                <label for="rental_from_date"
+                                                                       class="col-md-2 col-form-label">Rental
+                                                                    From</label>
+                                                                <div class="col-md-4">
+                                                                    <input type="date" class="form-control"
+                                                                           id="rental_from_date"
+                                                                           name="rental_from_date">
+                                                                </div>
+                                                                <label for="rental_till_date"
+                                                                       class="col-md-2 col-form-label">Rental
+                                                                    Till</label>
+                                                                <div class="col-md-4">
+                                                                    <input type="date" class="form-control"
+                                                                           id="rental_till_date" name="rental_till_date"
+                                                                           placeholder="">
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="" class="col-md-3 col-form-label">Shipping
+                                                                    Type</label>
+                                                                <div class="col-md-5 custom-control custom-radio">
+                                                                    <input type="radio" id="pick_up_radio"
+                                                                           name="shipping_type"
+                                                                           class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                           for="pick_up_radio">Pick Up</label>
+
+                                                                </div>
+
+                                                                <div class="col-md-4 custom-control custom-radio">
+                                                                    <input type="radio" id="hand_over_radio"
+                                                                           name="shipping_type"
+                                                                           class="custom-control-input">
+                                                                    <label class="custom-control-label"
+                                                                           for="hand_over_radio">Handover</label>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="form-group row mb-4">
+                                                                <label for="rental_duration"
+                                                                       class="col-md-2 col-form-label">Duration</label>
+                                                                <div class="col-md-10">
+                                                                    <input type="text" class="form-control"
+                                                                           id="rental_duration" name="rental_duration"
+                                                                           placeholder="">
+                                                                </div>
+
+                                                            </div>
+
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                {#                                             Payment Information Card Starts Here                                            #}
+                                                <div class="tab-pane fade" id="v-pills-payment" role="tabpanel"
+                                                     aria-labelledby="v-pills-payment-tab">
+                                                    <div>
+                                                        <h4 class="card-title">Payment information</h4>
+                                                        <p class="card-title-desc">Fill all information below</p>
+
+                                                        <div>
+
+                                                            <div class="custom-control custom-radio custom-control-inline mr-4">
+                                                                <input type="radio" id="customRadioInline1"
+                                                                       name="customRadioInline1"
+                                                                       class="custom-control-input">
+                                                                <label class="custom-control-label"
+                                                                       for="customRadioInline1"><i
+                                                                        class="fab fa-cc-mastercard mr-1 font-size-20 align-top"></i>
+                                                                    Credit / Debit Card</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline mr-4">
+                                                                <input type="radio" id="customRadioInline2"
+                                                                       name="customRadioInline1"
+                                                                       class="custom-control-input">
+                                                                <label class="custom-control-label"
+                                                                       for="customRadioInline2"><i
+                                                                        class="fab fa-cc-paypal mr-1 font-size-20 align-top"></i>
+                                                                    Paypal</label>
+                                                            </div>
+                                                            <div class="custom-control custom-radio custom-control-inline mr-4">
+                                                                <input type="radio" id="customRadioInline3"
+                                                                       name="customRadioInline1"
+                                                                       class="custom-control-input" checked>
+                                                                <label class="custom-control-label"
+                                                                       for="customRadioInline3"><i
+                                                                        class="far fa-money-bill-alt mr-1 font-size-20 align-top"></i>
+                                                                    Cash on Delivery</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <h5 class="mt-5 mb-3 font-size-15">For card Payment</h5>
+                                                        <div class="p-4 border">
+                                                            <form>
+                                                                <div class="form-group mb-0">
+                                                                    <label for="cardnumberInput">Card Number</label>
+                                                                    <input type="text" class="form-control"
+                                                                           id="cardnumberInput"
+                                                                           placeholder="0000 0000 0000 0000">
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="form-group mt-4 mb-0">
+                                                                            <label for="cardnameInput">Name on
+                                                                                card</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   id="cardnameInput"
+                                                                                   placeholder="Name on Card">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-group mt-4 mb-0">
+                                                                            <label for="expirydateInput">Expiry
+                                                                                date</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   id="expirydateInput"
+                                                                                   placeholder="MM/YY">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-3">
+                                                                        <div class="form-group mt-4 mb-0">
+                                                                            <label for="cvvcodeInput">CVV Code</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   id="cvvcodeInput"
+                                                                                   placeholder="Enter CVV Code">
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <div class="mt-3">
+                                                                    <p>With this booking, the renter confirms to treat
+                                                                        the item given to him/her for use with care and
+                                                                        to return it in full to the lessor by the end of
+                                                                        the rental period. Any shipping costs for the
+                                                                        return shipment will be borne by the
+                                                                        renter. </p>
+
+                                                                </div>
+                                                                <div class="mt-3">
+                                                                    <p class="bg-soft-primary"><i
+                                                                            class="fa fa-check"></i> Rent safely: This
+                                                                        item is insured during the rental period</p>
+                                                                </div>
+
+                                                                <div class="custom-control custom-checkbox mb-3 mt-3 bg-soft-primary">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                           id="terms_and_conditions" required>
+                                                                    <label class="custom-control-label "
+                                                                           for="terms_and_conditions">I agree to the
+                                                                        terms and conditions and the privacy policy of
+                                                                        horsed.ch.</label>
+                                                                </div>
+
+                                                                <div class="custom-control custom-checkbox mb-3 mt-3 bg-soft-primary">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                           id="insurance_confirmation" required>
+                                                                    <label class="custom-control-label "
+                                                                           for="insurance_confirmation">Insurance: I
+                                                                        confirm.</label>
+                                                                </div>
+
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="tab-pane fade" id="v-pills-confir" role="tabpanel"
+                                                     aria-labelledby="v-pills-confir-tab">
+                                                    <div class="card shadow-none border mb-0">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title mb-4">Order Summary</h4>
+
+                                                            <div class="table-responsive">
+                                                                <table class="table table-centered mb-0 table-nowrap">
+                                                                    <thead class="thead-light">
+                                                                    <tr>
+                                                                        <th scope="col">Product</th>
+                                                                        <th scope="col">Product Desc</th>
+                                                                        <th scope="col">Price</th>
+                                                                        <th scope="col">Rental From</th>
+                                                                        <th scope="col">Rental Till</th>
+                                                                    </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <th scope="row"><img
+                                                                                src="{% static 'images/product/horse.png' %}"
+                                                                                alt="product-img" title="product-img"
+                                                                                class="avatar-md"></th>
+                                                                        <td>
+                                                                            <h5 class="font-size-14 text-truncate"><a
+                                                                                    href=""
+                                                                                    class="text-dark">Blanket </a></h5>
+
+                                                                        </td>
+                                                                        <td>$ 450</td>
+                                                                        <td>11 June 2021</td>
+                                                                        <td>11 July 2021</td>
+                                                                    </tr>
+                                                                    {#                                                                <tr>#}
+                                                                    {#                                                                    <td colspan="3">#}
+                                                                    {#                                                                        <div class="bg-soft-primary p-3 rounded">#}
+                                                                    {#                                                                            <h5 class="font-size-14 text-primary mb-0">#}
+                                                                    {#                                                                                <i class="fas fa-shipping-fast mr-2"></i>#}
+                                                                    {#                                                                                Shipping <span#}
+                                                                    {#                                                                                    class="float-right">Free</span></h5>#}
+                                                                    {#                                                                        </div>#}
+                                                                    {#                                                                    </td>#}
+                                                                    {#                                                                </tr>#}
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title mb-4">Card Details</h5>
+
+                                <div class="card text-white visa-card mb-0" style="background-color: #8EA9DB">
+                                    <div class="card-body">
+                                        <div>
+                                            <i class="bx bxl-visa visa-pattern"></i>
+
+                                            <div class="float-right">
+                                                <i class="bx bxl-visa visa-logo display-3"></i>
+                                            </div>
+
+                                            <div>
+                                                <i class="bx bx-chip h1 text-warning"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-4">
+                                                <p>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                </p>
+                                            </div>
+                                            <div class="col-4">
+                                                <p>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                    <i class="fas fa-star-of-life m-1"></i>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-5">
+                                            <h5 class="text-white float-right mb-0">12/22</h5>
+                                            <h5 class="text-white mb-0">Fredrick Taylor</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Order Summary</h4>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                        <tr>
+                                            <td>Grand Total :</td>
+                                            <td>$ 1,857</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Service Charges (10%) :</td>
+                                            <td>$ 25</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total :</th>
+                                            <th>$ 1744.22</th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- end table-responsive -->
+                            </div>
+
+                        </div>
+                        <!-- end card -->
+                        <div class="text-sm-right">
+                            <a href="" class="btn text-white" style="background-color: #FF7F23">
+                                <i class="mdi mdi-truck-fast mr-1"></i> Proceed to Shipping </a>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+
+            </div>
+
+        </div>
+    </div>
+
+
+    </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    </div>
+
+    </div>
+    <!-- end main content-->
+{% endblock content %}
+

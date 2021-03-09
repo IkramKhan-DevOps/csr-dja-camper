@@ -1,0 +1,461 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0 font-size-18">Products</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);"></a></li>
+                                    <li class="breadcrumb-item active"></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                {#                Start From Here#}
+
+
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Filter</h4>
+
+                                <div>
+                                    <h5 class="font-size-14 mb-3"></h5>
+                                   <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="newest_objects" name="newest_objects">
+                                        <label class="custom-control-label font-size-14 font-weight-bolder" for="newest_objects">Newest Objects</label>
+                                    </div>
+
+                                     <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="popular_objects" name="popular_objects">
+                                        <label class="custom-control-label font-size-14 font-weight-bolder" for="popular_objects">Popular Objects</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3">All Categories</h5>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" name="horses" id="horses">
+                                        <label class="custom-control-label" for="horses">Horses</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="horse_blankets">
+                                        <label class="custom-control-label" for="horse_blankets">Horse blankets</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="gaiter_bandages" name="gaiter_bandages" checked>
+                                        <label class="custom-control-label" for="gaiter_bandages">Gaiters & bandages</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="fly_protection" name="fly_protection">
+                                        <label class="custom-control-label" for="fly_protection">Fly protection</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="bridles_accessories" name="bridles_accessories">
+                                        <label class="custom-control-label" for="bridles_accessories">Bridles and accessories</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="snaffles" name="snaffles">
+                                        <label class="custom-control-label" for="snaffles">Snaffles / bits</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="saddle" name="saddle">
+                                        <label class="custom-control-label" for="saddle">Saddle</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="saddle_pads" name="saddle_pads">
+                                        <label class="custom-control-label" for="saddle_pads">Saddle pads</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="saddle_accessories" name="saddle_accessories">
+                                        <label class="custom-control-label" for="saddle_accessories">Saddle accessories</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="lighting_articles" name="lighting_articles">
+                                        <label class="custom-control-label" for="lighting_articles">Lighting articles</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="lungeing_and_groundwork" name="lungeing_and_groundwork">
+                                        <label class="custom-control-label" for="lungeing_and_groundwork">Lungeing and groundwork</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="transport" name="transport">
+                                        <label class="custom-control-label" for="transport">Transport</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="scissors" name="scissors">
+                                        <label class="custom-control-label" for="scissors">Scissors</label>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3">Reiter</h5>
+                                    <div>
+                                         <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Ladies equestrian items</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Men's equestrian items</label>
+                                    </div>
+
+                                         <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Children's equestrian items</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Helmets & cylinders</label>
+                                    </div>
+                                         <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Safety vests</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-2">
+                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
+                                        <label class="custom-control-label" for="productdiscountCheck6">Riding boots & riding shoes</label>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3"></h5>
+                                    <div>
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="western" name="western" value="western">
+                                        <label class="custom-control-label font-weight-bolder" for="western">Western</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="voltige" name="voltige" value="voltige">
+                                        <label class="custom-control-label font-weight-bolder" for="voltige">Voltige</label>
+                                    </div>
+
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="ponies" name="ponies" value="ponies">
+                                        <label class="custom-control-label font-weight-bolder" for="ponies">Ponies</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="icelanders" name="icelanders" value="icelanders">
+                                        <label class="custom-control-label font-weight-bolder" for="icelanders">Icelanders</label>
+                                    </div>
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="foal" name="foal" value="foal">
+                                        <label class="custom-control-label font-weight-bolder" for="foal">foal</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="therapy_and_regeneration" name="therapy_and_regeneration" value="therapy_and_regeneration">
+                                        <label class="custom-control-label font-weight-bolder" for="therapy_and_regeneration">Therapy & regeneration</label>
+                                    </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3 font-weight-bolder">Criteria</h5>
+                                    <div>
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="immidiate_booking" name="immidiate_booking" value="Immediate booking">
+                                        <label class="custom-control-label" for="immidiate_booking">Immediate booking</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="shipping_available" name="shipping_available" value="Shipping is possible">
+                                        <label class="custom-control-label" for="shipping_available">Shipping is possible</label>
+                                    </div>
+
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="long_term_rental" name="long_term_rental" value="Long term rental possible">
+                                        <label class="custom-control-label" for="long_term_rental">Long term rental possible</label>
+                                    </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3 font-weight-bolder">Brand</h5>
+                                    <div>
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="bremer" name="bremer" value="Bremer">
+                                        <label class="custom-control-label" for="bremer">Bremer</label>
+                                    </div>
+
+                                    <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="franklin" name="franklin" value="Franklin">
+                                        <label class="custom-control-label" for="franklin">Franklin</label>
+                                    </div>
+
+                                         <div class="custom-control custom-checkbox mt-3">
+                                        <input type="checkbox" class="custom-control-input" id="heiniger" name="heiniger" value="Heiniger">
+                                        <label class="custom-control-label" for="heiniger">Heiniger</label>
+                                    </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-9">
+
+                        <div class="row mb-3">
+                            <div class="col-xl-4 col-sm-6">
+                                <div class="mt-2">
+                                    <h5>Available Products</h5>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-sm-6">
+                                <form class="mt-4 mt-sm-0 float-sm-right form-inline">
+                                    <div class="search-box mr-2">
+                                        <div class="position-relative">
+                                            <input type="text" class="form-control border-0" placeholder="Search...">
+                                            <i class="bx bx-search-alt search-icon "></i>
+                                        </div>
+                                    </div>
+                                    <ul class="nav nav-pills product-view-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#" style="background-color: #FF7F23"><i class="bx bx-search-alt"></i></a>
+                                        </li>
+                                    </ul>
+
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <div class="card-img-top">
+                                            <img src="{% static 'images/product/horse.png' %}" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="card-footer mt-4 text-center">
+                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                                        </a></h5>
+
+                                        <p class="text-muted">
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star text-warning"></i>
+                                            <i class="bx bx-star"></i>
+                                        </p>
+                                        <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                            <b>$225</b>
+                                        </h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="pagination pagination-rounded justify-content-center mt-4">
+                                    <li class="page-item disabled">
+                                        <a href="#" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">1</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">3</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">4</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">5</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+
+
+    </div> <!-- container-fluid -->
+    <!-- End Page-content -->
+    <!-- end main content-->
+{% endblock content %}
+
+
+
+
+

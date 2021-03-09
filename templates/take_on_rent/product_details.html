@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0 font-size-18">Products</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Product Details</a></li>
+                                    <li class="breadcrumb-item active"></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                {#                Start From Here                   #}
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="product-detai-imgs">
+                                            <div class="row">
+                                                <div class="col-md-2 col-sm-3 col-4">
+                                                    <div class="nav flex-column nav-pills " id="v-pills-tab"
+                                                         role="tablist" aria-orientation="vertical">
+                                                        <a class="nav-link active" id="product-1-tab" data-toggle="pill"
+                                                           href="#product-1" role="tab" aria-controls="product-1"
+                                                           aria-selected="true">
+                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                                 class="img-fluid mx-auto d-block rounded">
+                                                        </a>
+                                                        <a class="nav-link" id="product-2-tab" data-toggle="pill"
+                                                           href="#product-2" role="tab" aria-controls="product-2"
+                                                           aria-selected="false">
+                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                                 class="img-fluid mx-auto d-block rounded">
+                                                        </a>
+                                                        <a class="nav-link" id="product-3-tab" data-toggle="pill"
+                                                           href="#product-3" role="tab" aria-controls="product-3"
+                                                           aria-selected="false">
+                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                                 class="img-fluid mx-auto d-block rounded">
+                                                        </a>
+                                                        <a class="nav-link" id="product-4-tab" data-toggle="pill"
+                                                           href="#product-4" role="tab" aria-controls="product-4"
+                                                           aria-selected="false">
+                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                                 class="img-fluid mx-auto d-block rounded">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-7 offset-md-1 col-sm-9 col-8">
+                                                    <div class="tab-content" id="v-pills-tabContent">
+                                                        <div class="tab-pane fade show active" id="product-1"
+                                                             role="tabpanel" aria-labelledby="product-1-tab">
+                                                            <div>
+                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                     alt="" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="product-2" role="tabpanel"
+                                                             aria-labelledby="product-2-tab">
+                                                            <div>
+                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                     alt="" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="product-3" role="tabpanel"
+                                                             aria-labelledby="product-3-tab">
+                                                            <div>
+                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                     alt="" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                        <div class="tab-pane fade" id="product-4" role="tabpanel"
+                                                             aria-labelledby="product-4-tab">
+                                                            <div>
+                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                     alt="" class="img-fluid mx-auto d-block">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-6">
+                                        <div class="mt-4 mt-xl-3">
+                                            <a href="#" class="text-primary">Blankets</a>
+                                            <h4 class="mt-1 mb-3">Bemer blanket with gaiters</h4>
+
+                                            <p class="text-muted float-left mr-3">
+                                                <span class="bx bx-star text-warning"></span>
+                                                <span class="bx bx-star text-warning"></span>
+                                                <span class="bx bx-star text-warning"></span>
+                                                <span class="bx bx-star text-warning"></span>
+                                                <span class="bx bx-star"></span>
+                                            </p>
+                                            <p class="text-muted mb-4">( 152 Customers Review )</p>
+
+                                            {#                                                    <h6 class="text-success text-uppercase">20 % Off</h6>#}
+                                            <h5 class="mb-4">Price : <b>$225 USD</b> Per Day</h5>
+                                            <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing
+                                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+                                                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+                                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+                                                est Lorem ipsum dolor sit amet.</p>
+
+                                            <form class="form-horizontal" enctype="multipart/form-data">
+                                                <div class="text-center">
+                                                    <label for="rent_from_date"> Rental Period From
+                                                        <input type="date" class="form-control"
+                                                               id="rent_from_date" name="rent_from_date">
+                                                    </label>
+                                                    <label for="rent_till_date"> Rental Period Till
+                                                        <input type="date" class="form-control"
+                                                               id="rent_till_date" name="rent_till_date">
+                                                    </label>
+                                                </div>
+                                                <div class="text-center">
+                                                    <button type="button"
+                                                            class="btn waves-effect text-white mt-2 waves-light"
+                                                            style="background-color: #FF7F23">
+                                                        <i class="bx bx-shopping-bag mr-2"></i>Book now
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            <p class="text-info text-center"><i class="fa fa-check"></i> Rent safely:
+                                                This item is insured during the rental period.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end row -->
+
+                                <div class="mt-5">
+                                    <h5 class="mb-3">Owner Information :</h5>
+
+                                    <div class="table-responsive">
+                                        <table class="table mb-0 table-bordered">
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row" style="width: 400px;">Name</th>
+                                                <td>Sara Smith</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Zip Code</th>
+                                                <td>8000</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">City</th>
+                                                <td>Zurich</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Languages</th>
+                                                <td>Deutsch, Französisch</td>
+                                            </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end Specifications -->
+
+
+                            </div>
+                        </div>
+                        <!-- end card -->
+                    </div>
+                </div>
+                <!-- end row -->
+
+                <div class="row mt-3">
+                    <div class="col-lg-12">
+                        <div>
+                            <h5 class="mb-3">More Products From This Owner:</h5>
+
+                            <div class="row">
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4">
+                                                    <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                         class="img-fluid mx-auto d-block">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="text-center text-md-left pt-3 pt-md-0">
+                                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Blanket</a>
+                                                        </h5>
+                                                        <p class="text-muted">
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star"></i>
+                                                        </p>
+                                                        <h5 class="my-0"><b>$225</b></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4">
+                                                    <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                         class="img-fluid mx-auto d-block">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="text-center text-md-left pt-3 pt-md-0">
+                                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Blanket</a>
+                                                        </h5>
+                                                        <p class="text-muted">
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star"></i>
+                                                        </p>
+                                                        <h5 class="my-0"><b>$145</b></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-4">
+                                                    <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                         class="img-fluid mx-auto d-block">
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="text-center text-md-left pt-3 pt-md-0">
+
+                                                        <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Blanket</a>
+                                                        </h5>
+                                                        <p class="text-muted">
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star text-warning"></i>
+                                                            <i class="bx bx-star"></i>
+                                                        </p>
+                                                        <h5 class="my-0"><b>$135</b></h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end row -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+
+
+    </div> <!-- container-fluid -->
+    </div>
+    <!-- End Page-content -->
+    </div>
+
+    </div>
+    <!-- end main content-->
+{% endblock content %}
+
