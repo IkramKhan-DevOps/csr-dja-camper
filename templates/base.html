@@ -24,7 +24,7 @@
         <link href="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" />
 <link href="{% static 'libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
 </head>
-<body data-topbar="dark" data-layout="horizontal">
+<body data-topbar="light" data-layout="horizontal">
 
         <!-- Begin page -->
         <div id="layout-wrapper">
@@ -36,19 +36,19 @@
                         <div class="navbar-brand-box">
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo.svg" alt="" height="22">
+                                    <img src="{% static 'images/logo/logo.png' %}" alt="" height="75">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-dark.png" alt="" height="17">
+                                    <img src="{% static 'images/logo/logo.png' %}" alt="" height="75">
                                 </span>
                             </a>
 
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
-                                    <img src="assets/images/logo-light.svg" alt="" height="22">
+                                    <img src="{% static 'images/logo/logo.png' %}" alt="" height="75">
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="assets/images/logo-light.png" alt="" height="19">
+                                    <img src="{% static 'images/logo/logo.png' %}" alt="" height="75">
                                 </span>
                             </a>
                         </div>
@@ -62,97 +62,11 @@
                             </button>
                         </div>
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-bell bx-tada"></i>
-                                <span class="badge badge-danger badge-pill">3</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0"
-                                aria-labelledby="page-header-notifications-dropdown">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-0"> Notifications </h6>
-                                        </div>
-                                        <div class="col-auto">
-                                            <a href="#!" class="small"> View All</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div data-simplebar style="max-height: 230px;">
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                                    <i class="bx bx-cart"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Your order is placed</h6>
-                                                <div class="font-size-12 text-muted">
-                                                    <p class="mb-1">If several languages coalesce the grammar</p>
-                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <img src="assets/images/users/avatar-3.jpg"
-                                                class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">James Lemire</h6>
-                                                <div class="font-size-12 text-muted">
-                                                    <p class="mb-1">It will seem like simplified English.</p>
-                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <div class="avatar-xs mr-3">
-                                                <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                    <i class="bx bx-badge-check"></i>
-                                                </span>
-                                            </div>
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Your item is shipped</h6>
-                                                <div class="font-size-12 text-muted">
-                                                    <p class="mb-1">If several languages coalesce the grammar</p>
-                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-
-                                    <a href="" class="text-reset notification-item">
-                                        <div class="media">
-                                            <img src="assets/images/users/avatar-4.jpg"
-                                                class="mr-3 rounded-circle avatar-xs" alt="user-pic">
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-1">Salena Layfield</h6>
-                                                <div class="font-size-12 text-muted">
-                                                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
-                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="p-2 border-top">
-                                    <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
-                                        <i class="mdi mdi-arrow-right-circle mr-1"></i> View More..
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                                <img class="rounded-circle header-profile-user" src="{% static 'images/users/avatar-1.jpg' %}"
                                     alt="Header Avatar">
                                 <span class="d-none d-xl-inline-block ml-1">Henry</span>
                                 <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
@@ -168,17 +82,11 @@
                             </div>
                         </div>
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                                <i class="bx bx-cog bx-spin"></i>
-                            </button>
-                        </div>
-
                     </div>
                 </div>
             </header>
 
-                <div class="topnav">
+                <div class="topnav" style="background-color: #8EA9DB">
                     <div class="container-fluid">
                         <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
 
@@ -186,7 +94,7 @@
                                 <ul class="navbar-nav">
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none text-white" href="#" id="topnav-dashboard" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-home-circle mr-2"></i>Dashboards <div class="arrow-down"></div>
                                         </a>
@@ -199,7 +107,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none  text-white" href="#" id="topnav-uielement" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-tone mr-2"></i>UI Elements <div class="arrow-down"></div>
                                         </a>
@@ -246,7 +154,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none text-white" href="#" id="topnav-pages" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-customize mr-2"></i>Apps <div class="arrow-down"></div>
                                         </a>
@@ -335,7 +243,7 @@
                                     </li>
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-components" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none text-white" href="#" id="topnav-components" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-collection mr-2"></i>Components <div class="arrow-down"></div>
                                         </a>
@@ -413,7 +321,7 @@
 
 
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-more" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none text-white" href="#" id="topnav-more" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-file mr-2"></i>Extra pages <div class="arrow-down"></div>
                                         </a>
@@ -459,7 +367,7 @@
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-layout" role="button"
+                                        <a class="nav-link dropdown-toggle arrow-none text-white" href="#" id="topnav-layout" role="button"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-layout mr-2"></i>Layouts <div class="arrow-down"></div>
                                         </a>
@@ -478,403 +386,11 @@
                     </div>
                 </div>
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
-
-                        <!-- start page title -->
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="page-title-box d-flex align-items-center justify-content-between">
-                                    <h4 class="mb-0 font-size-18">Profile</h4>
-
-                                    <div class="page-title-right">
-                                        <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Contacts</a></li>
-                                            <li class="breadcrumb-item active">Profile</li>
-                                        </ol>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end page title -->
-
-                        <div class="row">
-                            <div class="col-xl-4">
-                                <div class="card overflow-hidden">
-                                    <div class="bg-soft-primary">
-                                        <div class="row">
-                                            <div class="col-7">
-                                                <div class="text-primary p-3">
-                                                    <h5 class="text-primary">Welcome Back !</h5>
-                                                    <p>It will seem like simplified</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-5 align-self-end">
-                                                <img src="assets/images/profile-img.png" alt="" class="img-fluid">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="avatar-md profile-user-wid mb-4">
-                                                    <img src="assets/images/users/avatar-1.jpg" alt="" class="img-thumbnail rounded-circle">
-                                                </div>
-                                                <h5 class="font-size-15 text-truncate">Cynthia Price</h5>
-                                                <p class="text-muted mb-0 text-truncate">UI/UX Designer</p>
-                                            </div>
-
-                                            <div class="col-sm-8">
-                                                <div class="pt-4">
-
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <h5 class="font-size-15">125</h5>
-                                                            <p class="text-muted mb-0">Projects</p>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <h5 class="font-size-15">$1245</h5>
-                                                            <p class="text-muted mb-0">Revenue</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-4">
-                                                        <a href="" class="btn btn-primary waves-effect waves-light btn-sm">View Profile <i class="mdi mdi-arrow-right ml-1"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Personal Information</h4>
-
-                                        <p class="text-muted mb-4">Hi I'm Cynthia Price,has been the industry's standard dummy text To an English person, it will seem like simplified English, as a skeptical Cambridge.</p>
-                                        <div class="table-responsive">
-                                            <table class="table table-nowrap mb-0">
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Full Name :</th>
-                                                        <td>Cynthia Price</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Mobile :</th>
-                                                        <td>(123) 123 1234</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">E-mail :</th>
-                                                        <td>cynthiaskote@gmail.com</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Location :</th>
-                                                        <td>California, United States</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- end card -->
-
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-5">Experience</h4>
-                                        <div class="">
-                                            <ul class="verti-timeline list-unstyled">
-                                                <li class="event-list active">
-                                                    <div class="event-timeline-dot">
-                                                        <i class="bx bx-right-arrow-circle bx-fade-right"></i>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="mr-3">
-                                                            <i class="bx bx-server h4 text-primary"></i>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div>
-                                                                <h5 class="font-size-15"><a href="#" class="text-dark">Back end Developer</a></h5>
-                                                                <span class="text-primary">2016 - 19</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="event-list">
-                                                    <div class="event-timeline-dot">
-                                                        <i class="bx bx-right-arrow-circle"></i>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="mr-3">
-                                                            <i class="bx bx-code h4 text-primary"></i>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div>
-                                                                <h5 class="font-size-15"><a href="#" class="text-dark">Front end Developer</a></h5>
-                                                                <span class="text-primary">2013 - 16</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="event-list">
-                                                    <div class="event-timeline-dot">
-                                                        <i class="bx bx-right-arrow-circle"></i>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="mr-3">
-                                                            <i class="bx bx-edit h4 text-primary"></i>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <div>
-                                                                <h5 class="font-size-15"><a href="#" class="text-dark">UI /UX Designer</a></h5>
-                                                                <span class="text-primary">2011 - 13</span>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!-- end card -->
-                            </div>
-
-                            <div class="col-xl-8">
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Completed Projects</p>
-                                                        <h4 class="mb-0">125</h4>
-                                                    </div>
-
-                                                    <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-check-circle font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Pending Projects</p>
-                                                        <h4 class="mb-0">12</h4>
-                                                    </div>
-
-                                                    <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-hourglass font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="card mini-stats-wid">
-                                            <div class="card-body">
-                                                <div class="media">
-                                                    <div class="media-body">
-                                                        <p class="text-muted font-weight-medium">Total Revenue</p>
-                                                        <h4 class="mb-0">$36,524</h4>
-                                                    </div>
-
-                                                    <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
-                                                        <span class="avatar-title">
-                                                            <i class="bx bx-package font-size-24"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Revenue</h4>
-                                        <div id="revenue-chart" class="apex-charts"></div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">My Projects</h4>
-                                        <div class="table-responsive">
-                                            <table class="table table-nowrap table-hover mb-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Projects</th>
-                                                        <th scope="col">Start Date</th>
-                                                        <th scope="col">Deadline</th>
-                                                        <th scope="col">Budget</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Skote admin UI</td>
-                                                        <td>2 Sep, 2019</td>
-                                                        <td>20 Oct, 2019</td>
-                                                        <td>$506</td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Skote admin Logo</td>
-                                                        <td>1 Sep, 2019</td>
-                                                        <td>2 Sep, 2019</td>
-                                                        <td>$94</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Redesign - Landing page</td>
-                                                        <td>21 Sep, 2019</td>
-                                                        <td>29 Sep, 2019</td>
-                                                        <td>$156</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>App Landing UI</td>
-                                                        <td>29 Sep, 2019</td>
-                                                        <td>04 Oct, 2019</td>
-                                                        <td>$122</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Blog Template</td>
-                                                        <td>05 Oct, 2019</td>
-                                                        <td>16 Oct, 2019</td>
-                                                        <td>$164</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Redesign - Multipurpose Landing</td>
-                                                        <td>17 Oct, 2019</td>
-                                                        <td>05 Nov, 2019</td>
-                                                        <td>$192</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">7</th>
-                                                        <td>Logo Branding</td>
-                                                        <td>04 Nov, 2019</td>
-                                                        <td>05 Nov, 2019</td>
-                                                        <td>$94</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end row -->
-
-                    </div> <!-- container-fluid -->
-                </div>
-                <!-- End Page-content -->
-
-
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-right d-none d-sm-block">
-                                    Design & Develop by Themesbrand
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-            <!-- end main content-->
 
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title px-3 py-4">
-                    <a href="javascript:void(0);" class="right-bar-toggle float-right">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                    <h5 class="m-0">Settings</h5>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="">
-                    </div>
-                    <div class="custom-control custom-switch mb-3">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="light-mode-switch" checked />
-                        <label class="custom-control-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="">
-                    </div>
-                    <div class="custom-control custom-switch mb-3">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css" />
-                        <label class="custom-control-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="">
-                    </div>
-                    <div class="custom-control custom-switch mb-5">
-                        <input type="checkbox" class="custom-control-input theme-choice" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css" />
-                        <label class="custom-control-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
-        <!-- Right bar overlay-->
-        <div class="rightbar-overlay"></div>
-
-        <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
-
-        <!-- apexcharts -->
-        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
-
-        <script src="assets/js/pages/profile.init.js"></script>
-
-        <!-- App js -->
-        <script src="assets/js/app.js"></script>
-
-    </body>
 {% block content %}
 {% endblock content %}
 
