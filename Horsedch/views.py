@@ -10,4 +10,4 @@ def sign_up_view(request):
 
 
 def test_view(request):
-    return render(request, template_name="site_pages/fairplay.html")
+    return render(request, template_name="products/all-products.html")
