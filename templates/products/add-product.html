@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h4 class="mb-0 font-size-18">Products</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);"></a></li>
+                                    <li class="breadcrumb-item active"></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+                {#                Start From Here                               #}
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Basic Information</h4>
+                                <p class="card-title-desc">Fill all information below</p>
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="product_title">Product Title</label>
+                                                <input id="product_title" name="product_title" type="text"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="zip_code">Zip Code</label>
+                                                        <input id="zip_code" name="zip_code" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="form-group">
+                                                        <label for="city_name">City</label>
+                                                        <input id="city_name" name="city_name" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="price">Price</label>
+                                                        <input id="price" name="price" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="rental_type">Per</label>
+                                                        <select class="form-control" id="rental_type"
+                                                                name="rental_type">
+                                                            <option>Select</option>
+                                                            <option value="Per Day">Per Day</option>
+                                                            <option value="Per Month">Per Month</option>
+                                                            <option value="Per Year">Per Year</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="brand">Brand</label>
+                                                        <input id="brand" name="brand" type="text"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category</label>
+                                                        <select class="form-control select">
+                                                            <option>Select</option>
+                                                            <option value="AK">Pony</option>
+                                                            <option value="HI">Blanket</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="available_from">Available From</label>
+                                                        <input id="available_from" name="available_from" type="date"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 text-center">
+                                                    <div class="form-group">
+                                                        <div><label>Hide Item</label></div>
+                                                        <input type="checkbox" id="hide_item" switch="warning">
+                                                        <label for="hide_item" data-on-label="Yes"
+                                                               data-off-label="No"></label>
+                                                        <p class="text-info">Temporarily not showing the item for rent.
+                                                            The article is not visible to other users.</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="product_description">Product Description</label>
+                                                <textarea class="form-control" id="product_description" rows="5">
+
+                                                </textarea>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" id="offer_shipping" name="delivery_type"
+                                                           class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="offer_shipping">Offer
+                                                        Shipping?(you send the rental property and receive 10.- for
+                                                        postage)</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" id="pick_up" name="delivery_type"
+                                                           class="custom-control-input" required>
+                                                    <label class="custom-control-label" for="pick_up">Pick up (the
+                                                        tenant picks up the goods from you)</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">Product Images</h4>
+                                <span class="text-muted mb-2">You can select upto 4 images of the product.</span>
+
+                                <div class="row mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="form-group custom-file">
+                                            <input type="file" class="custom-file-input" id="product_img_1">
+                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="row  mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="form-group custom-file">
+                                            <input type="file" class="custom-file-input" id="product_img_2">
+                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="row  mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="form-group custom-file">
+                                            <input type="file" class="custom-file-input" id="product_img_3">
+                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="row  mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="form-group custom-file">
+                                            <input type="file" class="custom-file-input" id="product_img_4">
+                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- end card-->
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title">Meta Data <br><span class="text-info mr-3">Note For Stakeholders: We will use this information for SEO (Search Engine Optimization) within our system. It will be helpful in ranking the products.</span></h4>
+                                <p class="card-title-desc">Fill all information below</p>
+
+                                <form>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="metatitle">Meta title</label>
+                                                <input id="metatitle" name="productname" type="text"
+                                                       class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="metakeywords">Meta Keywords</label>
+                                                <input id="metakeywords" name="manufacturername" type="text"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="metadescription">Meta Description</label>
+                                                <textarea class="form-control" id="metadescription" rows="5"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
+                                        Changes
+                                    </button>
+                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+
+
+    </div> <!-- container-fluid -->
+    <!-- End Page-content -->
+    <!-- end main content-->
+{% endblock content %}
+
+{#{% block custom_js %}#}
+{#   <script>#}
+{#    $(document).ready(function(){#}
+{#      $("select").change(function () {#}
+{#      if($("select option:selected").length > 4) {#}
+{#         alert("you cant")#}
+{#      }#}
+{#  });#}
+{#    })#}
+{#   </script>#}
+{#{% endblock custom_js %}#}
+
+
+
+
+
