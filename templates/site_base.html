@@ -33,12 +33,12 @@
 {% block nav_bar %}
     <nav class="navbar navbar-expand-lg navigation fixed-top sticky" style="background-color: #FFFFFF">
     <div class="container">
-        <a class="navbar-logo" href="index.html">
-            <img src="{% static 'images/logo/logo.png' %}" alt="" height="50" class="logo logo-dark">
-            <img src="{% static 'images/logo/logo.png' %}" alt="" height="50" class="logo logo-light">
+        <a class="navbar-logo mr-3" href="">
+            <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75" class="logo logo-dark rounded-circle">
+            <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75" class="logo logo-light rounded-circle">
 
         </a>
-        <span class="font-weight-bolder font-size-24">Horsed.ch</span>
+        <span class="font-weight-bolder font-size-24" style="color:  #8EA9DB">Horsed.ch</span>
 
         <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
                 data-toggle="collapse" data-target="#topnav-menu-content">
@@ -184,6 +184,62 @@
   <!-- Copyright -->
 </footer>
 {% endblock footer %}
+
+
+
+
+{#                                          Modals goes here                                             #}
+
+{#        Signup Modal#}
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-title text-center">
+                            <h4>Account Erstellen</h4>
+                            <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>
+                        </div>
+                        <div class="d-flex flex-column mt-2">
+                            <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal"
+                                    data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren
+                            </button>
+                            <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse
+                                Registrieren
+                            </button>
+                            <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren
+                            </button>
+
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+
+                        <div class="signup-section">Du hast schon einen Account ? <a href="#a" class="text-info">Einloggen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {#         Signin Modal#}
+        {% include 'authentication/login.html' %}
+
+
+
+
+
+
+
+
 
 {% block scripts %}
     <!-- JAVASCRIPT -->
