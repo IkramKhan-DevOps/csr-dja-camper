@@ -185,44 +185,48 @@
                 {#                    </div>#}
                 {#                </div>#}
                 <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <img src="{% static 'images/core/bss.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">1. Miteobjekt suchen</h5>
-                        <p class="card-text">
-                            Suchen anch einem Objekt, dass du mieten möchtest.
-                        </p>
-                    </div>
+                    {% for data in how_it_works %}
+                        {% if data.is_active %}
+                            <div class="col-sm-3 text-center">
+                            <img src="{{ data.picture.url }}" height="100">
+                            <h5 class="mt-4" style="color: #FF7F23">{{ data.title }}</h5>
+                            <p class="card-text">
+                                {{ data.description }}
+                            </p>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
 
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/suu.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">2. Mietanfrage senden</h5>
-                        <p class="card-text">
-                            Send a non-binding request or book via instant booking
-                        </p>
-                    </div>
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/suu.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">2. Mietanfrage senden</h5>#}
+{#                        <p class="card-text">#}
+{#                            Send a non-binding request or book via instant booking#}
+{#                        </p>#}
+{#                    </div>#}
 
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/fpp.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">3. Details und Bestätigung</h5>
-                        <p class="card-text">
-                            Agree on the details and finalize the booking
-                        </p>
-                    </div>
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/fpp.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">3. Details und Bestätigung</h5>#}
+{#                        <p class="card-text">#}
+{#                            Agree on the details and finalize the booking#}
+{#                        </p>#}
+{#                    </div>#}
 
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/pee.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">4. Benutzen</h5>
-                        <p class="card-text">
-                            At the vehicle handover the owner explains the vehicle and then you're good to go.
-                        </p>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <img src="{% static 'images/core/pee.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">5. Zurückgeben</h5>
-                        <p class="card-text">
-                            At the vehicle handover the owner explains the vehicle and then you're good to go.
-                        </p>
-                    </div>
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/pee.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">4. Benutzen</h5>#}
+{#                        <p class="card-text">#}
+{#                            At the vehicle handover the owner explains the vehicle and then you're good to go.#}
+{#                        </p>#}
+{#                    </div>#}
+{#                    <div class="col-sm-3 text-center">#}
+{#                        <img src="{% static 'images/core/pee.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">5. Zurückgeben</h5>#}
+{#                        <p class="card-text">#}
+{#                            At the vehicle handover the owner explains the vehicle and then you're good to go.#}
+{#                        </p>#}
+{#                    </div>#}
                 </div>
             </div>
             <!-- end row -->
@@ -248,44 +252,48 @@
                 {#                    </div>#}
                 {#                </div>#}
                 <div class="row">
-                    <div class="col-sm-3 text-center">
-                        <img src="{% static 'images/core/bss.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">Grosse Auswahl</h5>
+                    {% for data in why_horsed_ch %}
+                        {% if data.is_active %}
+                        <div class="col-sm-3 text-center">
+                        <img src="{{ data.picture.url }}" height="100">
+                        <h5 class="mt-4" style="color: #FF7F23">{{ data.title }}</h5>
                         <p class="card-text">
-                            Bein uns findest du eine Grosse Auswahl an Pferde- und Reitartikel zum mieten
+                            {{ data.description }}
                         </p>
                     </div>
+                        {% endif %}
+                    {% endfor %}
 
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/suu.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">Nachhaltig</h5>
-                        <p class="card-text">
-                            Mieten statt kaufen schohnt Ressourcen
-                        </p>
-                    </div>
-
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/fpp.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">Versichert</h5>
-                        <p class="card-text">
-                            Du brauchst dir keine Sorgen machen, das mietobjekt ist bei uns verichert.
-                        </p>
-                    </div>
-
-                    <div class="col-sm-2 text-center">
-                        <img src="{% static 'images/core/pee.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">Persönlich</h5>
-                        <p class="card-text">
-                            Bei Fragen oder Problemen kümmern wir uns persönlich um dein Anliegen
-                        </p>
-                    </div>
-                    <div class="col-sm-3 text-center">
-                        <img src="{% static 'images/core/pee.png' %}" height="100">
-                        <h5 class="mt-4" style="color: #FF7F23">xxx</h5>
-                        <p class="card-text">
-                            xxx
-                        </p>
-                    </div>
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/suu.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">Nachhaltig</h5>#}
+{#                        <p class="card-text">#}
+{#                            Mieten statt kaufen schohnt Ressourcen#}
+{#                        </p>#}
+{#                    </div>#}
+{##}
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/fpp.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">Versichert</h5>#}
+{#                        <p class="card-text">#}
+{#                            Du brauchst dir keine Sorgen machen, das mietobjekt ist bei uns verichert.#}
+{#                        </p>#}
+{#                    </div>#}
+{##}
+{#                    <div class="col-sm-2 text-center">#}
+{#                        <img src="{% static 'images/core/pee.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">Persönlich</h5>#}
+{#                        <p class="card-text">#}
+{#                            Bei Fragen oder Problemen kümmern wir uns persönlich um dein Anliegen#}
+{#                        </p>#}
+{#                    </div>#}
+{#                    <div class="col-sm-3 text-center">#}
+{#                        <img src="{% static 'images/core/pee.png' %}" height="100">#}
+{#                        <h5 class="mt-4" style="color: #FF7F23">xxx</h5>#}
+{#                        <p class="card-text">#}
+{#                            xxx#}
+{#                        </p>#}
+{#                    </div>#}
                 </div>
             </div>
             <!-- end row -->
@@ -296,6 +304,32 @@
 
     </section>
 {% endblock body_content %}
+
+{% block contact %}
+   <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">Kontakt</h5>
+
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white "><i class="fa fa-building"></i> {{ company_contact.building_name }}</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-road"></i> {{ company_contact.street }}</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-city"></i> {{ company_contact.post_code }}</a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-envelope"></i> {{ company_contact.email_address }}</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-phone"></i> {{ company_contact.phone_number }}</a>
+                        </li>
+
+                    </ul>
+                </div>
+{% endblock contact %}
 
 
 

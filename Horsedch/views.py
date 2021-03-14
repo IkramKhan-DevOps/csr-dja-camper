@@ -1,8 +1,19 @@
 from django.shortcuts import render
 
+from Horsedch.models import HowItWork, WhyHorsedCh, ContactInformation
+
 
 def index_view(request):
-    return render(request, template_name="index.html")
+    how_it_works = HowItWork.objects.all()
+    why_horsed_ch = WhyHorsedCh.objects.all()
+    company_contact = ContactInformation.objects.latest('building_name')
+    context = {
+        'how_it_works': how_it_works,
+        'why_horsed_ch': why_horsed_ch,
+        'company_contact': company_contact,
+
+    }
+    return render(request, template_name="index.html", context=context)
 
 
 def sign_up_view(request):

@@ -23,48 +23,55 @@
     <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css"/>
-<style>
-    .text-blue{
-        background-color: #8EA9DB;
-    }
-</style>
+    <style>
+        .text-blue {
+            background-color: #8EA9DB;
+        }
+    </style>
 </head>
 <body>
 {% block nav_bar %}
     <nav class="navbar navbar-expand-lg navigation fixed-top sticky" style="background-color: #FFFFFF">
-    <div class="container">
-        <a class="navbar-logo mr-3" href="">
-            <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75" class="logo logo-dark rounded-circle">
-            <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75" class="logo logo-light rounded-circle">
+        <div class="container">
+            <a class="navbar-logo mr-3" href="">
+                <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75"
+                     class="logo logo-dark rounded-circle">
+                <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="75"
+                     class="logo logo-light rounded-circle">
 
-        </a>
-        <span class="font-weight-bolder font-size-24" style="color:  #8EA9DB">Horsed.ch</span>
+            </a>
+            <span class="font-weight-bolder font-size-24" style="color:  #8EA9DB">Horsed.ch</span>
 
-        <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
-                data-toggle="collapse" data-target="#topnav-menu-content">
-            <i class="fa fa-fw fa-bars"></i>
-        </button>
+            <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
+                    data-toggle="collapse" data-target="#topnav-menu-content">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
 
-        <div class="collapse navbar-collapse" id="topnav-menu-content">
-            <ul class="navbar-nav ml-auto" id="topnav-menu">
-                <li class="nav-item" >
-                    <a class="nav-link active btn text-white" href="#home"><span style="background-color: #8EA9DB" class="p-1">Mieten</span> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active btn text-white" href="#home"><span style="background-color: #8EA9DB" class="p-1">Vermieter Werden</span> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active btn text-white" data-toggle="modal" data-target="#signupModal"><span style="background-color: #8EA9DB" class="p-1">Registrieren</span> </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active btn text-white" data-toggle="modal" data-target="#loginModal"><span style="background-color: #8EA9DB" class="p-1">Login</span> </a>
-                </li>
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav ml-auto" id="topnav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active btn text-white" href="#home"><span style="background-color: #8EA9DB"
+                                                                                     class="p-1">Mieten</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active btn text-white" href="#home"><span style="background-color: #8EA9DB"
+                                                                                     class="p-1">Vermieter Werden</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active btn text-white" data-toggle="modal" data-target="#signupModal"><span
+                                style="background-color: #8EA9DB" class="p-1">Registrieren</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active btn text-white" data-toggle="modal" data-target="#loginModal"><span
+                                style="background-color: #8EA9DB" class="p-1">Login</span> </a>
+                    </li>
 
-            </ul>
+                </ul>
 
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 {% endblock nav_bar %}
 
 {% block body_content %}
@@ -78,111 +85,114 @@
 
 {% block footer %}
     <footer class="text-center text-lg-start" style="background-color: #8EA9DB">
-  <!-- Grid container -->
-  <div class="container p-4">
-    <!--Grid row-->
-    <div class="row">
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-white">Mieten</h5>
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">Mieten</h5>
 
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="#!" class="text-white">Versicherung</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white">Fairplay</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white">FAQ Mieter</a>
-          </li>
-        </ul>
-      </div>
-      <!--Grid column-->
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white">Versicherung</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Fairplay</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">FAQ Mieter</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-white">Vermieten</h5>
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">Vermieten</h5>
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!" class="text-white">Versicherungsbedinungen</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white">FAQ Vermieter</a>
-          </li>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white">Versicherungsbedinungen</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">FAQ Vermieter</a>
+                        </li>
 
-        </ul>
-      </div>
-      <!--Grid column-->
+                    </ul>
+                </div>
+                <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-white">Social Media</h5>
+                <!--Grid column-->
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">Social Media</h5>
 
-        <ul class="list-unstyled mb-0">
-          <li>
-            <a href="#!" class="text-white"><i class="fa fa-facebook"></i> horsed.ch auf Facebook</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white"><i class="fa fa-instagram"></i>horsed.ch auf Instagram </a>
-          </li>
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-facebook"></i> horsed.ch auf Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white"><i class="fa fa-instagram"></i>horsed.ch auf Instagram </a>
+                        </li>
 
-        </ul>
-      </div>
-      <!--Grid column-->
+                    </ul>
+                </div>
+                <!--Grid column-->
 
-      <!--Grid column-->
-      <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-white">horsed.ch</h5>
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">horsed.ch</h5>
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!" class="text-white">Über uns</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white">Newsletter</a>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white">Über uns</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Newsletter</a>
 
-          </li>
+                        </li>
 
-        </ul>
-      </div>
+                    </ul>
+                </div>
 
-        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-        <h5 class="text-white">Kontakt</h5>
+                {% block contact %}
+                    <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-white">Kontakt</h5>
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!" class="text-white">horsed.ch</a>
-          </li>
-          <li>
-            <a href="#!" class="text-white">Strasse</a>
-          </li>
-            <li>
-            <a href="#!" class="text-white">PLZ Ort</a>
-          </li>
-            <br>
-            <li>
-            <a href="#!" class="text-white">info@horsed.ch</a>
-          </li><li>
-            <a href="#!" class="text-white">Telefon</a>
-          </li>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#!" class="text-white">horsed.ch</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Strasse</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">PLZ Ort</a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="#!" class="text-white">info@horsed.ch</a>
+                        </li>
+                        <li>
+                            <a href="#!" class="text-white">Telefon</a>
+                        </li>
 
-        </ul>
-      </div>
-      <!--Grid column-->
-    </div>
-    <!--Grid row-->
-  </div>
-  <!-- Grid container -->
+                    </ul>
+                </div>
+                {% endblock contact %}
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
 
-  <!-- Copyright -->
-  <div class="text-center p-3 text-white" style="background-color: #8EA9DB">
-    Copyright © 2021
-    <a class="text-white" href="/">Horsed.ch</a>
-  </div>
-  <!-- Copyright -->
-</footer>
+        <!-- Copyright -->
+        <div class="text-center p-3 text-white" style="background-color: #8EA9DB">
+            Copyright © 2021
+            <a class="text-white" href="/">Horsed.ch</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 {% endblock footer %}
 
 
@@ -191,47 +201,47 @@
 {#                                          Modals goes here                                             #}
 
 {#        Signup Modal#}
-        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header border-bottom-0">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
 
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-title text-center">
-                            <h4>Account Erstellen</h4>
-                            <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>
-                        </div>
-                        <div class="d-flex flex-column mt-2">
-                            <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal"
-                                    data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren
-                            </button>
-                            <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse
-                                Registrieren
-                            </button>
-                            <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren
-                            </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-title text-center">
+                    <h4>Account Erstellen</h4>
+                    <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>
+                </div>
+                <div class="d-flex flex-column mt-2">
+                    <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal"
+                            data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren
+                    </button>
+                    <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse
+                        Registrieren
+                    </button>
+                    <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren
+                    </button>
 
 
-                        </div>
+                </div>
 
-                    </div>
-                    <div class="modal-footer d-flex justify-content-center">
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
 
-                        <div class="signup-section">Du hast schon einen Account ? <a href="#a" class="text-info">Einloggen</a>
-                        </div>
-                    </div>
+                <div class="signup-section">Du hast schon einen Account ? <a href="#a" class="text-info">Einloggen</a>
                 </div>
             </div>
-
         </div>
+    </div>
 
-        {#         Signin Modal#}
-        {% include 'authentication/login.html' %}
+</div>
+
+{#         Signin Modal#}
+{% include 'authentication/login.html' %}
 
 
 
@@ -243,33 +253,33 @@
 
 {% block scripts %}
     <!-- JAVASCRIPT -->
-<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
-<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
-<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
-<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+    <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
 
-<script src="{% static 'libs/select2/js/select2.min.js' %}"></script>
-<script src="{% static 'libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
-<script src="{% static 'libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
-<script src="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
-<script src="{% static 'libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+    <script src="{% static 'libs/select2/js/select2.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+    <script src="{% static 'libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
 
-<script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
+    <script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
 
 
-<script src="{% static 'libs/jquery.easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'libs/jquery.easing/jquery.easing.min.js' %}"></script>
 
-<!-- Plugins js-->
-<script src="{% static 'libs/jquery-countdown/jquery.countdown.min.js' %}"></script>
+    <!-- Plugins js-->
+    <script src="{% static 'libs/jquery-countdown/jquery.countdown.min.js' %}"></script>
 
-<!-- owl.carousel js -->
-<script src="{% static 'libs/owl.carousel/owl.carousel.min.js' %}"></script>
+    <!-- owl.carousel js -->
+    <script src="{% static 'libs/owl.carousel/owl.carousel.min.js' %}"></script>
 
-<!-- ICO landing init -->
-<script src="{% static 'js/pages/ico-landing.init.js' %}"></script>
+    <!-- ICO landing init -->
+    <script src="{% static 'js/pages/ico-landing.init.js' %}"></script>
 
-<script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 {% endblock scripts %}
 </body>
 </html>
