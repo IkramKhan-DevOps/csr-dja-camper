@@ -11,16 +11,16 @@
             <p class="">Datenschutz</p>
         </div>
 
-        {% if data_policy %}
+        {% if data_policy and data_policy.is_active %}
 
-            {% if data_policy.is_active %}
+
                 <div class="row">
                     <h4>{{ data_policy.title }}</h4>
                 </div>
 
                 <div class="mt-4">
                     <p class="font-size-16 text-wrap text-justify">{{ data_policy.description|safe }}</div>
-            {% endif %}
+
 
         {% else %}
 
