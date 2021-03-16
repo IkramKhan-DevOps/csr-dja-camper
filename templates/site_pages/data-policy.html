@@ -5,39 +5,33 @@
 
     <section class="section p-4 bg-light">
 
-    <div class="row mt-5 font-weight-bolder font-size-24 text-uppercase text-white text-center justify-content-center" style="background-color: #8EA9DB">
+        <div class="row mt-5 font-weight-bolder font-size-24 text-uppercase text-white text-center justify-content-center"
+             style="background-color: #8EA9DB">
 
-        <p class="">Datenschutz</p>
-    </div>
-
-        <div class="row">
-            <h4>Datenschutzbestimmungen</h4>
+            <p class="">Datenschutz</p>
         </div>
 
-    <div class="row mt-4">
-        <h4 class="">1. Lorem ipsum</h4>
-        <p class="font-size-16 text-wrap text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
+        {% if data_policy %}
 
-    <div class="row mt-4">
-        <h4 class="">1. Lorem ipsum</h4>
-        <p class="font-size-16 text-wrap text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
+            {% if data_policy.is_active %}
+                <div class="row">
+                    <h4>{{ data_policy.title }}</h4>
+                </div>
 
-    <div class="row mt-4">
-        <h4 class="">3. Lorem ipsum</h4>
-        <p class="font-size-16 text-wrap text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
+                <div class="mt-4">
+                    <p class="font-size-16 text-wrap text-justify">{{ data_policy.description|safe }}</div>
+            {% endif %}
 
-    <div class="row mt-4">
-        <h4 class="">4. Lorem ipsum</h4>
-        <p class="font-size-16 text-wrap text-justify">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    </div>
-    <div class="row mt-4">
-      <p>01.01.2021    Gerichtsstand Zürich</p>
-          </div>
+        {% else %}
 
+            <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Nothing to show!</strong> There is no privacy policy yet.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
+        {% endif %}
 
 
     </section>

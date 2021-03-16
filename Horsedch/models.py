@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 class HowItWork(models.Model):
@@ -63,3 +64,55 @@ class ContactInformation(models.Model):
     class Meta:
         verbose_name = "Company Contact Information"
         verbose_name_plural = "Company Contact Information"
+
+
+class Condition(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    description = RichTextField()
+    is_active = models.BooleanField(default=False, help_text="Uncheck to hide this from website")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Terms & Condition"
+        verbose_name_plural = "Terms & Conditions"
+
+
+class DataPolicy(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    description = RichTextField()
+    is_active = models.BooleanField(default=False, help_text="Uncheck to hide this from website")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Data Policy"
+        verbose_name_plural = "Data Policy"
+
+
+class FairPlay(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    description = RichTextField()
+    is_active = models.BooleanField(default=False, help_text="Uncheck to hide this from website")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Fair Play"
+        verbose_name_plural = "Fair Play"
+
+
+class Imprint(models.Model):
+    title = models.CharField(max_length=200, null=True, blank=True)
+    description = RichTextField()
+    is_active = models.BooleanField(default=False, help_text="Uncheck to hide this from website")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Imprint"
+        verbose_name_plural = "Imprint"
