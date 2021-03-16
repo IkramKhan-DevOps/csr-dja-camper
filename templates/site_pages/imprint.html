@@ -11,41 +11,37 @@
             <p class="">Impressum</p>
         </div>
 
-        <div class="mt-4">
+        {% if contact_information %}
+            <div class="mt-4">
             <h2>Kontakt Information</h2>
-            <h4><i class="fa fa-road" style="color: #FF7F23"></i> Strasse: </h4>
-            <h4><i class="fa fa-home" style="color: #FF7F23"></i> PLZ Ort</h4>
-            <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> info@horsed.ch</h4>
+            <h4><i class="fa fa-road" style="color: #FF7F23"></i>  {{ contact_information.street }}</h4>
+            <h4><i class="fa fa-home" style="color: #FF7F23"></i>  {{ contact_information.post_code }}</h4>
+            <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> {{ contact_information.email_address }}</h4>
         </div>
+    {% endif %}
 
-        <div class="mt-4">
-            <h4 class="">Haftungsausschluss</h4>
-            <p class="font-size-16 text-wrap text-justify">Der Autor übernimmt keinerlei Gewähr hinsichtlich der
-                inhaltlichen Richtigkeit, Genauigkeit, Aktualität, Zuverlässigkeit und Vollständigkeit der
-                Informationen.
+        {% if imprint %}
 
-                Haftungsansprüche gegen den Autor wegen Schäden materieller oder immaterieller Art, welche aus dem
-                Zugriff oder der Nutzung bzw. Nichtnutzung der veröffentlichten Informationen, durch Missbrauch der
-                Verbindung oder durch technische Störungen entstanden sind, werden ausgeschlossen.
+            {% if imprint.is_active %}
+                <div class="row">
+                    <h4>{{ imprint.title }}</h4>
+                </div>
 
-                Alle Angebote sind unverbindlich. Der Autor behält es sich ausdrücklich vor, Teile der Seiten oder das
-                gesamte Angebot ohne gesonderte Ankündigung zu verändern, zu ergänzen, zu löschen oder die
-                Veröffentlichung zeitweise oder endgültig einzustellen.</p>
-        </div>
+                <div class="mt-4">
+                    <p class="font-size-16 text-wrap text-justify">{{ imprint.description|safe }}</div>
+            {% endif %}
 
-        <div class="mt-4">
-            <h4 class="">Haftung für Links</h4>
-            <p class="font-size-16 text-wrap text-justify">Verweise und Links auf Webseiten Dritter liegen ausserhalb
-                unseres Verantwortungsbereichs Es wird jegliche Verantwortung für solche Webseiten abgelehnt. Der
-                Zugriff und die Nutzung solcher Webseiten erfolgen auf eigene Gefahr des Nutzers oder der Nutzerin. </p>
-        </div>
+        {% else %}
 
-        <div class="mt-4">
-            <h4 class="">Urheberrechte</h4>
-            <p class="font-size-16 text-wrap text-justify">Die Urheber- und alle anderen Rechte an Inhalten, Bildern,
-                Fotos oder anderen Dateien auf der Website gehören ausschliesslich der Firma MyCamper oder den speziell
-                genannten Rechtsinhabern. Für die Reproduktion jeglicher Elemente ist die schriftliche Zustimmung der
-                Urheberrechtsträger im Voraus einzuholen.</p></div>
+            <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Nothing to show!</strong> There is no imprint yet.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+        {% endif %}
+
 
     </section>
 

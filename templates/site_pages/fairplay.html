@@ -5,81 +5,33 @@
 
     <section class="section p-4 bg-light">
 
-    <div class="row mt-5 font-weight-bolder font-size-24 text-uppercase text-white text-center justify-content-center" style="background-color: #8EA9DB">
+        <div class="row mt-5 font-weight-bolder font-size-24 text-uppercase text-white text-center justify-content-center"
+             style="background-color: #8EA9DB">
 
-        <p class="">Fair Play</p>
-    </div>
+            <p class="">Fair Play</p>
+        </div>
 
-    <div class="mt-4">
-        <h4 class="">Horsed.ch Spielregeln</h4>
-        <p class="font-size-16 text-wrap text-justify">Damit ein sicheres und faires Mieten und Vermieten gewährleistet werden kann, braucht es gewisse Spielregeln. Schenke als Mieter und auch als Vermieter stets Respekt und Vertrauen. Sharing steht für ein sinnvolles Teilen von vorhandenen Ressourcen.</p>
-    </div>
+        {% if fair_play %}
 
-    <div class="mt-4">
-        <h4 class="">Für Mieter</h4>
-        <p class="font-size-16 text-wrap text-justify">Du bist zuverlässig. Sobald du eine Buchung abgeschlossen hast, hält der Vermieter extra für dich seinen Camper frei. Nur in Notfällen und gegen eine Gebühr kannst du eine Buchung stornieren. Wir empfehlen dir eine Annullierungskostenversicherung abzuschliessen. Bring den Camper nach deiner Reise so zurück, wie er dir übergeben worden ist: vollgetankt und gereinigt. Zu den Übergabe- und Rückgabeterminen kommst du pünktlich.</p>
-    </div>
+            {% if fair_play.is_active %}
+                <div class="row">
+                    <h4>{{ fair_play.title }}</h4>
+                </div>
 
-    <div class="mt-4">
-        <h4 class="">Du bist kommunikativ</h4>
-        <p class="font-size-16 text-wrap text-justify">Frage den Camper möglichst frühzeitig an und gebe dem Vermieter bereits bei der Anfrage genau an, wie du deine Tour gestalten möchtest. Kommuniziere freundlich. Melde dich besonders bei Problemen umgehend beim Vermieter. Er wird während der Mietdauer für dich erreichbar sein. Bei einer Panne oder einem Unfall rufst du die Pannenhilfe und allenfalls die Polizei. Melde den Schaden zudem der Versicherung. Die Nummern der Pannenhilfe und Versicherung bekommst du vom Vermieter oder von Horsedch. Wenn dir bei der Übergabe oder den Erklärungen des Vermieters unklar ist, frag nach.</p>
-    </div>
+                <div class="mt-4">
+                    <p class="font-size-16 text-wrap text-justify">{{ fair_play.description|safe }}</div>
+            {% endif %}
 
-    <div class="mt-4">
-        <h4 class="">Du bist vertrauenswürdig</h4>
-        <p class="font-size-16 text-wrap text-justify">Solltest du dir eine Busse einhandeln, teile das dem Vermieter mit. Halte dich an die Verkehrsregeln und Gesetzgebung. Informiere bei einer Änderung der Destination oder der Mitreisenden kurz den Vermieter.</p>
-    </div>
+        {% else %}
 
-    <div class="mt-4">
-        <h4 class="">Du bist sorgfältig</h4>
-        <p class="font-size-16 text-wrap text-justify">Es ist nicht selbstverständlich, dass dir jemand seinen privaten Camper mit all seiner Ausstattung anvertraut. Der Vermieter fährt mit seinem Camper auch in den Urlaub und hat viel Geld in diesen investiert. Auch der jährliche Unterhalt kostet viel Geld und Zelt. Gehe deshalb bitte sorgfältig und respektvoll mit dem Camper und all seiner Ausstattung um. Hinterlasse den Camper so, wie du ihn auch vorfinden möchtest. So wird dir der Vermieter den Camper sicher auch gerne wieder für deine nächsten Ferien überlassen.</p>
-    </div>
+            <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Nothing to show!</strong> There is no fair play yet.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
 
-    <div class="mt-4">
-        <h4 class="">Du bist positiv</h4>
-        <p class="font-size-16 text-wrap text-justify">Teilen statt Besitzen. Horsedch trägt zu einer nachhaltigeren und sinnvolleren Konsumform bei. Verhalte dich gegenüber dem Vermieter positiv und wohlwollend.</p>
-    </div>
-
-    <div class="mt-4">
-        <h4 class="">Du bist ehrlich</h4>
-        <p class="font-size-16 text-wrap text-justify">Nach der Rückgabe des Horsedch kannst du den Camper bewerten und andere an deinen Erfahrungen teilhaben lassen. Sei ehrlich und fair.</p>
-    </div>
-
-    <div class="mt-4">
-        <h4 class="">Für Vermieter</h4>
-        <p class="font-size-16 text-wrap text-justify">Du bist zuverlässig. Halte dein Camperprofil stets aktuell. Beschreibe deinen Camper detailliert und weise auf Besonderheiten hin. Trage die Eigennutzung ein, damit du nicht Buchungsanfragen bekommst, welche du ablehnen und damit Mieter enttäuschen musst. Du beantwortest Mietanfragen so schnell wie möglich. Eine schnelle Antwortzeit hilft dir bei deiner Antwort-Rate, sodass du mehr Anfragen bekommst. Zu den Übergabe- und Rückgabeterminen kommst du pünktlich.</p>
-    </div>
-
-    <div class="mt-4">
-        <h4 class="">Du bist gründlich</h4>
-        <p class="font-size-16 text-wrap text-justify">Du nimmst dir für die Übergabe und Einweisung in den Camper Zeit, damit du dem Mieter alles erklären kannst. Du gehst mit ihm das Übergabeprotokoll durch und erklärst, dass du deinen Camper so zurück erwartest, wie du ihn übergeben hast: gereinigt und vollgetankt.
-</p>
-    </div>
-
-
-     <div class="mt-4">
-        <h4 class="">Du bist fair</h4>
-        <p class="font-size-16 text-wrap text-justify">Nachdem dir der Mieter deinen Camper gereinigt, vollgetankt und unbeschädigt zurückgebracht hat, sorgst du dafür, dass der Mieter die Kaution möglichst bald zurückbekommt. Bei einem Schaden bemühst du dich, das Problem kulant und simpel zu lösen und nicht, die Situation auszunutzen.</p>
-    </div>
-
-     <div class="mt-4">
-        <h4 class="">Du bist erreichbar</h4>
-        <p class="font-size-16 text-wrap text-justify">Du teilst deinem Mieter deine Kontaktdaten mit, unter welchen du während der Mietdauer erreichbar bist. Zusätzlich kannst du dem Mieter auch einen Notfallkontakt angeben. In deinem Camper hinterlässt du die wichtigen Dokumente und Notfallnummern für den Mieter.</p>
-    </div>
-
-     <div class="mt-4">
-        <h4 class="">Du bist positiv</h4>
-        <p class="font-size-16 text-wrap text-justify">Teilen statt Besitzen. Horsedch trägt zu einer nachhaltigeren und sinnvolleren Konsumform bei. Verhalte dich gegenüber dem Mieter positiv und wohlwollend.</p>
-    </div>
-    <div class="mt-4">
-        <h4 class="">Du bist ehrlich</h4>
-        <p class="font-size-16 text-justify">
-            Nach der Rückgabe des Horsedch kannst du den Mieter bewerten. Sei ehrlich und fair. Dein Mieter freut sich über deine Bewertung, denn davon hängt ab, ob ihm andere Vermieter ihr.
-
-
-        </p>
-    </div>
-
+        {% endif %}
 
 
     </section>
