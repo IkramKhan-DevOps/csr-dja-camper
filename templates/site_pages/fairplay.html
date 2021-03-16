@@ -11,16 +11,16 @@
             <p class="">Fair Play</p>
         </div>
 
-        {% if fair_play %}
+        {% if fair_play and fair_play.is_active %}
 
-            {% if fair_play.is_active %}
+
                 <div class="row">
                     <h4>{{ fair_play.title }}</h4>
                 </div>
 
                 <div class="mt-4">
                     <p class="font-size-16 text-wrap text-justify">{{ fair_play.description|safe }}</div>
-            {% endif %}
+
 
         {% else %}
 

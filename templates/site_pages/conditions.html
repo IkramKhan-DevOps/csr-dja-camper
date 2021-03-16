@@ -11,18 +11,18 @@
             <p class="">AGB</p>
         </div>
 
-        {% if conditions %}
-            {% if conditions.is_active %}
+        {% if conditions and conditions.is_active %}
+
                 <div class="row">
                     <h4>{{ conditions.title }}</h4>
                 </div>
 
                 <div class="row mt-4">
                     <p class="font-size-16 text-wrap text-justify">{{ conditions.description|safe }}</div>
-            {% endif %}
+
         {% else %}
             <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Nothing to show!</strong> There is no conditions yet.
+                <strong>Nothing to show!</strong> There are no conditions yet.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

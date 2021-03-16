@@ -20,16 +20,16 @@
         </div>
     {% endif %}
 
-        {% if imprint %}
+        {% if imprint and imprint.is_active %}
 
-            {% if imprint.is_active %}
+
                 <div class="row">
                     <h4>{{ imprint.title }}</h4>
                 </div>
 
                 <div class="mt-4">
                     <p class="font-size-16 text-wrap text-justify">{{ imprint.description|safe }}</div>
-            {% endif %}
+
 
         {% else %}
 
