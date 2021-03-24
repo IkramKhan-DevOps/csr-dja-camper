@@ -105,5 +105,5 @@ def single_product_details(request):
     return render(request, template_name="take_on_rent/product_details.html")
 
 
-def info_page(request):
-    return render(request, template_name="info.html")
+def test(request):
+    return render(request, template_name="site_pages/index.html")
