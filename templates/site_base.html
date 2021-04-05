@@ -2,67 +2,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-            <meta charset="utf-8" />
-        <title>{% block title %} {% endblock title %}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Horsedch, A Secured and trusty Rental Website" name="description" />
-        <meta content="Horsedch" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static '/images/favicon.ico'%}">
+    <meta charset="utf-8"/>
+    <title>{% block title %} {% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Horsedch, A Secured and trusty Rental Website" name="description"/>
+    <meta content="Horsedch" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}">
 
-        <!-- owl.carousel css -->
-        <link rel="stylesheet" href="{% static '/libs/owl.carousel/assets/owl.carousel.min.css'%} ">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="{% static '/libs/owl.carousel/assets/owl.carousel.min.css' %} ">
 
-        <link rel="stylesheet" href="{% static '/libs/owl.carousel/assets/owl.theme.default.min.css'%} ">
+    <link rel="stylesheet" href="{% static '/libs/owl.carousel/assets/owl.theme.default.min.css' %} ">
 
-        <!-- Bootstrap Css -->
-        <link href="{% static '/css/bootstrap.min.css '%}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{% static '/css/icons.min.css '%}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{% static '/css/app.min.css '%}" id="app-style" rel="stylesheet" type="text/css" />
-
+    <!-- Bootstrap Css -->
+    <link href="{% static '/css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet"/>
+    <!-- Icons Css -->
+    <link href="{% static '/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="{% static '/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css"/>
+<style>
+    html{
+        scroll-behavior: smooth;
+    }
+</style>
 </head>
-    <body data-spy="scroll" data-target="#topnav-menu" data-offset="60">
+<body data-spy="scroll"  data-target="#topnav-menu" data-offset="60">
 {% block nav_bar %}
-        <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
-            <div class="container">
-                <a class="navbar-logo" href="index.html">
-                    <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="60" class="logo rounded-circle logo-dark">
-                    <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="60" class="logo rounded-circle logo-light">
-                </a>
+    <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
+        <div class="container">
+            <a class="navbar-logo" href="index.html">
+                <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="60"
+                     class="logo rounded-circle logo-dark">
+                <img src="{% static 'images/logo/logo-small.png' %}" alt="" height="60"
+                     class="logo rounded-circle logo-light">
+            </a>
 
-                <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-toggle="collapse" data-target="#topnav-menu-content">
-                    <i class="fa fa-fw fa-bars"></i>
-                </button>
+            <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
+                    data-toggle="collapse" data-target="#topnav-menu-content">
+                <i class="fa fa-fw fa-bars"></i>
+            </button>
 
-                <div class="collapse navbar-collapse" id="topnav-menu-content">
-                    <ul class="navbar-nav ml-auto" id="topnav-menu" >
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#home">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#how-it-works">How it Works</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#team">Team</a>
-                        </li>
+            <div class="collapse navbar-collapse" id="topnav-menu-content">
+                <ul class="navbar-nav ml-auto" id="topnav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'Home' %}#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}#how-it-works">How it Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}#team">Team</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#faqs">FAQs</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}#faqs">FAQs</a>
+                    </li>
 
-                    </ul>
+                </ul>
 
-                    <div class="ml-lg-2">
-                        <a href="#" class="btn btn-outline-success w-xs">Sign in</a>
-                    </div>
+                <div class="ml-lg-2">
+                    <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>
                 </div>
             </div>
-        </nav>
+        </div>
+    </nav>
 {% endblock nav_bar %}
 {% block body_content %}
 
@@ -75,82 +82,90 @@
 
 
 {% block footer %}
-   <!-- Footer start -->
-        <footer class="landing-footer">
-            <div class="container">
+    <!-- Footer start -->
+    <footer class="landing-footer">
+        <div class="container">
 
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="mb-4 mb-lg-0">
-                            <h5 class="mb-3 footer-list-title">Company</h5>
-                            <ul class="list-unstyled footer-list-menu">
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">How it Works</a></li>
-                                <li><a href="#">Team</a></li>
-                                <li><a href="#">FAQs</a></li>
-                            </ul>
-                        </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Company</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="{% url 'Home' %}#about">About Us</a></li>
+                            <li><a href="{% url 'Home' %}#how-it-works">How it Works</a></li>
+                            <li><a href="{% url 'Home' %}#team">Team</a></li>
+                            <li><a href="{% url 'Home' %}#faqs">FAQs</a></li>
+                        </ul>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="mb-4 mb-lg-0">
-                            <h5 class="mb-3 footer-list-title">Resources</h5>
-                            <ul class="list-unstyled footer-list-menu">
-                                <li><a href="#">Imprint</a></li>
-                                <li><a href="#">Fair Play</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
-                            </ul>
-                        </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Resources</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="{% url 'Imprint' %}">Imprint</a></li>
+                            <li><a href="{% url 'Fair Play' %}">Fair Play</a></li>
+                            <li><a href="{% url 'Data Policy' %}">Privacy Policy</a></li>
+                            <li><a href="{% url 'Conditions' %}">Terms & Conditions</a></li>
+                        </ul>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="mb-4 mb-lg-0">
-                            <h5 class="mb-3 footer-list-title">Links</h5>
-                            <ul class="list-unstyled footer-list-menu">
-                                <li> <a href="#"><i class="bx bxl-facebook font-size-18"></i> Facebook</a></li>
-                                <li> <a href="#"><i class="bx bxl-instagram font-size-18"></i> Instagram</a></li>
-                                <li> <a href="#"><i class="bx bxl-twitter font-size-18"></i> Twitter</a></li>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Links</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="{% block fb_link %}{% endblock fb_link %}"><i class="bx bxl-facebook font-size-18"></i> Facebook</a></li>
+                            <li><a href="{% block insta_link %}{% endblock insta_link %}"><i class="bx bxl-instagram font-size-18"></i> Instagram</a></li>
+                            <li><a href="{% block twitter_link %}{% endblock twitter_link %}"><i class="bx bxl-twitter font-size-18"></i> Twitter</a></li>
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
+                </div>
 
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="mb-4 mb-lg-0">
-                            <h5 class="mb-3 footer-list-title">Address</h5>
-                            <div class="blog-post">
-                                <a href="#" class="post">
-                                    <div class="badge badge-soft-success font-size-11 mb-3">Building</div>
-                                    <h5 class="post-title">{% lorem 4 w %}</h5>
-                                </a>
-                                <a href="#" class="post">
-                                    <div class="badge badge-soft-success font-size-11 mb-3">Street</div>
-                                    <h5 class="post-title">{% lorem 4 w %}</h5>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Address</h5>
+                        <div class="blog-post">
+                            <a href="#" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Building</div>
+                                <h5 class="post-title">{% block building %} {% endblock building %}</h5>
+                            </a>
+                            <a href="#" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Street</div>
+                                <h5 class="post-title">{% block street %} {% endblock street %}</h5>
 
-                                </a>
+                            </a>
 
-                            </div>
+                            <a href="#" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Postal Code</div>
+                                <h5 class="post-title">{% block post_code %} {% endblock post_code %}</h5>
+
+                            </a>
+
+                            <a href="#" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Email Address</div>
+                                <h5 class="post-title">{% block email_address %} {% endblock email_address %}</h5>
+
+                            </a>
+
+                            <a href="#" class="post">
+                                <div class="badge badge-soft-success font-size-11 mb-3">Phone Number</div>
+                                <h5 class="post-title">{% block phone_number %} {% endblock phone_number %}</h5>
+
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
-
-                <hr class="footer-border my-5">
-
-{#                <div class="row">#}
-{#                    <div class="col-lg-6">#}
-{#                        <div class="mb-4">#}
-{#                            <img src="assets/images/logo-light.png" alt="" height="20">#}
-{#                        </div>#}
-{##}
-{#                        <p class="mb-2">2020 © Skote. Design & Develop by Themesbrand</p>#}
-{#                        <p>It will be as simple as occidental in fact, it will be to an english person, it will seem like simplified English, as a skeptical</p>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
             </div>
-            <!-- end container -->
-        </footer>
-        <!-- Footer end -->
+            <!-- end row -->
+
+            <hr class="footer-border my-5">
+            <div class=" text-center">
+                <p class="mb-2 text-center">2021 © Horsedch.</p>
+            </div>
+
+        </div><!-- end container -->
+    </footer>
+    <!-- Footer end -->
 {% endblock footer %}
 
 
@@ -183,47 +198,47 @@
 {#               ****************************************************                            Modals goes here         ****************************************************                                    #}
 
 {#        Signup Modal#}
-<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-
-            </div>
-            <div class="modal-body">
-                <div class="form-title text-center">
-                    <h4>Account Erstellen</h4>
-                    <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>
-                </div>
-                <div class="d-flex flex-column mt-2">
-                    <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal"
-                            data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren
-                    </button>
-                    <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse
-                        Registrieren
-                    </button>
-                    <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren
-                    </button>
-
-
-                </div>
-
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-
-                <div class="signup-section">Du hast schon einen Account ? <a href="#a" class="text-info">Einloggen</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
+{#<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"#}
+{#     aria-hidden="true">#}
+{#    <div class="modal-dialog modal-dialog-centered" role="document">#}
+{#        <div class="modal-content">#}
+{#            <div class="modal-header border-bottom-0">#}
+{#                <button type="button" class="close" data-dismiss="modal" aria-label="Close">#}
+{#                    <span aria-hidden="true">&times;</span>#}
+{#                </button>#}
+{##}
+{#            </div>#}
+{#            <div class="modal-body">#}
+{#                <div class="form-title text-center">#}
+{#                    <h4>Account Erstellen</h4>#}
+{#                    <h3 style="color: #8EA9DB">Willkommen Bei horsed.ch</h3>#}
+{#                </div>#}
+{#                <div class="d-flex flex-column mt-2">#}
+{#                    <button type="button" class="btn btn-success btn-block btn-round" data-toggle="modal"#}
+{#                            data-target="#signup_using_emailModal">Mit E-Mail Adresse Registrieren#}
+{#                    </button>#}
+{#                    <button type="button" class="btn btn-danger btn-block btn-round">Mit Google-Account Adresse#}
+{#                        Registrieren#}
+{#                    </button>#}
+{#                    <button type="button" class="btn btn-info btn-block btn-round">Mit Facebook Registrieren#}
+{#                    </button>#}
+{##}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#            <div class="modal-footer d-flex justify-content-center">#}
+{##}
+{#                <div class="signup-section">Du hast schon einen Account ? <a href="#a" class="text-info">Einloggen</a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
 {#         Signin Modal#}
-{% include 'authentication/login.html' %}
+{#{% include 'authentication/login.html' %}#}
 
 
 
