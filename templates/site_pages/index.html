@@ -1,26 +1,28 @@
 {% extends 'site_base.html' %}
 {% load static %}
+{% block title %}Horsedch{% endblock title %}
 {% block body_content %}
     <!-- hero section start -->
     <section class="section hero-section" id="home" style='background-image: url("{% static 'images/hero_img.jpg' %}");
-             height: 50%;
+            height: 50%;
 
-                     /* Position and center the image to scale nicely on all screens */
-                     background-position: center;
-                     background-repeat: no-repeat;
-                     background-size: cover;
-                     position: relative;' >
-{#        <div class="bg-overlay bg-primary"></div>#}
+            /* Position and center the image to scale nicely on all screens */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;'>
+        {#        <div class="bg-overlay bg-primary"></div>#}
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5">
                     <div class="text-white-50">
-                        <h1 class="text-white font-weight-semibold mb-3 hero-title">Horsed.ch - A Secure Rental Website</h1>
-                        <p class="font-size-14">It will be as simple as occidental in fact to an English person, it will
-                            seem like simplified as a skeptical Cambridge</p>
+                        {% if hero_section.is_active %}
+                            <h1 class="text-white font-weight-semibold mb-3 hero-title">{{ hero_section.site_title }}</h1>
+                            <p class="font-size-14">{{ hero_section.site_description }}</p>
+                        {% endif %}
 
                         <div class="button-items mt-4">
-                            <a href="#" class="btn btn-warning">Rent A Product</a>
+                            <a href="#" class="btn btn-warning" id="rent">Rent A Product</a>
                             <a href="#" class="btn btn-light">List Your Product</a>
                         </div>
                     </div>
@@ -74,59 +76,63 @@
         <div class="container">
             <div class="currency-price">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="avatar-xs mr-3">
+                    {% for box in boxes %}
+                        {% if box.is_active %}
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="media">
+                                            <div class="avatar-xs mr-3">
                                             <span class="avatar-title rounded-circle bg-soft-warning text-warning font-size-18">
                                                 <i class="mdi mdi-flash"></i>
                                             </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="font-size-16 font-weight-bold">Fast</p>
-                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %} </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="avatar-xs mr-3">
-                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-18">
-                                                <i class="mdi mdi-security"></i>
-                                            </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="font-size-16 font-weight-bold">Secure</p>
-
-                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %}</p>
+                                            </div>
+                                            <div class="media-body">
+                                                <p class="font-size-16 font-weight-bold">{{ box.box_title }}</p>
+                                                <p class="text-muted text-truncate mb-0">{{ box.box_description }} </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media">
-                                    <div class="avatar-xs mr-3">
-                                            <span class="avatar-title rounded-circle bg-soft-info text-info font-size-18">
-                                                <i class="mdi mdi-check-circle"></i>
-                                            </span>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="font-size-16 font-weight-bold">Reliable</p>
-
-                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %} </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
+                    {#                    <div class="col-md-4">#}
+                    {#                        <div class="card">#}
+                    {#                            <div class="card-body">#}
+                    {#                                <div class="media">#}
+                    {#                                    <div class="avatar-xs mr-3">#}
+                    {#                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-18">#}
+                    {#                                                <i class="mdi mdi-security"></i>#}
+                    {#                                            </span>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="media-body">#}
+                    {#                                        <p class="font-size-16 font-weight-bold">Secure</p>#}
+                    {##}
+                    {#                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %}</p>#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <div class="col-md-4">#}
+                    {#                        <div class="card">#}
+                    {#                            <div class="card-body">#}
+                    {#                                <div class="media">#}
+                    {#                                    <div class="avatar-xs mr-3">#}
+                    {#                                            <span class="avatar-title rounded-circle bg-soft-info text-info font-size-18">#}
+                    {#                                                <i class="mdi mdi-check-circle"></i>#}
+                    {#                                            </span>#}
+                    {#                                    </div>#}
+                    {#                                    <div class="media-body">#}
+                    {#                                        <p class="font-size-16 font-weight-bold">Reliable</p>#}
+                    {##}
+                    {#                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %} </p>#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
                 <!-- end row -->
             </div>
@@ -142,7 +148,7 @@
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
                         <div class="small-title">About us</div>
-                        <h4>What is Horsedch?</h4>
+                        <h4>{{ about_us.heading }}</h4>
                     </div>
                 </div>
             </div>
@@ -150,12 +156,11 @@
                 <div class="col-lg-5">
 
                     <div class="text-muted">
-                        <h4>A Secure Rental Website</h4>
-                        <p>{% lorem p %}</p>
-                        <p class="mb-4">It would be necessary to have uniform pronunciation.</p>
+                        <h4>{{ about_us.sub_heading }}</h4>
+                        <p>{{ about_us.description }}</p>
+                        <p class="mb-4">Founder</p>
 
                         <div class="button-items">
-                            <a href="#" class="btn btn-warning">Read More</a>
                             <a href="#" class="btn btn-outline-primary">How It work</a>
                         </div>
 
@@ -240,100 +245,101 @@
                 <div class="col-lg-12">
                     <div class="hori-timeline">
                         <div class="owl-carousel owl-theme events navs-carousel" id="timeline-carousel">
-                            <div class="item event-list">
-                                <div>
-                                    <div class="event-date">
-                                        <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
+
+                            {% for data in how_it_works %}
+                                {% if data.is_active %}
+                                    <div class="item event-list">
+                                        <div class="event-date">
+                                            <h5 class="mb-4">{{ data.title }}</h5>
+                                        </div>
+
                                         <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
 
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">It will be as simple as occidental in fact it will be
-                                            Cambridge</p>
+                                        <div class="mt-3 px-3">
+                                            <p class="text-muted">{{ data.description }} </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                {% endif %}
+                            {% endfor %}
 
-                            <div class="item event-list">
-                                <div>
-                                    <div class="event-date">
-                                        <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
-
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">To an English person, it will seem like simplified English
-                                            existence.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item event-list active">
-                                <div>
-                                    <div class="event-date">
-                                        <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
-
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">For science, music, sport, etc, Europe uses the same
-                                            vocabulary.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item event-list">
-                                <div>
-                                    <div class="event-date">
-                                        <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
-
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">New common language will be more simple than existing.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item event-list">
-                                <div>
-                                    <div class="event-date">
-                                       <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
-
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">It will be as simple as occidental in fact it will be
-                                            Cambridge</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="item event-list">
-                                <div>
-                                    <div class="event-date">
-                                         <h5 class="mb-4">{% lorem 3 w %}</h5>
-                                    </div>
-                                    <div class="event-down-icon">
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-                                    </div>
-
-                                    <div class="mt-3 px-3">
-                                        <p class="text-muted">To an English person, it will seem like simplified English
-                                            existence.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            {#                                                        <div class="item event-list">#}
+                            {#                                                            <div>#}
+                            {#                                                                <div class="event-date">#}
+                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
+                            {#                                                                </div>#}
+                            {#                                                                <div class="event-down-icon">#}
+                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
+                            {#                                                                </div>#}
+                            {##}
+                            {#                                                                <div class="mt-3 px-3">#}
+                            {#                                                                    <p class="text-muted">To an English person, it will seem like simplified English#}
+                            {#                                                                        existence.</p>#}
+                            {#                                                                </div>#}
+                            {#                                                            </div>#}
+                            {#                                                        </div>#}
+                            {##}
+                            {#                                                        <div class="item event-list active">#}
+                            {#                                                            <div>#}
+                            {#                                                                <div class="event-date">#}
+                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
+                            {#                                                                </div>#}
+                            {#                                                                <div class="event-down-icon">#}
+                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
+                            {#                                                                </div>#}
+                            {##}
+                            {#                                                                <div class="mt-3 px-3">#}
+                            {#                                                                    <p class="text-muted">For science, music, sport, etc, Europe uses the same#}
+                            {#                                                                        vocabulary.</p>#}
+                            {#                                                                </div>#}
+                            {#                                                            </div>#}
+                            {#                                                        </div>#}
+                            {##}
+                            {#                                                        <div class="item event-list">#}
+                            {#                                                            <div>#}
+                            {#                                                                <div class="event-date">#}
+                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
+                            {#                                                                </div>#}
+                            {#                                                                <div class="event-down-icon">#}
+                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
+                            {#                                                                </div>#}
+                            {##}
+                            {#                                                                <div class="mt-3 px-3">#}
+                            {#                                                                    <p class="text-muted">New common language will be more simple than existing.</p>#}
+                            {#                                                                </div>#}
+                            {#                                                            </div>#}
+                            {#                                                        </div>#}
+                            {##}
+                            {#                                                        <div class="item event-list">#}
+                            {#                                                            <div>#}
+                            {#                                                                <div class="event-date">#}
+                            {#                                                                   <h5 class="mb-4">{% lorem 3 w %}</h5>#}
+                            {#                                                                </div>#}
+                            {#                                                                <div class="event-down-icon">#}
+                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
+                            {#                                                                </div>#}
+                            {##}
+                            {#                                                                <div class="mt-3 px-3">#}
+                            {#                                                                    <p class="text-muted">It will be as simple as occidental in fact it will be#}
+                            {#                                                                        Cambridge</p>#}
+                            {#                                                                </div>#}
+                            {#                                                            </div>#}
+                            {#                                                        </div>#}
+                            {##}
+                            {#                                                        <div class="item event-list">#}
+                            {#                                                            <div>#}
+                            {#                                                                <div class="event-date">#}
+                            {#                                                                     <h5 class="mb-4">{% lorem 3 w %}</h5>#}
+                            {#                                                                </div>#}
+                            {#                                                                <div class="event-down-icon">#}
+                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
+                            {#                                                                </div>#}
+                            {##}
+                            {#                                                                <div class="mt-3 px-3">#}
+                            {#                                                                    <p class="text-muted">To an English person, it will seem like simplified English#}
+                            {#                                                                        existence.</p>#}
+                            {#                                                                </div>#}
+                            {#                                                            </div>#}
+                            {#                                                        </div>#}
                         </div>
                     </div>
 
@@ -353,7 +359,7 @@
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
                         <div class="small-title">Team</div>
-                        <h4>Meet our team</h4>
+                        <h4>Meet Our Team</h4>
                     </div>
                 </div>
             </div>
@@ -361,171 +367,173 @@
 
             <div class="col-lg-12">
                 <div class="owl-carousel owl-theme events navs-carousel" id="team-carousel">
-                    <div class="item">
-                        <div class="card text-center team-box">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{% static 'images/users/avatar-2.jpg' %}" alt="" class="rounded">
-                                </div>
+                    {% for person in team %}
+                        <div class="item">
+                            <div class="card text-center team-box">
+                                <div class="card-body">
+                                    <div>
+                                        <img src="{{ person.person_img.url }}" alt="" class="rounded">
+                                    </div>
 
-                                <div class="mt-3">
-                                    <h5>Mark Hurley</h5>
-                                    <P class="text-muted mb-0">CEO</P>
+                                    <div class="mt-3">
+                                        <h5>{{ person.full_name }}</h5>
+                                        <P class="text-muted mb-0">{{ person.designation }}</P>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-top">
-                                <div class="d-flex mb-0 team-social-links">
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Facebook">
-                                            <i class="mdi mdi-facebook"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Linkedin">
-                                            <i class="mdi mdi-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Google">
-                                            <i class="mdi mdi-google"></i>
-                                        </a>
+                                <div class="card-footer bg-transparent border-top">
+                                    <div class="d-flex mb-0 team-social-links">
+                                        <div class="flex-fill">
+                                            <a href="{{ person.facebook_link }}" data-toggle="tooltip" title="Facebook">
+                                                <i class="mdi mdi-facebook"></i>
+                                            </a>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <a href="{{ person.instagram_link }}" data-toggle="tooltip" title="instagram">
+                                                <i class="mdi mdi-instagram"></i>
+                                            </a>
+                                        </div>
+                                        <div class="flex-fill">
+                                            <a href="mailto:{{ person.email_address }}" data-toggle="tooltip" title="Email Address">
+                                                <i class="mdi mdi-email"></i>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="card text-center team-box">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{% static 'images/users/avatar-3.jpg' %}" alt="" class="rounded">
-                                </div>
+                    {% endfor %}
+{#                    <div class="item">#}
+{#                        <div class="card text-center team-box">#}
+{#                            <div class="card-body">#}
+{#                                <div>#}
+{#                                    <img src="{% static 'images/users/avatar-3.jpg' %}" alt="" class="rounded">#}
+{#                                </div>#}
+{##}
+{#                                <div class="mt-3">#}
+{#                                    <h5>Calvin Smith</h5>#}
+{#                                    <P class="text-muted mb-0">Founder</P>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-footer bg-transparent border-top">#}
+{#                                <div class="d-flex mb-0 team-social-links">#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
+{#                                            <i class="mdi mdi-facebook"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
+{#                                            <i class="mdi mdi-linkedin"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Google">#}
+{#                                            <i class="mdi mdi-google"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="card text-center team-box">#}
+{#                            <div class="card-body">#}
+{#                                <div>#}
+{#                                    <img src="{% static 'images/users/avatar-8.jpg' %}" alt="" class="rounded">#}
+{#                                </div>#}
+{#                                <div class="mt-3">#}
+{#                                    <h5>Vickie Sample</h5>#}
+{#                                    <P class="text-muted mb-0">Lawyer</P>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-footer bg-transparent border-top">#}
+{#                                <div class="d-flex mb-0 team-social-links">#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
+{#                                            <i class="mdi mdi-facebook"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
+{#                                            <i class="mdi mdi-linkedin"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Google">#}
+{#                                            <i class="mdi mdi-google"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="item">#}
+{#                        <div class="card text-center team-box">#}
+{#                            <div class="card-body">#}
+{#                                <div>#}
+{#                                    <img src="{% static 'images/users/avatar-5.jpg' %}" alt="" class="rounded">#}
+{#                                </div>#}
+{##}
+{#                                <div class="mt-3">#}
+{#                                    <h5>Alma Farley</h5>#}
+{#                                    <P class="text-muted mb-0">CFO</P>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-footer bg-transparent border-top">#}
+{#                                <div class="d-flex mb-0 team-social-links">#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
+{#                                            <i class="mdi mdi-facebook"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
+{#                                            <i class="mdi mdi-linkedin"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Google">#}
+{#                                            <i class="mdi mdi-google"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
 
-                                <div class="mt-3">
-                                    <h5>Calvin Smith</h5>
-                                    <P class="text-muted mb-0">Founder</P>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-top">
-                                <div class="d-flex mb-0 team-social-links">
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Facebook">
-                                            <i class="mdi mdi-facebook"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Linkedin">
-                                            <i class="mdi mdi-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Google">
-                                            <i class="mdi mdi-google"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card text-center team-box">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{% static 'images/users/avatar-8.jpg' %}" alt="" class="rounded">
-                                </div>
-                                <div class="mt-3">
-                                    <h5>Vickie Sample</h5>
-                                    <P class="text-muted mb-0">Lawyer</P>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-top">
-                                <div class="d-flex mb-0 team-social-links">
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Facebook">
-                                            <i class="mdi mdi-facebook"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Linkedin">
-                                            <i class="mdi mdi-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Google">
-                                            <i class="mdi mdi-google"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card text-center team-box">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{% static 'images/users/avatar-5.jpg' %}" alt="" class="rounded">
-                                </div>
-
-                                <div class="mt-3">
-                                    <h5>Alma Farley</h5>
-                                    <P class="text-muted mb-0">CFO</P>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-top">
-                                <div class="d-flex mb-0 team-social-links">
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Facebook">
-                                            <i class="mdi mdi-facebook"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Linkedin">
-                                            <i class="mdi mdi-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Google">
-                                            <i class="mdi mdi-google"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card text-center team-box">
-                            <div class="card-body">
-                                <div>
-                                    <img src="{% static 'images/users/avatar-1.jpg' %}" alt="" class="rounded">
-                                </div>
-
-                                <div class="mt-3">
-                                    <h5>Amy Hood </h5>
-                                    <P class="text-muted mb-0">Designer</P>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-transparent border-top">
-                                <div class="d-flex mb-0 team-social-links">
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Facebook">
-                                            <i class="mdi mdi-facebook"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Linkedin">
-                                            <i class="mdi mdi-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div class="flex-fill">
-                                        <a href="#" data-toggle="tooltip" title="Google">
-                                            <i class="mdi mdi-google"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{#                    <div class="item">#}
+{#                        <div class="card text-center team-box">#}
+{#                            <div class="card-body">#}
+{#                                <div>#}
+{#                                    <img src="{% static 'images/users/avatar-1.jpg' %}" alt="" class="rounded">#}
+{#                                </div>#}
+{##}
+{#                                <div class="mt-3">#}
+{#                                    <h5>Amy Hood </h5>#}
+{#                                    <P class="text-muted mb-0">Designer</P>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="card-footer bg-transparent border-top">#}
+{#                                <div class="d-flex mb-0 team-social-links">#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
+{#                                            <i class="mdi mdi-facebook"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
+{#                                            <i class="mdi mdi-linkedin"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                    <div class="flex-fill">#}
+{#                                        <a href="#" data-toggle="tooltip" title="Google">#}
+{#                                            <i class="mdi mdi-google"></i>#}
+{#                                        </a>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
                 </div>
             </div>
             <!-- end row -->
@@ -580,90 +588,88 @@
 
                                                 <div>
                                                     <div id="gen-ques-accordion" class="accordion custom-accordion">
-                                                        <div class="mb-3">
-                                                            <a href="#general-collapseOne" class="accordion-list"
+                                                        {% for faq in general_faqs %}
+                                                            <div class="mb-3">
+                                                            <a href="#general-collapse{{ faq.id }}" class="accordion-list"
                                                                data-toggle="collapse"
                                                                aria-expanded="true"
-                                                               aria-controls="general-collapseOne">
+                                                               aria-controls="general-collapse{{ faq.id }}">
 
-                                                                <div>What is Lorem Ipsum ?</div>
+                                                                <div>{{ faq.question }}</div>
                                                                 <i class="mdi mdi-minus accor-plus-icon"></i>
 
                                                             </a>
 
-                                                            <div id="general-collapseOne" class="collapse show"
+                                                            <div id="general-collapse{{ faq.id }}" class="collapse show"
                                                                  data-parent="#gen-ques-accordion">
                                                                 <div class="card-body">
-                                                                    <p class="mb-0">Everyone realizes why a new common
-                                                                        language would be desirable: one could refuse to
-                                                                        pay expensive translators. To achieve this, it
-                                                                        would be necessary to have uniform grammar,
-                                                                        pronunciation and more common words.</p>
+                                                                    <p class="mb-0">{{ faq.answer }}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="mb-3">
-                                                            <a href="#general-collapseTwo"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="general-collapseTwo">
-                                                                <div>Why do we use it ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="general-collapseTwo" class="collapse"
-                                                                 data-parent="#gen-ques-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">If several languages coalesce, the
-                                                                        grammar of the resulting language is more simple
-                                                                        and regular than that of the individual
-                                                                        languages. The new common language will be more
-                                                                        simple and regular than the existing European
-                                                                        languages.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <a href="#general-collapseThree"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="general-collapseThree">
-                                                                <div>Where does it come from ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="general-collapseThree" class="collapse"
-                                                                 data-parent="#gen-ques-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">It will be as simple as Occidental;
-                                                                        in fact, it will be Occidental. To an English
-                                                                        person, it will seem like simplified English, as
-                                                                        a skeptical Cambridge friend of mine told me
-                                                                        what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <a href="#general-collapseFour"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="general-collapseFour">
-                                                                <div>Where can I get some ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="general-collapseFour" class="collapse"
-                                                                 data-parent="#gen-ques-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">To an English person, it will seem
-                                                                        like simplified English, as a skeptical
-                                                                        Cambridge friend of mine told me what Occidental
-                                                                        is. The European languages are members of the
-                                                                        same family. Their separate existence is a
-                                                                        myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        {% endfor %}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#general-collapseTwo"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="general-collapseTwo">#}
+{#                                                                <div>Why do we use it ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="general-collapseTwo" class="collapse"#}
+{#                                                                 data-parent="#gen-ques-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">If several languages coalesce, the#}
+{#                                                                        grammar of the resulting language is more simple#}
+{#                                                                        and regular than that of the individual#}
+{#                                                                        languages. The new common language will be more#}
+{#                                                                        simple and regular than the existing European#}
+{#                                                                        languages.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#general-collapseThree"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="general-collapseThree">#}
+{#                                                                <div>Where does it come from ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="general-collapseThree" class="collapse"#}
+{#                                                                 data-parent="#gen-ques-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
+{#                                                                        in fact, it will be Occidental. To an English#}
+{#                                                                        person, it will seem like simplified English, as#}
+{#                                                                        a skeptical Cambridge friend of mine told me#}
+{#                                                                        what Occidental.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div>#}
+{#                                                            <a href="#general-collapseFour"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="general-collapseFour">#}
+{#                                                                <div>Where can I get some ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="general-collapseFour" class="collapse"#}
+{#                                                                 data-parent="#gen-ques-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">To an English person, it will seem#}
+{#                                                                        like simplified English, as a skeptical#}
+{#                                                                        Cambridge friend of mine told me what Occidental#}
+{#                                                                        is. The European languages are members of the#}
+{#                                                                        same family. Their separate existence is a#}
+{#                                                                        myth.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
                                                     </div>
                                                 </div>
                                             </div>
@@ -673,90 +679,87 @@
 
                                                 <div>
                                                     <div id="token-accordion" class="accordion custom-accordion">
-                                                        <div class="mb-3">
-                                                            <a href="#token-collapseOne"
+                                                        {% for faq in how_to_rent_faqs %}
+                                                            <div class="mb-3">
+                                                            <a href="#token-collapse{{ faq.id }}"
                                                                class="accordion-list collapsed" data-toggle="collapse"
                                                                aria-expanded="false"
-                                                               aria-controls="token-collapseOne">
-                                                                <div>Why do we use it ?</div>
+                                                               aria-controls="token-collapse{{ faq.id }}">
+                                                                <div>{{ faq.question }}</div>
                                                                 <i class="mdi mdi-minus accor-plus-icon"></i>
                                                             </a>
-                                                            <div id="token-collapseOne" class="collapse"
+                                                            <div id="token-collapse{{ faq.id }}" class="collapse"
                                                                  data-parent="#token-accordion">
                                                                 <div class="card-body">
-                                                                    <p class="mb-0">If several languages coalesce, the
-                                                                        grammar of the resulting language is more simple
-                                                                        and regular than that of the individual
-                                                                        languages. The new common language will be more
-                                                                        simple and regular than the existing European
-                                                                        languages.</p>
+                                                                    <p class="mb-0">{{ faq.answer }}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        {% endfor %}
 
-                                                        <div class="mb-3">
-                                                            <a href="#token-collapseTwo" class="accordion-list"
-                                                               data-toggle="collapse"
-                                                               aria-expanded="true"
-                                                               aria-controls="token-collapseTwo">
-
-                                                                <div>What is Lorem Ipsum ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-
-                                                            </a>
-
-                                                            <div id="token-collapseTwo" class="collapse show"
-                                                                 data-parent="#token-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">Everyone realizes why a new common
-                                                                        language would be desirable: one could refuse to
-                                                                        pay expensive translators. To achieve this, it
-                                                                        would be necessary to have uniform grammar,
-                                                                        pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <a href="#token-collapseThree"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="token-collapseThree">
-                                                                <div>Where can I get some ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="token-collapseThree" class="collapse"
-                                                                 data-parent="#token-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">To an English person, it will seem
-                                                                        like simplified English, as a skeptical
-                                                                        Cambridge friend of mine told me what Occidental
-                                                                        is. The European languages are members of the
-                                                                        same family. Their separate existence is a
-                                                                        myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <a href="#token-collapseFour"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="token-collapseFour">
-                                                                <div>Where does it come from ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="token-collapseFour" class="collapse"
-                                                                 data-parent="#token-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">It will be as simple as Occidental;
-                                                                        in fact, it will be Occidental. To an English
-                                                                        person, it will seem like simplified English, as
-                                                                        a skeptical Cambridge friend of mine told me
-                                                                        what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#token-collapseTwo" class="accordion-list"#}
+{#                                                               data-toggle="collapse"#}
+{#                                                               aria-expanded="true"#}
+{#                                                               aria-controls="token-collapseTwo">#}
+{##}
+{#                                                                <div>What is Lorem Ipsum ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{##}
+{#                                                            </a>#}
+{##}
+{#                                                            <div id="token-collapseTwo" class="collapse show"#}
+{#                                                                 data-parent="#token-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">Everyone realizes why a new common#}
+{#                                                                        language would be desirable: one could refuse to#}
+{#                                                                        pay expensive translators. To achieve this, it#}
+{#                                                                        would be necessary to have uniform grammar,#}
+{#                                                                        pronunciation and more common words.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#token-collapseThree"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="token-collapseThree">#}
+{#                                                                <div>Where can I get some ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="token-collapseThree" class="collapse"#}
+{#                                                                 data-parent="#token-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">To an English person, it will seem#}
+{#                                                                        like simplified English, as a skeptical#}
+{#                                                                        Cambridge friend of mine told me what Occidental#}
+{#                                                                        is. The European languages are members of the#}
+{#                                                                        same family. Their separate existence is a#}
+{#                                                                        myth.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div>#}
+{#                                                            <a href="#token-collapseFour"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="token-collapseFour">#}
+{#                                                                <div>Where does it come from ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="token-collapseFour" class="collapse"#}
+{#                                                                 data-parent="#token-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
+{#                                                                        in fact, it will be Occidental. To an English#}
+{#                                                                        person, it will seem like simplified English, as#}
+{#                                                                        a skeptical Cambridge friend of mine told me#}
+{#                                                                        what Occidental.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
 
 
                                                     </div>
@@ -769,92 +772,109 @@
                                                 <div>
                                                     <div id="roadmap-accordion" class="accordion custom-accordion">
 
-                                                        <div class="mb-3">
-                                                            <a href="#roadmap-collapseOne" class="accordion-list"
-                                                               data-toggle="collapse"
-                                                               aria-expanded="true"
-                                                               aria-controls="roadmap-collapseOne">
-
-
-                                                                <div>Where can I get some ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-
-                                                            </a>
-
-                                                            <div id="roadmap-collapseOne" class="collapse show"
-                                                                 data-parent="#roadmap-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">Everyone realizes why a new common
-                                                                        language would be desirable: one could refuse to
-                                                                        pay expensive translators. To achieve this, it
-                                                                        would be necessary to have uniform grammar,
-                                                                        pronunciation and more common words.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mb-3">
-                                                            <a href="#roadmap-collapseTwo"
+                                                        {% for faq in how_to_rent_faqs %}
+                                                            <div class="mb-3">
+                                                            <a href="#token-collapse{{ faq.id }}"
                                                                class="accordion-list collapsed" data-toggle="collapse"
                                                                aria-expanded="false"
-                                                               aria-controls="roadmap-collapseTwo">
-                                                                <div>What is Lorem Ipsum ?</div>
+                                                               aria-controls="token-collapse{{ faq.id }}">
+                                                                <div>{{ faq.question }}</div>
                                                                 <i class="mdi mdi-minus accor-plus-icon"></i>
                                                             </a>
-                                                            <div id="roadmap-collapseTwo" class="collapse"
-                                                                 data-parent="#roadmap-accordion">
+                                                            <div id="token-collapse{{ faq.id }}" class="collapse"
+                                                                 data-parent="#token-accordion">
                                                                 <div class="card-body">
-                                                                    <p class="mb-0">If several languages coalesce, the
-                                                                        grammar of the resulting language is more simple
-                                                                        and regular than that of the individual
-                                                                        languages. The new common language will be more
-                                                                        simple and regular than the existing European
-                                                                        languages.</p>
+                                                                    <p class="mb-0">{{ faq.answer }}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        {% endfor %}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#roadmap-collapseOne" class="accordion-list"#}
+{#                                                               data-toggle="collapse"#}
+{#                                                               aria-expanded="true"#}
+{#                                                               aria-controls="roadmap-collapseOne">#}
+{##}
+{##}
+{#                                                                <div>Where can I get some ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{##}
+{#                                                            </a>#}
+{##}
+{#                                                            <div id="roadmap-collapseOne" class="collapse show"#}
+{#                                                                 data-parent="#roadmap-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">Everyone realizes why a new common#}
+{#                                                                        language would be desirable: one could refuse to#}
+{#                                                                        pay expensive translators. To achieve this, it#}
+{#                                                                        would be necessary to have uniform grammar,#}
+{#                                                                        pronunciation and more common words.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#roadmap-collapseTwo"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="roadmap-collapseTwo">#}
+{#                                                                <div>What is Lorem Ipsum ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="roadmap-collapseTwo" class="collapse"#}
+{#                                                                 data-parent="#roadmap-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">If several languages coalesce, the#}
+{#                                                                        grammar of the resulting language is more simple#}
+{#                                                                        and regular than that of the individual#}
+{#                                                                        languages. The new common language will be more#}
+{#                                                                        simple and regular than the existing European#}
+{#                                                                        languages.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
+{##}
+{##}
+{#                                                        <div class="mb-3">#}
+{#                                                            <a href="#roadmap-collapseThree"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="roadmap-collapseThree">#}
+{#                                                                <div>Why do we use it ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="roadmap-collapseThree" class="collapse"#}
+{#                                                                 data-parent="#roadmap-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">To an English person, it will seem#}
+{#                                                                        like simplified English, as a skeptical#}
+{#                                                                        Cambridge friend of mine told me what Occidental#}
+{#                                                                        is. The European languages are members of the#}
+{#                                                                        same family. Their separate existence is a#}
+{#                                                                        myth.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
 
-
-                                                        <div class="mb-3">
-                                                            <a href="#roadmap-collapseThree"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="roadmap-collapseThree">
-                                                                <div>Why do we use it ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="roadmap-collapseThree" class="collapse"
-                                                                 data-parent="#roadmap-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">To an English person, it will seem
-                                                                        like simplified English, as a skeptical
-                                                                        Cambridge friend of mine told me what Occidental
-                                                                        is. The European languages are members of the
-                                                                        same family. Their separate existence is a
-                                                                        myth.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div>
-                                                            <a href="#roadmap-collapseFour"
-                                                               class="accordion-list collapsed" data-toggle="collapse"
-                                                               aria-expanded="false"
-                                                               aria-controls="roadmap-collapseFour">
-                                                                <div>Where does it come from ?</div>
-                                                                <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                            </a>
-                                                            <div id="roadmap-collapseFour" class="collapse"
-                                                                 data-parent="#roadmap-accordion">
-                                                                <div class="card-body">
-                                                                    <p class="mb-0">It will be as simple as Occidental;
-                                                                        in fact, it will be Occidental. To an English
-                                                                        person, it will seem like simplified English, as
-                                                                        a skeptical Cambridge friend of mine told me
-                                                                        what Occidental.</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+{#                                                        <div>#}
+{#                                                            <a href="#roadmap-collapseFour"#}
+{#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
+{#                                                               aria-expanded="false"#}
+{#                                                               aria-controls="roadmap-collapseFour">#}
+{#                                                                <div>Where does it come from ?</div>#}
+{#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
+{#                                                            </a>#}
+{#                                                            <div id="roadmap-collapseFour" class="collapse"#}
+{#                                                                 data-parent="#roadmap-accordion">#}
+{#                                                                <div class="card-body">#}
+{#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
+{#                                                                        in fact, it will be Occidental. To an English#}
+{#                                                                        person, it will seem like simplified English, as#}
+{#                                                                        a skeptical Cambridge friend of mine told me#}
+{#                                                                        what Occidental.</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        </div>#}
 
 
                                                     </div>
@@ -876,4 +896,26 @@
     </section>
     <!-- Faqs end -->
 
+
 {% endblock body_content %}
+
+{#Company Contact Information#}
+
+{% block building %}{{ company_contact.building_name }} {% endblock building %}
+{% block street %}{{ company_contact.street }} {% endblock street %}
+{% block post_code %}{{ company_contact.post_code }} {% endblock post_code %}
+{% block email_address %}{{ company_contact.email_address }} {% endblock email_address %}
+{% block phone_number %}{{ company_contact.phone_number }} {% endblock phone_number %}
+
+
+{#Company Social Media Information#}
+
+{% block fb_link %}{{ social_links.facebook }}{% endblock fb_link %}
+{% block insta_link %}{{ social_links.instagram }}{% endblock insta_link %}
+{% block twitter_link %}{{ social_links.twitter }}{% endblock twitter_link %}
+{##}
+{##}
+{#****************************************Login Modal****************************************#}
+{##}
+{#{% include 'authentication/login.html' %}#}
+

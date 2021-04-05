@@ -1,8 +1,10 @@
 {% extends 'site_base.html' %}
 {% load  static %}
+{% block nav_bar %}
+{% endblock nav_bar %}
 {% block body_content %}
 <div class="home-btn d-none d-sm-block">
-    <a href="#" class="text-dark"><i class="fas fa-home h2"></i></a>
+    <a href="/" class="text-dark"><i class="fas fa-home h2"></i></a>
 </div>
 <div class="account-pages my-5 pt-sm-5">
     <div class="container">
@@ -63,7 +65,7 @@
                                            placeholder="Your password..." required>
                                 </div>
 
-                                <button type="button" class="btn btn-info btn-block btn-round">Registrieren</button>
+                                <button type="button" class="btn btn-primary btn-block btn-round">Registrieren</button>
 
                                 <div class="mt-4 text-center">
                                     <input type="checkbox" class="checkbox" id="privacy_check"
@@ -72,12 +74,20 @@
                                 </div>
 
                             </form>
+
+                            <div class="mt-4 text-center font-weight-bolder font-size-16">
+                                    Or
+                                </div>
+                                <div class="mt-4 text-center">
+                                    <button type="button" class="btn btn-danger btn-block btn-round">Signup Via Google</button>
+                                <button type="button" class="btn btn-primary btn-block btn-round">Signup Via Facebook</button>
+                                </div>
                         </div>
 
                     </div>
                 </div>
                 <div class="mt-5 text-center">
-                    <p>Already have an account ? <a href="" class="font-weight-medium text-primary">
+                    <p>Already have an account ? <a href="{% url 'Login' %}" class="font-weight-medium text-primary">
                         Login</a></p>
 
             </div>
@@ -87,3 +97,6 @@
 
 </div>
 {% endblock body_content %}
+
+{% block footer %}
+{% endblock footer %}

@@ -37,7 +37,9 @@ urlpatterns = [
     path('imprint/', views.imprint, name="Imprint"),
     path('checkout/', views.checkout, name="Checkout"),
     path('product/details/', views.single_product_details, name="Single Product"),
-    path('test/', views.test, name="Info")
+    path('test/', views.test, name="Info"),
+
+    path('accounts/login/', views.login, name="Login")
 
 ]
 
