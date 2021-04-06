@@ -13,8 +13,8 @@ def index_view(request):
     general_faqs = GeneralFAQs.objects.all()
     how_to_rent_faqs = HowToRentFAQs.objects.all()
     how_to_list_faqs = HowToListFAQs.objects.all()
-    social_links = SocialLinks.objects.latest('facebook')
     how_it_works = HowItWork.objects.all()
+    social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
     context = {
         'how_it_works': how_it_works,
@@ -65,50 +65,64 @@ def profile_reviews(request):
 
 
 def conditions(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     try:
         condition = Condition.objects.latest('id')
     except:
         condition = None
     context = {
-        'conditions': condition
+        'conditions': condition,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
     return render(request, template_name="site_pages/conditions.html", context=context)
 
 
 def data_policy(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     try:
         policy = DataPolicy.objects.latest('id')
     except:
         policy = None
     context = {
-        'data_policy': policy
+        'data_policy': policy,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
     return render(request, template_name="site_pages/data-policy.html", context=context)
 
 
 def fairplay(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     try:
         fair_play = FairPlay.objects.latest('id')
     except:
         fair_play = None
     context = {
-        'fair_play': fair_play
+        'fair_play': fair_play,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
     return render(request, template_name="site_pages/fairplay.html", context=context)
 
 
 def imprint(request):
-    contact_information = None
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = None
     try:
-        contact_information = ContactInformation.objects.latest('id')
+        company_contact = ContactInformation.objects.latest('id')
         imprint_data = Imprint.objects.latest('id')
     except:
         imprint_data = None
-        if contact_information is None:
-            contact_information = None
+        if company_contact is None:
+            company_contact = None
     context = {
         'imprint': imprint_data,
-        'contact_information': contact_information,
+        'company_contact': company_contact,
+        'social_links': social_links,
     }
     return render(request, template_name="site_pages/imprint.html", context=context)
 

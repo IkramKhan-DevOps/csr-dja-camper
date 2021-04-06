@@ -14,9 +14,9 @@
         {% if contact_information %}
             <div class="mt-4">
             <h2>Kontakt Information</h2>
-            <h4><i class="fa fa-road" style="color: #FF7F23"></i>  {{ contact_information.street }}</h4>
-            <h4><i class="fa fa-home" style="color: #FF7F23"></i>  {{ contact_information.post_code }}</h4>
-            <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> {{ contact_information.email_address }}</h4>
+            <h4><i class="fa fa-road" style="color: #FF7F23"></i>  {{ company_contact.street }}</h4>
+            <h4><i class="fa fa-home" style="color: #FF7F23"></i>  {{ company_contact.post_code }}</h4>
+            <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> {{ company_contact.email_address }}</h4>
         </div>
     {% endif %}
 
@@ -47,6 +47,18 @@
 
 {% endblock body_content %}
 
+{% block building %}{{ company_contact.building_name }} {% endblock building %}
+{% block street %}{{ company_contact.street }} {% endblock street %}
+{% block post_code %}{{ company_contact.post_code }} {% endblock post_code %}
+{% block email_address %}{{ company_contact.email_address }} {% endblock email_address %}
+{% block phone_number %}{{ company_contact.phone_number }} {% endblock phone_number %}
 
+
+
+{# Company Social Media Information #}
+
+{% block fb_link %}{{ social_links.facebook }}{% endblock fb_link %}
+{% block insta_link %}{{ social_links.instagram }}{% endblock insta_link %}
+{% block twitter_link %}{{ social_links.twitter }}{% endblock twitter_link %}
 
 
