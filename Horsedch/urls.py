@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -39,7 +40,9 @@ urlpatterns = [
     path('product/details/', views.single_product_details, name="Single Product"),
     path('test/', views.test, name="Info"),
 
-    path('accounts/login/', views.login, name="Login")
+    path('accounts/login/', views.login, name="Login"),
+
+    url(r'^google-login/$', views.login_via_google, name="login_via_google"),
 
 ]
 

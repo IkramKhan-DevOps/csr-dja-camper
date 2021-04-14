@@ -1,6 +1,11 @@
+from django.conf.global_settings import AUTHENTICATION_BACKENDS
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+from django.urls import reverse
+from pip._vendor import requests
 
+from Horsedch import settings
 from Horsedch.models import HowItWork, WhyHorsedCh, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team
 
@@ -149,3 +154,60 @@ def login(request):
             messages.error(request, "Oops! Invalid username or password")
 
     return render(request, template_name="authentication/auth_login.html")
+
+
+def login_via_google(request):
+    redirect_uri = "%s://%s%s" % (
+        request.scheme, request.get_host(), reverse('login_via_google')
+    )
+    if 'code' in request.GET:
+        params = {
+            'grant_type': 'authorization_code',
+            'code': request.GET.get('code'),
+            'redirect_uri': redirect_uri,
+            'client_id': settings.GP_CLIENT_ID,
+            'client_secret': settings.GP_CLIENT_SECRET
+        }
+        url = 'https://accounts.google.com/o/oauth2/token'
+        response = requests.post(url, data=params)
+        url = 'https://www.googleapis.com/oauth2/v1/userinfo'
+        access_token = response.json().get('access_token')
+        response = requests.get(url, params={'access_token': access_token})
+        user_data = response.json()
+        email = user_data.get('email')
+        print(user_data)
+        if email:
+            user, _ = User.objects.get_or_create(email=email, username=email)
+            gender = user_data.get('gender', '').lower()
+            if gender == 'male':
+                gender = 'M'
+            elif gender == 'female':
+                gender = 'F'
+            else:
+                gender = 'O'
+            data = {
+                'first_name': user_data.get('name', '').split()[0],
+                'last_name': user_data.get('family_name'),
+                'google_avatar': user_data.get('picture'),
+                'gender': gender,
+                'is_active': True
+            }
+            user.__dict__.update(data)
+            user.save()
+            user.backend = AUTHENTICATION_BACKENDS[0]
+            login(request)
+        else:
+            messages.error(
+                request,
+                'Unable to login with Gmail Please try again'
+            )
+        return redirect('/')
+    else:
+        url = "https://accounts.google.com/o/oauth2/auth?client_id=%s&response_type=code&scope=%s&redirect_uri=%s&state=google"
+        scope = [
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email"
+        ]
+        scope = " ".join(scope)
+        url = url % (settings.GP_CLIENT_ID, scope, redirect_uri)
+        return redirect(url)

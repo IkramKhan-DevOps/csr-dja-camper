@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from ckeditor.fields import RichTextField
 
@@ -212,3 +213,57 @@ class Imprint(models.Model):
     class Meta:
         verbose_name = "Imprint"
         verbose_name_plural = "Imprint"
+
+
+class Member(models.Model):
+    ROLE_CHOICES = [
+        ("LND", "Landlord"),
+        ("RNR", "Renter"),
+    ]
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=50, null=True, blank=True)
+    street_address = models.TextField(max_length=200, null=True, blank=True)
+    house_number = models.CharField(max_length=50, null=True, blank=True)
+    zip_code = models.CharField(max_length=50, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    country = models.CharField(max_length=50, null=True, blank=True)
+    profile_status = models.BooleanField(default=False)
+    profile_picture = models.ImageField(upload_to="images/users/", null=True, blank=True)
+    self_description = models.TextField(max_length=500, null=True, blank=True)
+    role = models.CharField(choices=ROLE_CHOICES, max_length=20)
+
+    email_verified = models.BooleanField(default=False)
+    phone_verified = models.BooleanField(default=False)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.email_address)
+
+    class Meta:
+        verbose_name = "Members"
+        verbose_name_plural = "Members"
+
+
+class Landlord(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.member.email_address)
+
+    class Meta:
+        verbose_name = "Landlords"
+        verbose_name_plural = "Landlords"
+
+
+class Renter(models.Model):
+    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.member.email_address)
+
+    class Meta:
+        verbose_name = "Renters"
+        verbose_name_plural = "Renters"
