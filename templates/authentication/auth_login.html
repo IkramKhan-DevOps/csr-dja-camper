@@ -1,6 +1,6 @@
 {% extends 'site_base.html' %}
 {% load  static %}
-
+{% load socialaccount %}
 
 {% block nav_bar %}
 {% endblock nav_bar %}
@@ -71,12 +71,12 @@
 
                                 </form>
                                 <div class="mt-4 text-center">
-                                        <a href="{% url 'login_via_google' %}"  class="btn btn-danger btn-block btn-round">Login Via
+                                        <a href="{% provider_login_url 'google' %}"  class="btn btn-danger btn-block btn-round">Login Via
                                             Google
                                         </a>
-                                        <button type="button" class="btn btn-primary btn-block btn-round">Login Via
+                                        <a href="{% url 'login_via_facebook' %}" class="btn btn-primary btn-block btn-round">Login Via
                                             Facebook
-                                        </button>
+                                        </a>
                                     </div>
                             </div>
 

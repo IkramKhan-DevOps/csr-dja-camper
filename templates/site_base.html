@@ -64,9 +64,16 @@
 
                 </ul>
 
-                <div class="ml-lg-2">
+                {% if user.is_authenticated %}
+                    <div class="ml-lg-2">
+                    <a href="{% url 'Logout' %}" class="btn btn-outline-success w-xs">Logout</a>
+                </div>
+                    {% else %}
+                    <div class="ml-lg-2">
                     <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>
                 </div>
+                {% endif %}
+
             </div>
         </div>
     </nav>
