@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path
+from django.urls import path, include
 
 from Horsedch import views, settings
 
@@ -41,9 +42,13 @@ urlpatterns = [
     path('test/', views.test, name="Info"),
 
     path('accounts/login/', views.login, name="Login"),
+    # path('logout/', views.auth_logout, name="Logout"),
 
     url(r'^google-login/$', views.login_via_google, name="login_via_google"),
+    url(r'^facebook-login/$', views.login_via_facebook, name="login_via_facebook"),
 
+    path('accounts/', include('allauth.urls')),
+    path('logout', LogoutView.as_view(), name="Logout"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

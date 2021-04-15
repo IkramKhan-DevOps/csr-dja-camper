@@ -1,10 +1,14 @@
+from datetime import datetime
+from urllib.parse import urlencode
+
 from django.conf.global_settings import AUTHENTICATION_BACKENDS
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from pip._vendor import requests
-
+from allauth.socialaccount.models import SocialAccount
 from Horsedch import settings
 from Horsedch.models import HowItWork, WhyHorsedCh, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team
@@ -21,6 +25,8 @@ def index_view(request):
     how_it_works = HowItWork.objects.all()
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
+    user_data = SocialAccount.objects.get(user=request.user)
+
     context = {
         'how_it_works': how_it_works,
         'company_contact': company_contact,
@@ -32,6 +38,7 @@ def index_view(request):
         'how_to_rent_faqs': how_to_rent_faqs,
         'how_to_list_faqs': how_to_list_faqs,
         'social_links': social_links,
+        'user_data': user_data.extra_data
 
     }
     return render(request, template_name="site_pages/index.html", context=context)
@@ -196,10 +203,11 @@ def login_via_google(request):
             user.save()
             user.backend = AUTHENTICATION_BACKENDS[0]
             login(request)
+
         else:
             messages.error(
                 request,
-                'Unable to login with Gmail Please try again'
+                'Unable to login with google Please try again!'
             )
         return redirect('/')
     else:
@@ -211,3 +219,71 @@ def login_via_google(request):
         scope = " ".join(scope)
         url = url % (settings.GP_CLIENT_ID, scope, redirect_uri)
         return redirect(url)
+
+
+def login_via_facebook(request):
+    redirect_uri = "%s://%s%s" % (
+        request.scheme, request.get_host(), reverse('login_via_facebook')
+    )
+    if 'code' in request.GET:
+        code = request.GET.get('code')
+        url = 'https://graph.facebook.com/v2.10/oauth/access_token'
+        params = {
+            'client_id': settings.FB_APP_ID,
+            'client_secret': settings.FB_APP_SECRET,
+            'code': code,
+            'redirect_uri': redirect_uri,
+        }
+        response = requests.get(url, params=params)
+        params = response.json()
+        print("params before update: ", params)
+        params.update({
+            'fields': 'id,last_name,first_name,picture,birthday,email,gender'
+        })
+        print("params after update: ", params)
+        url = 'https://graph.facebook.com/me'
+        user_data = requests.get(url, params=params).json()
+        print("user data printing: ", user_data)
+        email = user_data.get('email')
+        if email:
+            user, _ = User.objects.get_or_create(email=email, username=email)
+            gender = user_data.get('gender', '').lower()
+            dob = user_data.get('birthday')
+            if gender == 'male':
+                gender = 'M'
+            elif gender == 'female':
+                gender = 'F'
+            else:
+                gender = 'O'
+            data = {
+                'first_name': user_data.get('first_name'),
+                'last_name': user_data.get('last_name'),
+                'fb_avatar': user_data.get('picture', {}).get('data', {}).get('url'),
+                'gender': gender,
+                'dob': datetime.strptime(dob, "%m/%d/%Y") if dob else None,
+                'is_active': True
+            }
+            user.__dict__.update(data)
+            user.save()
+            user.backend = AUTHENTICATION_BACKENDS[0]
+            login(request)
+        else:
+            messages.error(
+                request,
+                'Unable to login with Facebook Please try again!'
+            )
+        return redirect('/')
+    else:
+        url = "https://graph.facebook.com/oauth/authorize"
+        params = {
+            'client_id': settings.FB_APP_ID,
+            'redirect_uri': redirect_uri,
+            'scope': 'email,public_profile,user_birthday'
+        }
+        url += '?' + urlencode(params)
+        return redirect(url)
+
+
+def auth_logout(request):
+    logout(request)
+    return redirect('Login')
