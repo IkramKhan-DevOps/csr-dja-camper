@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
+
 from Horsedch.models import Member
 
 
@@ -28,23 +29,27 @@ def update_member_role(request, role):
         if social_account is not None:
             verified_email = social_account.extra_data["verified_email"]
             picture = social_account.extra_data["picture"]
-        member = Member.objects.get_or_create(
-            first_name=request.user.first_name,
-            last_name=request.user.last_name,
-            email_address=request.user.email,
-            email_verified=verified_email,
-            profile_picture=picture,
-            role=role,
-            user=request.user
-        )
+            Member.objects.get_or_create(
+                first_name=request.user.first_name,
+                last_name=request.user.last_name,
+                email_address=request.user.email,
+                email_verified=verified_email,
+                profile_picture=picture,
+                role=role,
+                user=request.user
+            )
     except ObjectDoesNotExist:
         print("No social account exist")
     return redirect('Edit Profile')
 
 
 def edit_profile(request):
-    return render(request, template_name="profile/edit-profile.html")
+    member = Member.objects.get(user=request.user)
+    context = {
+        "member": member
+    }
+    return render(request, template_name="authentication/profile/edit-profile.html", context=context)
 
 
 def my_account(request):
-    return render(request, template_name="profile/my-account.html")
+    return render(request, template_name="authentication/profile/my-account.html")
