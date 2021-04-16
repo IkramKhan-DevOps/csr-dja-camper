@@ -41,7 +41,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view(), name="Logout"),
 
-    path('shop/', include('Shop.urls'))
+    path('shop/', include('Shop.urls')),
+    path('auth/', include('Authentication.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

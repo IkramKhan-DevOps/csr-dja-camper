@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 
 from Horsedch.models import Member
+from Landlord.models import LandlordBankAccount
 
 
 def choose_role(request):
@@ -45,8 +46,17 @@ def update_member_role(request, role):
 
 def edit_profile(request):
     member = Member.objects.get(user=request.user)
+    try:
+        bank_account = LandlordBankAccount.objects.get(landlord__member=member)
+        social_account = SocialAccount.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        social_account = ""
+        bank_account = ""
     context = {
-        "member": member
+        "member": member,
+        "social_account": social_account,
+        "bank_account": bank_account,
+
     }
     return render(request, template_name="authentication/profile/edit-profile.html", context=context)
 

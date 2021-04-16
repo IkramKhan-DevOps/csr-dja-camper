@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Horsedch',
     'Landlord',
+    'Shop',
+    'Authentication',
     'ckeditor',
     'decouple',
     "django.contrib.sites",
