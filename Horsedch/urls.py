@@ -26,29 +26,23 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index_view, name="Home"),
     path('accounts/signup/', views.sign_up_view, name="Sign Up"),
-    path('add/product/', views.add_product, name="Add Product"),
-    path('all/products/', views.all_products, name="All Products"),
-    path('my/products/', views.my_products, name="My Products"),
-    path('edit/profile/', views.edit_profile, name="Edit Profile"),
-    path('my/account/', views.my_account, name="My Account"),
-    path('rate-rental-experience/', views.rate_rental_experience, name="Rate Rental Experience"),
-    path('user/profile/reviews/', views.profile_reviews, name="Profile Reviews"),
     path('conditions/', views.conditions, name="Conditions"),
     path('data-policy/', views.data_policy, name="Data Policy"),
     path('fairplay/', views.fairplay, name="Fair Play"),
     path('imprint/', views.imprint, name="Imprint"),
-    path('checkout/', views.checkout, name="Checkout"),
-    path('product/details/', views.single_product_details, name="Single Product"),
     path('test/', views.test, name="Info"),
 
     path('accounts/login/', views.login, name="Login"),
     # path('logout/', views.auth_logout, name="Logout"),
 
-    url(r'^google-login/$', views.login_via_google, name="login_via_google"),
-    url(r'^facebook-login/$', views.login_via_facebook, name="login_via_facebook"),
+    # url(r'^google-login/$', views.login_via_google, name="login_via_google"),
+    # url(r'^facebook-login/$', views.login_via_facebook, name="login_via_facebook"),
 
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view(), name="Logout"),
+
+    path('shop/', include('Shop.urls')),
+    path('auth/', include('Authentication.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

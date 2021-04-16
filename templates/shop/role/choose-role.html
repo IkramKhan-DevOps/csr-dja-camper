@@ -1,0 +1,42 @@
+{% extends 'site_base.html' %}
+{% load  static %}
+{% load socialaccount %}
+
+{% block nav_bar %}
+{% endblock nav_bar %}
+
+{% block body_content %}
+    <div class="home-btn d-none d-sm-block">
+        <a href="/" class="text-dark"><i class="fas fa-home h2"></i></a>
+    </div>
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
+            <div class="row justify-content-center mt-lg-5 mb-xl-5">
+                <h3>Please Choose Your Role From Below to Continue to Horsed.</h3>
+            </div>
+            <div class="row justify-content-center mt-xl-5">
+                <div class="col-lg-3">
+                    <a href="{% url 'update_member_role' role="Landlord" %}" class="card bg-success text-white-50">
+                        <div class="card-body">
+                            <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-account-arrow-right-outline font-weight-bolder font-size-24 mr-3"></i> Landlord</h5>
+                            <p class="card-text">{% lorem 12 w %}</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3">
+                    <a href="{% url 'update_member_role' role="Renter" %}" class="card bg-primary text-white-50">
+                        <div class="card-body">
+                            <h5 class="mt-0 mb-4 text-white"><i class="mdi mdi-account-arrow-left-outline font-weight-bolder font-size-24 mr-3"></i> Renter</h5>
+                            <p class="card-text">{% lorem 12 w %}</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+{% endblock body_content %}
+
+{% block footer %}
+{% endblock footer %}

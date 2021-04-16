@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Horsedch',
     'Landlord',
+    'Shop',
+    'Authentication',
     'ckeditor',
     'decouple',
     "django.contrib.sites",
@@ -130,7 +132,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 FB_APP_ID = '180914477204180'
 FB_APP_SECRET = '81791c807c513a62297d5854ac1b7ef2'
 
@@ -155,5 +156,5 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/all/products/'
 LOGOUT_REDIRECT_URL = '/'
