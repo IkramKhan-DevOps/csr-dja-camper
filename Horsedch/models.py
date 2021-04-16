@@ -222,7 +222,7 @@ class Member(models.Model):
     ]
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email_address = models.EmailField()
+    email_address = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     street_address = models.TextField(max_length=200, null=True, blank=True)
     house_number = models.CharField(max_length=50, null=True, blank=True)
@@ -230,7 +230,7 @@ class Member(models.Model):
     city = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=50, null=True, blank=True)
     profile_status = models.BooleanField(default=False)
-    profile_picture = models.ImageField(upload_to="images/users/", null=True, blank=True)
+    profile_picture = models.ImageField(upload_to="images/users/", null=True, blank=True, default="no-image-icon.png")
     self_description = models.TextField(max_length=500, null=True, blank=True)
     role = models.CharField(choices=ROLE_CHOICES, max_length=20)
 

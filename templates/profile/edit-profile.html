@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'shop_base.html' %}
 {% load static %}
 {% block content %}
     <div class="main-content">
@@ -24,7 +24,7 @@
                 </div>
                 <!-- end page title -->
 
-                {#                Start From Here#}
+                {#                Start From Here               #}
 
 
                 <div class="row">
@@ -41,7 +41,7 @@
                                             <div class="form-group">
                                                 <label for="first_name">First Name</label>
                                                 <input id="first_name" name="first_name" type="text"
-                                                       class="form-control">
+                                                       class="form-control" value="{{ member.first_name }}">
                                             </div>
                                             <div class="form-group">
                                                 <label for="last_name">Last Name</label>
@@ -85,7 +85,7 @@
 
                                             <div class="form-group">
                                                 <label class="control-label" for="country_name">Country</label>
-                                                <select class="form-control select2" id="country_name"
+                                                <select class="form-control" id="country_name"
                                                         name="country_name">
                                                     <option>Select</option>
                                                     <option value="AK">Alaska</option>
@@ -119,243 +119,303 @@
                             </div>
                         </div>
 
-                        {#                        Bank Account Information#}
-                        <div class="card">
-                            <div class="card-body">
+                        {#                        Bank Account Information           #}
+                    {% if role == "Landlord" %}
+                        {% block bank_account_details %}
+                            <div class="card">
+                                <div class="card-body">
 
-                                <h4 class="card-title">Bank Details</h4>
-                                <p class="card-title-desc">For object owners only: We need this information to pay your
-                                    rental income.
-                                    <br><br>
-                                    <span class="font-weight-bolder font-size-16 text-dark">Account holder details</span>
-                                </p>
+                                    <h4 class="card-title">Bank Details</h4>
+                                    <p class="card-title-desc">For object owners only: We need this information to pay
+                                        your
+                                        rental income.
+                                        <br><br>
+                                        <span class="font-weight-bolder font-size-16 text-dark">Account holder details</span>
+                                    </p>
 
 
-                                <form class="form-horizontal" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="first_name">First Name</label>
-                                                <input id="first_name" name="first_name" type="text"
-                                                       class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="last_name">Last Name</label>
-                                                <input id="last_name" name="last_name" type="text" class="form-control">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-8">
-                                                    <div class="form-group">
-                                                        <label for="street_address">Street Address</label>
-                                                        <input id="street_address" name="street_address" type="text"
-                                                               class="form-control">
+                                    <form class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="first_name">First Name</label>
+                                                    <input id="first_name" name="first_name" type="text"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="last_name">Last Name</label>
+                                                    <input id="last_name" name="last_name" type="text"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <label for="street_address">Street Address</label>
+                                                            <input id="street_address" name="street_address" type="text"
+                                                                   class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="house_number">House Number</label>
+                                                            <input id="house_number" name="house_number" type="text"
+                                                                   class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="house_number">House Number</label>
-                                                        <input id="house_number" name="house_number" type="text"
-                                                               class="form-control">
+
+
+                                                <div class="row">
+                                                    <div class="col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="zip_code">Zip Code</label>
+                                                            <input id="zip_code" name="zip_code" type="text"
+                                                                   class="form-control">
+                                                        </div>
                                                     </div>
+                                                    <div class="col-lg-8">
+                                                        <div class="form-group">
+                                                            <label for="city_name">City</label>
+                                                            <input id="city_name" name="city_name" type="text"
+                                                                   class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label" for="country_name">Country</label>
+                                                    <select class="form-control select2" id="country_name"
+                                                            name="country_name">
+                                                        <option>Select</option>
+                                                        <option value="AK">Alaska</option>
+                                                        <option value="HI">Hawaii</option>
+                                                    </select>
+
                                                 </div>
                                             </div>
 
-
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="zip_code">Zip Code</label>
-                                                        <input id="zip_code" name="zip_code" type="text"
-                                                               class="form-control">
-                                                    </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="metadescription">Meta Description</label>
+                                                    <textarea class="form-control" id="metadescription"
+                                                              rows="5"></textarea>
                                                 </div>
-                                                <div class="col-lg-8">
-                                                    <div class="form-group">
-                                                        <label for="city_name">City</label>
-                                                        <input id="city_name" name="city_name" type="text"
-                                                               class="form-control">
-                                                    </div>
+
+                                                <div class="form-group">
+                                                    <label for="IBAN">IBAN</label>
+                                                    <input id="IBAN" name="IBAN" type="text"
+                                                           class="form-control">
                                                 </div>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <label class="control-label" for="country_name">Country</label>
-                                                <select class="form-control select2" id="country_name"
-                                                        name="country_name">
-                                                    <option>Select</option>
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="HI">Hawaii</option>
-                                                </select>
-
+                                                <div class="form-group">
+                                                    <label for="BIC">BIC</label>
+                                                    <input id="BIC" name="BIC" type="text" class="form-control">
+                                                </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="metadescription">Meta Description</label>
-                                                <textarea class="form-control" id="metadescription" rows="5"></textarea>
-                                            </div>
+                                        <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
+                                            Changes
+                                        </button>
+                                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
-                                            <div class="form-group">
-                                                <label for="IBAN">IBAN</label>
-                                                <input id="IBAN" name="IBAN" type="text"
-                                                       class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="BIC">BIC</label>
-                                                <input id="BIC" name="BIC" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
 
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
-                                        Changes
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
-
-                                </form>
-
+                                </div>
                             </div>
-                        </div>
+                        {% endblock bank_account_details %}
+                    {% endif %}
 
-                        {#                        Additional Information#}
+                        {#                        Additional Information              #}
 
-                        <div class="card">
-                            <div class="card-body">
+                     {% if role == "Landlord" %}
+                        {% block additional_information %}
+                            <div class="card">
+                                <div class="card-body">
 
-                                <span class="card-title">Additional Information</span> &nbsp;&nbsp;
-                                <span class="card-title-desc ">Show interested renters in which languages you can communicate.
+                                    <span class="card-title">Additional Information</span> &nbsp;&nbsp;
+                                    <span class="card-title-desc ">Show interested renters in which languages you can communicate.
                                 </span>
-                                <form class="form-horizontal" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="row">
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox mb-3 mt-3">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                   id="deutsch" checked="">
-                                                            <label class="custom-control-label"
-                                                                   for="deutsch">Deutsch</label>
+                                    <form class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox mb-3 mt-3">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                       id="deutsch" checked="">
+                                                                <label class="custom-control-label"
+                                                                       for="deutsch">Deutsch</label>
+                                                            </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox mb-3 mt-3">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                       id="französisch" checked="">
+                                                                <label class="custom-control-label" for="französisch">Französisch</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox mb-3 mt-3">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                       id="italienisch" checked="">
+                                                                <label class="custom-control-label" for="italienisch">Italienisch</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox mb-3 mt-3">
+                                                                <input type="checkbox" class="custom-control-input"
+                                                                       id="englisch" checked="">
+                                                                <label class="custom-control-label"
+                                                                       for="englisch">Englisch</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox mb-3 mt-3">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                   id="französisch" checked="">
-                                                            <label class="custom-control-label" for="französisch">Französisch</label>
-                                                        </div>
-                                                    </div>
+                                                <div class="form-group mt-3">
+                                                    <p class="card-title">Are you on social media?</p>
+                                                    <label for="facebook_url">Link to Facebook profile</label>
+                                                    <input id="facebook_url" name="facebook_url" type="text"
+                                                           class="form-control">
                                                 </div>
 
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox mb-3 mt-3">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                   id="italienisch" checked="">
-                                                            <label class="custom-control-label" for="italienisch">Italienisch</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
-                                                <div class="col-lg-3">
-                                                    <div class="form-group">
-                                                        <div class="custom-control custom-checkbox mb-3 mt-3">
-                                                            <input type="checkbox" class="custom-control-input"
-                                                                   id="englisch" checked="">
-                                                            <label class="custom-control-label"
-                                                                   for="englisch">Englisch</label>
-                                                        </div>
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="instagram_url">Link to Instagram profile</label>
+                                                    <input id="instagram_url" name="instagram_url" type="text"
+                                                           class="form-control">
                                                 </div>
 
                                             </div>
+                                            <div class="col-sm-6">
 
-                                            <div class="form-group mt-3">
-                                                <p class="card-title">Are you on social media?</p>
-                                                <label for="facebook_url">Link to Facebook profile</label>
-                                                <input id="facebook_url" name="facebook_url" type="text"
-                                                       class="form-control">
                                             </div>
 
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label for="metadescription">Tell us who you are and with what aim
+                                                        you
+                                                        registered at horsed.ch.</label>
+                                                    <textarea class="form-control" id="metadescription"
+                                                              rows="5"></textarea>
+                                                </div>
 
-                                            <div class="form-group">
-                                                <label for="instagram_url">Link to Instagram profile</label>
-                                                <input id="instagram_url" name="instagram_url" type="text"
-                                                       class="form-control">
                                             </div>
-
                                         </div>
-                                        <div class="col-sm-6">
 
-                                        </div>
+                                        <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
+                                            Changes
+                                        </button>
+                                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="metadescription">Tell us who you are and with what aim you
-                                                    registered at horsed.ch.</label>
-                                                <textarea class="form-control" id="metadescription" rows="5"></textarea>
-                                            </div>
+                                    </form>
 
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
-                                        Changes
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
-
-                                </form>
-
+                                </div>
                             </div>
-                        </div>
+                        {% endblock additional_information %}
+                    {% endif %}
 
-                        {#                        Change Password#}
-                        <div class="card">
-                            <div class="card-body">
+                        {#                        Account Login Setting                 #}
+                    {% if role == "Landlord" %}
+                        {% block account_login_setting %}
+                            <div class="card">
+                                <div class="card-body">
 
-                                <span class="card-title">Account Login Settings</span> &nbsp;&nbsp;
-                                <span class="card-title-desc ">You can change your account password from here.
+                                    <span class="card-title">Account Login Settings</span> &nbsp;&nbsp;
+                                    <span class="card-title-desc ">You can change your account login settings from here.
                                 </span>
-                                <form class="form-horizontal" enctype="multipart/form-data">
-                                    <div class="row">
-                                        <div class="col-sm-6">
+                                    <form class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-6">
 
-                                            <div class="form-group">
+                                                <div class="form-group">
 
-                                                <label for="email_address">Email Address</label>
-                                                <input id="email_address" name="email_address" type="email"
-                                                       class="form-control">
+                                                    <label for="email_address">Email Address</label>
+                                                    <input id="email_address" name="email_address" type="email"
+                                                           class="form-control">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="password">New Password</label>
+                                                    <input id="password" name="password" type="password"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirm_password">Confirm New Password</label>
+                                                    <input id="confirm_password" name="confirm_password" type="password"
+                                                           class="form-control">
+                                                </div>
+
                                             </div>
-
-
-                                            <div class="form-group">
-                                                <label for="password">New Password</label>
-                                                <input id="password" name="password" type="password"
-                                                       class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="confirm_password">Confirm New Password</label>
-                                                <input id="confirm_password" name="confirm_password" type="password"
-                                                       class="form-control">
-                                            </div>
-
                                         </div>
-                                    </div>
 
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
-                                        Changes
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+                                        <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
+                                            Changes
+                                        </button>
+                                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
-                                </form>
+                                    </form>
 
+                                </div>
                             </div>
-                        </div>
+                        {% endblock account_login_setting %}
+                        {% else %}
+                         <div class="card">
+                                <div class="card-body">
+
+                                    <span class="card-title">Disconnect Social Account</span> &nbsp;&nbsp;
+                                    <span class="card-title-desc ">You need to set password for your profile to avoid yourself getting locked out of the system.
+                                </span>
+                                    <form class="form-horizontal" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+
+                                                    <label for="email_address">Email Address</label>
+                                                    <input id="email_address" name="email_address" type="email"
+                                                           class="form-control" contentEditable="false">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="password">New Password</label>
+                                                    <input id="password" name="password" type="password"
+                                                           class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="confirm_password">Confirm New Password</label>
+                                                    <input id="confirm_password" name="confirm_password" type="password"
+                                                           class="form-control">
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
+                                            Changes
+                                        </button>
+                                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                    {% endif %}
+
                     </div>
                 </div>
                 <!-- end row -->
