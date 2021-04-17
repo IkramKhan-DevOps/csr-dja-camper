@@ -4,10 +4,10 @@ from Horsedch.models import Landlord
 
 
 class Language(models.Model):
-    dutch = models.BooleanField(default=False)
-    french = models.BooleanField(default=False)
-    italian = models.BooleanField(default=False)
-    english = models.BooleanField(default=False)
+    dutch = models.BooleanField(default=False, null=True, blank=True)
+    french = models.BooleanField(default=False, null=True, blank=True)
+    italian = models.BooleanField(default=False, null=True, blank=True)
+    english = models.BooleanField(default=False, null=True, blank=True)
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -35,7 +35,7 @@ class SocialMediaLinks(models.Model):
 class LandlordBankAccount(models.Model):
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
-    email_address = models.EmailField()
+    email_address = models.EmailField(null=True, blank=True)
     phone_number = models.CharField(max_length=50, null=True, blank=True)
     street_address = models.TextField(max_length=200, null=True, blank=True)
     house_number = models.CharField(max_length=50, null=True, blank=True)
@@ -44,7 +44,7 @@ class LandlordBankAccount(models.Model):
     country = models.CharField(max_length=50, null=True, blank=True)
     IBAN = models.CharField(max_length=50, null=True, blank=True)
     BIC = models.CharField(max_length=50, null=True, blank=True)
-    landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE)
+    landlord = models.OneToOneField(Landlord, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.landlord.member.email_address)

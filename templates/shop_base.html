@@ -4,171 +4,183 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock title %}</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-        <meta content="Themesbrand" name="author" />
-        <!-- App favicon -->
-        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
+    <meta content="Themesbrand" name="author"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
 
-        <!-- Bootstrap Css -->
-        <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css" />
-        <!-- Icons Css -->
-        <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css" />
-        <!-- App Css-->
-        <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css" />
-
-
-
-        <link href="{% static 'libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
-        <link href="{% static 'libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
-        <link href="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet" />
-<link href="{% static 'libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="{% static 'css/bootstrap.min.css' %}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
+    <!-- Icons Css -->
+    <link href="{% static 'css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
+    <!-- App Css-->
+    <link href="{% static 'css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css"/>
 
 
-{% block extra_css_block %}
-{% endblock extra_css_block %}
+    <link href="{% static 'libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'libs/select2/css/select2.min.css' %}" rel="stylesheet" type="text/css"/>
+
+
+    {% block extra_css_block %}
+    {% endblock extra_css_block %}
 </head>
 <body data-topbar="light" data-layout="horizontal">
 
-        <!-- Begin page -->
-        <div id="layout-wrapper">
+<!-- Begin page -->
+<div id="layout-wrapper">
 
-            <header id="page-topbar">
-                <div class="navbar-header">
-                    <div class="d-flex">
-                        <!-- LOGO -->
-                        <div class="navbar-brand-box">
+    <header id="page-topbar">
+        <div class="navbar-header">
+            <div class="d-flex">
+                <!-- LOGO -->
+                <div class="navbar-brand-box">
 
-                            <a href="index.html" class="logo logo-dark">
+                    <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm rounded-circle">
-                                    <img src="{% static 'images/logo/logo-small.png' %}" class="rounded-circle" alt="" height="60">
+                                    <img src="{% static 'images/logo/logo-small.png' %}" class="rounded-circle" alt=""
+                                         height="60">
                                 </span>
-                                <span class="logo-lg rounded-circle">
+                        <span class="logo-lg rounded-circle">
                                     <img src="{% static 'images/logo/logo-large.png' %}" alt="" height="40">
                                 </span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="d-flex">
+
+                <div class="dropdown d-none d-lg-inline-block ml-1">
+                    <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                        <i class="bx bx-fullscreen"></i>
+                    </button>
+                </div>
+
+
+                <div class="dropdown d-inline-block">
+                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="rounded-circle header-profile-user"
+                                {% if social_account != "" %}
+                             src="{{ social_account.extra_data.picture }}"
+                                {% else %}
+                             src="{{ member.profile_picture.url }}"
+                                {% endif %}
+                             alt="Header Avatar">
+                        <span class="d-none d-xl-inline-block ml-1">
+                             {% if social_account != "" %}
+                                 {{ social_account.extra_data.name }}
+                             {% else %}
+                                 src="{{ member.first_name }} {{ member.last_name }}"
+                             {% endif %}</span>
+                        <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <!-- item-->
+                        <a class="dropdown-item" href="{% url 'My Account' %}"><i
+                                class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+
+                        <a class="dropdown-item d-block" href="{% url 'Edit Profile' %}"><i
+                                class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
+
+                        <a class="dropdown-item text-danger" href="{% url 'Login' %}"><i
+                                class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="topnav" style="background-color: #8EA9DB">
+        <div class="container-fluid text-center">
+            <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+                <div class="collapse navbar-collapse" id="topnav-menu-content">
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'My Account' %}" role="button"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-home-circle mr-2"></i>My Account
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link  text-white" href="{% url 'Edit Profile' %}" id="topnav-uielement"
+                               role="button"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-edit mr-2"></i>Edit Profile
+                            </a>
+                        </li>
+
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="" id="topnav-pages" role="button"
+                               data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-menu mr-2"></i>My Bookings
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
+                                <i class="bx bx-collection mr-2"></i>My Products
                             </a>
 
-                        </div>
-                    </div>
-
-                    <div class="d-flex">
-
-                        <div class="dropdown d-none d-lg-inline-block ml-1">
-                            <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
-                                <i class="bx bx-fullscreen"></i>
-                            </button>
-                        </div>
+                        </li>
 
 
-                        <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img class="rounded-circle header-profile-user" src="{{ user_data.picture }}"
-                                    alt="Header Avatar">
-                                <span class="d-none d-xl-inline-block ml-1">{{ user_data.name }}</span>
-                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <!-- item-->
-                                <a class="dropdown-item" href="{% url 'My Account' %}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'Logout' %}" id="" role="button"
+                               aria-expanded="false">
+                                <i class="bx bx-log-out-circle mr-2"></i>Logout
+                            </a>
+                        </li>
 
-                                <a class="dropdown-item d-block" href="{% url 'Edit Profile' %}"><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
-
-                                <a class="dropdown-item text-danger" href="{% url 'Login' %}"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
-                            </div>
-                        </div>
-
-                    </div>
+                    </ul>
                 </div>
-            </header>
-
-                <div class="topnav" style="background-color: #8EA9DB">
-                    <div class="container-fluid text-center">
-                        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-
-                            <div class="collapse navbar-collapse" id="topnav-menu-content">
-                                <ul class="navbar-nav">
-
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" href="{% url 'My Account' %}" role="button"
-                                            data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-home-circle mr-2"></i>My Account
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item ">
-                                        <a class="nav-link  text-white" href="{% url 'Edit Profile' %}" id="topnav-uielement" role="button"
-                                            data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-edit mr-2"></i>Edit Profile
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item ">
-                                        <a class="nav-link text-white" href="" id="topnav-pages" role="button"
-                                            data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-menu mr-2"></i>My Bookings
-                                        </a>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
-                                            <i class="bx bx-collection mr-2"></i>My Products
-                                        </a>
-
-                                    </li>
-
-
-
-                                    <li class="nav-item">
-                                        <a class="nav-link text-white" href="{% url 'Logout' %}" id="" role="button"
-                                            aria-expanded="false">
-                                            <i class="bx bx-log-out-circle mr-2"></i>Logout
-                                        </a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
+            </nav>
         </div>
-        <!-- END layout-wrapper -->
+    </div>
+</div>
+<!-- END layout-wrapper -->
 
 {% block content %}
 
 {% endblock content %}
 
 
-        <!-- JAVASCRIPT -->
-        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
-        <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
-        <script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
+<!-- JAVASCRIPT -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'libs/metismenu/metisMenu.min.js' %}"></script>
+<script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+<script src="{% static 'libs/node-waves/waves.min.js' %}"></script>
 
-        <!-- apexcharts -->
-        <script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
+<!-- apexcharts -->
+<script src="{% static 'libs/apexcharts/apexcharts.min.js' %}"></script>
 
-        <script src="{% static 'js/pages/dashboard.init.js' %}"></script>
+<script src="{% static 'js/pages/dashboard.init.js' %}"></script>
 
-        <!-- App js -->
-        <script src="{% static 'js/app.js' %}"></script>
+<!-- App js -->
+<script src="{% static 'js/app.js' %}"></script>
 
 
-        <script src="{% static 'libs/select2/js/select2.min.js' %}"></script>
-        <script src="{% static 'libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
-        <script src="{% static 'libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
-        <script src="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
-        <script src="{% static 'libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
+<script src="{% static 'libs/select2/js/select2.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap-maxlength/bootstrap-maxlength.min.js' %}"></script>
 
-        <script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
+<script src="{% static 'js/pages/form-advanced.init.js' %}"></script>
 
-        {% block extra_js_block %}
-        {% endblock extra_js_block %}
+{% block extra_js_block %}
+{% endblock extra_js_block %}
 
 {% block custom_js %}
 {% endblock custom_js %}
-
 
 
 </body>

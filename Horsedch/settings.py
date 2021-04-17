@@ -156,5 +156,5 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-LOGIN_REDIRECT_URL = '/all/products/'
+LOGIN_REDIRECT_URL = 'choose_role'
 LOGOUT_REDIRECT_URL = '/'
