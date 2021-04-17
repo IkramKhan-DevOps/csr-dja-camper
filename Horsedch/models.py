@@ -248,7 +248,7 @@ class Member(models.Model):
 
 
 class Landlord(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    member = models.OneToOneField(Member, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.member.email_address)
@@ -259,7 +259,7 @@ class Landlord(models.Model):
 
 
 class Renter(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+    member = models.OneToOneField(Member, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.member.email_address)
