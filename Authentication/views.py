@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
@@ -11,13 +12,13 @@ from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 
 def choose_role(request):
     try:
-        member = Member.objects.get(user=request.user).exists()
+        member = Member.objects.get(user=request.user)
         if member:
             if member.role == "Landlord":
                 return redirect('My Account')
             else:
                 return redirect('All Products')
-    except ObjectDoesNotExist:
+    except:
         print("No member exist")
 
     return render(request, template_name="shop/role/choose-role.html")
@@ -42,6 +43,9 @@ def update_member_role(request, role):
                 user=request.user
             )
 
+            user = User.objects.get(username=request.user.username)
+            user.username = request.user.email
+            user.save()
         else:
             member = Member.objects.create(
                 first_name=request.user.first_name,
@@ -57,6 +61,7 @@ def update_member_role(request, role):
                 Renter.objects.create(member=member)
         except:
             print("Oops")
+
     except ObjectDoesNotExist:
         print("No social account exist")
     return redirect('Edit Profile')
@@ -194,9 +199,18 @@ def edit_profile(request):
             return redirect('Edit Profile')
 
         elif "account-settings" in request.POST:
-            print("Got it")
+            user = User.objects.get(username=request.user.username)
+            user.set_password(request.POST.get("password"))
+            user.save()
+            messages.success(request, "Password updated successfully!")
+
         elif "disconnect-social-account" in request.POST:
-            print("Got it")
+            user = User.objects.get(username=request.user.username)
+            user.set_password(request.POST.get("password"))
+            user.save()
+            SocialAccount.objects.get(user=request.user).delete()
+            messages.success(request, "Account disconnect successfully! Please login with your email to continue.")
+            return redirect("Logout")
     context = {
         "member": member,
         "social_account": social_account,

@@ -25,8 +25,6 @@ def index_view(request):
     how_it_works = HowItWork.objects.all()
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
-    user_data = SocialAccount.objects.get(user=request.user)
-
     context = {
         'how_it_works': how_it_works,
         'company_contact': company_contact,
@@ -38,7 +36,6 @@ def index_view(request):
         'how_to_rent_faqs': how_to_rent_faqs,
         'how_to_list_faqs': how_to_list_faqs,
         'social_links': social_links,
-        'user_data': user_data.extra_data
 
     }
     return render(request, template_name="site_pages/index.html", context=context)
