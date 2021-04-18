@@ -566,7 +566,8 @@
                                         <span class="card-title">Disconnect Social Account</span> &nbsp;&nbsp;
                                         <span class="card-title-desc ">You need to set password for your profile to avoid yourself getting locked out of the system. </span>
                                     {% endif %}
-                                    <form class="form-horizontal" enctype="multipart/form-data">
+                                    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
