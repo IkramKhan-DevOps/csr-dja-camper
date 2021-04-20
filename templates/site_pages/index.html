@@ -1,6 +1,7 @@
 {% extends 'site_base.html' %}
 {% load static %}
 {% block title %}Horsed{% endblock title %}
+{% block extra_class_header %} {% endblock extra_class_header %}
 {% block body_content %}
     <!-- hero section start -->
     <section class="section hero-section" id="home" style='background-image: url("{% static 'images/hero_img.jpg' %}");
@@ -22,7 +23,8 @@
                         {% endif %}
 
                         <div class="button-items mt-4">
-                            <a href="#" class="btn btn-warning" id="rent">Rent A Product</a>
+                            <a href="#" class="btn" style="background-color: #FF7F23; color: white" id="rent">Rent A
+                                Product</a>
                             <a href="#" class="btn btn-light">List Your Product</a>
                         </div>
                     </div>
@@ -45,43 +47,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-5 col-md-8 col-sm-10 ml-lg-auto">
-                    <div class="card overflow-hidden mb-0 mt-5 mt-lg-0">
-                        <div class="card-header text-center">
-                            <h5 class="mb-0">Launch Countdown time</h5>
-                        </div>
-                        <div class="card-body">
-                            <div class="text-center">
 
-                                <h5>Time left to Launch :</h5>
-                                <div class="mt-4">
-                                    <div data-countdown="2021/04/24" class="counter-number ico-countdown"></div>
-                                </div>
-
-                                <div class="mt-4">
-                                    <button type="button" class="btn btn-success w-md">Get Notified</button>
-                                </div>
-
-                                <div class="mt-5">
-                                    <h4 class="font-weight-semibold">Progress On Development</h4>
-                                    <div class="clearfix mt-4">
-                                    </div>
-                                    <div class="progress p-1 progress-xl softcap-progress">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 40%"
-                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-                                            <div class="progress-label">40 %</div>
-                                        </div>
-                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
-                                             role="progressbar" style="width: 20%" aria-valuenow="60" aria-valuemin="0"
-                                             aria-valuemax="100">
-                                            <div class="progress-label">60 %</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- end row -->
         </div>
@@ -115,42 +81,7 @@
                             </div>
                         {% endif %}
                     {% endfor %}
-                    {#                    <div class="col-md-4">#}
-                    {#                        <div class="card">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div class="media">#}
-                    {#                                    <div class="avatar-xs mr-3">#}
-                    {#                                            <span class="avatar-title rounded-circle bg-soft-primary text-primary font-size-18">#}
-                    {#                                                <i class="mdi mdi-security"></i>#}
-                    {#                                            </span>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="media-body">#}
-                    {#                                        <p class="font-size-16 font-weight-bold">Secure</p>#}
-                    {##}
-                    {#                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %}</p>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {#                    <div class="col-md-4">#}
-                    {#                        <div class="card">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div class="media">#}
-                    {#                                    <div class="avatar-xs mr-3">#}
-                    {#                                            <span class="avatar-title rounded-circle bg-soft-info text-info font-size-18">#}
-                    {#                                                <i class="mdi mdi-check-circle"></i>#}
-                    {#                                            </span>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="media-body">#}
-                    {#                                        <p class="font-size-16 font-weight-bold">Reliable</p>#}
-                    {##}
-                    {#                                        <p class="text-muted text-truncate mb-0">{% lorem 4 w %} </p>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
+
                 </div>
                 <!-- end row -->
             </div>
@@ -159,90 +90,105 @@
     </section>
     <!-- currency price section end -->
 
-    <!-- about section start -->
-    <section class="section pt-4 bg-white" id="about">
+    <!-- most popular start -->
+    <section class="section pt-4 bg-white" id="most-popular">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
-                        <div class="small-title">About us</div>
-                        <h4>{{ about_us.heading }}</h4>
+                        <h4>Most Popular</h4>
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center">
-                <div class="col-lg-5">
 
-                    <div class="text-muted">
-                        <h4>{{ about_us.sub_heading }}</h4>
-                        <p>{{ about_us.description }}</p>
-                        <p class="mb-4">Founder</p>
+            <!-- end row -->
 
-                        <div class="button-items">
-                            <a href="#" class="btn btn-outline-primary">How It work</a>
+            <div class="row mt-4">
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="card-img-top">
+                                <img src="{% static 'images/product/horse.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="card-footer mt-4 text-center">
+                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                            </a></h5>
+                            <p class="text-muted">
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star"></i>
+                            </p>
+                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                <b>$225</b>
+                            </h5>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-6 ml-auto">
-                    <div class="mt-4 mt-lg-0">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="card border">
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <i class="mdi mdi-cash-usd h2 text-success"></i>
-                                        </div>
-                                        <h5>Transactions</h5>
-                                        <p class="text-muted mb-0">600M</p>
-
-                                    </div>
-                                    <div class="card-footer bg-transparent border-top text-center">
-                                        <a href="#" class="text-primary">Learn more</a>
-                                    </div>
-                                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="card-img-top">
+                                <img src="{% static 'images/product/horse.png' %}" alt="">
                             </div>
-                            <div class="col-sm-4">
-                                <div class="card border mt-lg-5">
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <i class="mdi mdi-account-box-multiple h2 text-success"></i>
-                                        </div>
-                                        <h5>Users</h5>
-                                        <p class="text-muted mb-0">500000</p>
 
-                                    </div>
-                                    <div class="card-footer bg-transparent border-top text-center">
-                                        <a href="#" class="text-primary">Learn more</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="card border mt-xl-10">
-                                    <div class="card-body">
-                                        <div class="mb-3">
-                                            <i class="mdi mdi-table-large h2 text-success"></i>
-                                        </div>
-                                        <h5>Products</h5>
-                                        <p class="text-muted mb-0">90000</p>
+                        </div>
+                        <div class="card-footer mt-4 text-center">
+                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                            </a></h5>
 
-                                    </div>
-                                    <div class="card-footer bg-transparent border-top text-center">
-                                        <a href="#" class="text-primary">Learn more</a>
-                                    </div>
-                                </div>
+                            <p class="text-muted">
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star"></i>
+                            </p>
+                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                <b>$225</b>
+                            </h5>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <div class="card-img-top">
+                                <img src="{% static 'images/product/horse.png' %}" alt="">
                             </div>
+
+                        </div>
+                        <div class="card-footer mt-4 text-center">
+                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
+                            </a></h5>
+
+                            <p class="text-muted">
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star text-warning"></i>
+                                <i class="bx bx-star"></i>
+                            </p>
+                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
+                                <b>$225</b>
+                            </h5>
+
                         </div>
                     </div>
                 </div>
             </div>
             <!-- end row -->
-
+            <div class="row mt-4 justify-content-center">
+                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Show All Products</a>
+            </div>
 
         </div>
         <!-- end container -->
     </section>
-    <!-- about section end -->
+    <!-- most popular end -->
 
     <!--Recent Products -->
     <section class="section" id="">
@@ -333,6 +279,9 @@
                 </div>
             </div>
             <!-- end row -->
+            <div class="row mt-4 justify-content-center">
+                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Show All Products</a>
+            </div>
         </div>
         <!-- end container -->
     </section>
@@ -350,108 +299,81 @@
             </div>
             <!-- end row -->
 
-            <div class="row mt-4">
-                <div class="col-lg-12">
-                    <div class="hori-timeline">
-                        <div class="owl-carousel owl-theme events navs-carousel" id="timeline-carousel">
-
-                            {% for data in how_it_works %}
-                                {% if data.is_active %}
-                                    <div class="item event-list">
-                                        <div class="event-date">
-                                            <h5 class="mb-4">{{ data.title }}</h5>
-                                        </div>
-
-                                        <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>
-
-                                        <div class="mt-3 px-3">
-                                            <p class="text-muted">{{ data.description }} </p>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-
-                            {#                                                        <div class="item event-list">#}
-                            {#                                                            <div>#}
-                            {#                                                                <div class="event-date">#}
-                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
-                            {#                                                                </div>#}
-                            {#                                                                <div class="event-down-icon">#}
-                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
-                            {#                                                                </div>#}
-                            {##}
-                            {#                                                                <div class="mt-3 px-3">#}
-                            {#                                                                    <p class="text-muted">To an English person, it will seem like simplified English#}
-                            {#                                                                        existence.</p>#}
-                            {#                                                                </div>#}
-                            {#                                                            </div>#}
-                            {#                                                        </div>#}
-                            {##}
-                            {#                                                        <div class="item event-list active">#}
-                            {#                                                            <div>#}
-                            {#                                                                <div class="event-date">#}
-                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
-                            {#                                                                </div>#}
-                            {#                                                                <div class="event-down-icon">#}
-                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
-                            {#                                                                </div>#}
-                            {##}
-                            {#                                                                <div class="mt-3 px-3">#}
-                            {#                                                                    <p class="text-muted">For science, music, sport, etc, Europe uses the same#}
-                            {#                                                                        vocabulary.</p>#}
-                            {#                                                                </div>#}
-                            {#                                                            </div>#}
-                            {#                                                        </div>#}
-                            {##}
-                            {#                                                        <div class="item event-list">#}
-                            {#                                                            <div>#}
-                            {#                                                                <div class="event-date">#}
-                            {#                                                                    <h5 class="mb-4">{% lorem 3 w %}</h5>#}
-                            {#                                                                </div>#}
-                            {#                                                                <div class="event-down-icon">#}
-                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
-                            {#                                                                </div>#}
-                            {##}
-                            {#                                                                <div class="mt-3 px-3">#}
-                            {#                                                                    <p class="text-muted">New common language will be more simple than existing.</p>#}
-                            {#                                                                </div>#}
-                            {#                                                            </div>#}
-                            {#                                                        </div>#}
-                            {##}
-                            {#                                                        <div class="item event-list">#}
-                            {#                                                            <div>#}
-                            {#                                                                <div class="event-date">#}
-                            {#                                                                   <h5 class="mb-4">{% lorem 3 w %}</h5>#}
-                            {#                                                                </div>#}
-                            {#                                                                <div class="event-down-icon">#}
-                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
-                            {#                                                                </div>#}
-                            {##}
-                            {#                                                                <div class="mt-3 px-3">#}
-                            {#                                                                    <p class="text-muted">It will be as simple as occidental in fact it will be#}
-                            {#                                                                        Cambridge</p>#}
-                            {#                                                                </div>#}
-                            {#                                                            </div>#}
-                            {#                                                        </div>#}
-                            {##}
-                            {#                                                        <div class="item event-list">#}
-                            {#                                                            <div>#}
-                            {#                                                                <div class="event-date">#}
-                            {#                                                                     <h5 class="mb-4">{% lorem 3 w %}</h5>#}
-                            {#                                                                </div>#}
-                            {#                                                                <div class="event-down-icon">#}
-                            {#                                                                    <i class="bx bx-down-arrow-circle h1 text-primary down-arrow-icon"></i>#}
-                            {#                                                                </div>#}
-                            {##}
-                            {#                                                                <div class="mt-3 px-3">#}
-                            {#                                                                    <p class="text-muted">To an English person, it will seem like simplified English#}
-                            {#                                                                        existence.</p>#}
-                            {#                                                                </div>#}
-                            {#                                                            </div>#}
-                            {#                                                        </div>#}
-                        </div>
+            <div class="row justify-content-center">
+                <div class="col-md-2 col-24 text-center">
+                    <div class="mb-4">
+                        <img alt="Icon search"
+                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
                     </div>
+                    <div class="font-weight-bold">
+                        1. Search Object
+                    </div>
+                    <div>
+                        {% lorem 6 w %}
+                    </div>
+                </div>
+                <div class="d-none d-md-flex align-items-start col-md-1">
+                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
+                         class="svg-icon mr-2rem svg-icon"
+                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
+                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
+                              fill-rule="evenodd" stroke-linecap="round"></path>
+                    </svg>
+                </div>
 
+                <div class="col-md-2 col-24 text-center">
+                    <div class="mb-4">
+                        <img alt="Icon search"
+                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
+                    </div>
+                    <div class="font-weight-bold">
+                        1. Search Object
+                    </div>
+                    <div>
+                        {% lorem 6 w %}
+                    </div>
+                </div>
+                <div class="d-none d-md-flex align-items-start col-md-1">
+                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
+                         class="svg-icon mr-2rem svg-icon"
+                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
+                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
+                              fill-rule="evenodd" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+
+                <div class="col-md-2 col-24 text-center">
+                    <div class="mb-4">
+                        <img alt="Icon search"
+                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
+                    </div>
+                    <div class="font-weight-bold">
+                        1. Search Object
+                    </div>
+                    <div>
+                        {% lorem 6 w %}
+                    </div>
+                </div>
+                <div class="d-none d-md-flex align-items-start col-md-1">
+                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
+                         class="svg-icon mr-2rem svg-icon"
+                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
+                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
+                              fill-rule="evenodd" stroke-linecap="round"></path>
+                    </svg>
+                </div>
+
+                <div class="col-md-2 col-24 text-center">
+                    <div class="mb-4">
+                        <img alt="Icon search"
+                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
+                    </div>
+                    <div class="font-weight-bold">
+                        1. Search Object
+                    </div>
+                    <div>
+                        {% lorem 6 w %}
+                    </div>
                 </div>
             </div>
             <!-- end row -->
@@ -467,8 +389,9 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
-                        <div class="small-title">Team</div>
-                        <h4>Meet Our Team</h4>
+
+                        <h4>Still Have Questions?</h4>
+                        <div class="small-title">Check out our Help Center or contact us directly</div>
                     </div>
                 </div>
             </div>
@@ -486,530 +409,29 @@
 
                                     <div class="mt-3">
                                         <h5>{{ person.full_name }}</h5>
-                                        <P class="text-muted mb-0">{{ person.designation }}</P>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-transparent border-top">
-                                    <div class="d-flex mb-0 team-social-links">
+                                    <div class="d-flex mb-0">
                                         <div class="flex-fill">
-                                            <a href="{{ person.facebook_link }}" data-toggle="tooltip" title="Facebook">
-                                                <i class="mdi mdi-facebook"></i>
-                                            </a>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <a href="{{ person.instagram_link }}" data-toggle="tooltip"
-                                               title="instagram">
-                                                <i class="mdi mdi-instagram"></i>
-                                            </a>
-                                        </div>
-                                        <div class="flex-fill">
-                                            <a href="mailto:{{ person.email_address }}" data-toggle="tooltip"
-                                               title="Email Address">
-                                                <i class="mdi mdi-email"></i>
-                                            </a>
+                                           {{ person.designation }}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
-                    {#                    <div class="item">#}
-                    {#                        <div class="card text-center team-box">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div>#}
-                    {#                                    <img src="{% static 'images/users/avatar-3.jpg' %}" alt="" class="rounded">#}
-                    {#                                </div>#}
-                    {##}
-                    {#                                <div class="mt-3">#}
-                    {#                                    <h5>Calvin Smith</h5>#}
-                    {#                                    <P class="text-muted mb-0">Founder</P>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                            <div class="card-footer bg-transparent border-top">#}
-                    {#                                <div class="d-flex mb-0 team-social-links">#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
-                    {#                                            <i class="mdi mdi-facebook"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
-                    {#                                            <i class="mdi mdi-linkedin"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Google">#}
-                    {#                                            <i class="mdi mdi-google"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {#                    <div class="item">#}
-                    {#                        <div class="card text-center team-box">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div>#}
-                    {#                                    <img src="{% static 'images/users/avatar-8.jpg' %}" alt="" class="rounded">#}
-                    {#                                </div>#}
-                    {#                                <div class="mt-3">#}
-                    {#                                    <h5>Vickie Sample</h5>#}
-                    {#                                    <P class="text-muted mb-0">Lawyer</P>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                            <div class="card-footer bg-transparent border-top">#}
-                    {#                                <div class="d-flex mb-0 team-social-links">#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
-                    {#                                            <i class="mdi mdi-facebook"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
-                    {#                                            <i class="mdi mdi-linkedin"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Google">#}
-                    {#                                            <i class="mdi mdi-google"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {#                    <div class="item">#}
-                    {#                        <div class="card text-center team-box">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div>#}
-                    {#                                    <img src="{% static 'images/users/avatar-5.jpg' %}" alt="" class="rounded">#}
-                    {#                                </div>#}
-                    {##}
-                    {#                                <div class="mt-3">#}
-                    {#                                    <h5>Alma Farley</h5>#}
-                    {#                                    <P class="text-muted mb-0">CFO</P>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                            <div class="card-footer bg-transparent border-top">#}
-                    {#                                <div class="d-flex mb-0 team-social-links">#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
-                    {#                                            <i class="mdi mdi-facebook"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
-                    {#                                            <i class="mdi mdi-linkedin"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Google">#}
-                    {#                                            <i class="mdi mdi-google"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
 
-                    {#                    <div class="item">#}
-                    {#                        <div class="card text-center team-box">#}
-                    {#                            <div class="card-body">#}
-                    {#                                <div>#}
-                    {#                                    <img src="{% static 'images/users/avatar-1.jpg' %}" alt="" class="rounded">#}
-                    {#                                </div>#}
-                    {##}
-                    {#                                <div class="mt-3">#}
-                    {#                                    <h5>Amy Hood </h5>#}
-                    {#                                    <P class="text-muted mb-0">Designer</P>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                            <div class="card-footer bg-transparent border-top">#}
-                    {#                                <div class="d-flex mb-0 team-social-links">#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Facebook">#}
-                    {#                                            <i class="mdi mdi-facebook"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Linkedin">#}
-                    {#                                            <i class="mdi mdi-linkedin"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                    <div class="flex-fill">#}
-                    {#                                        <a href="#" data-toggle="tooltip" title="Google">#}
-                    {#                                            <i class="mdi mdi-google"></i>#}
-                    {#                                        </a>#}
-                    {#                                    </div>#}
-                    {#                                </div>#}
-                    {#                            </div>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
                 </div>
+            </div>
+        <div class="row mt-4 justify-content-center">
+                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Find an Answer</a>
             </div>
             <!-- end row -->
         </div>
         <!-- end container -->
     </section>
     <!-- Team end -->
-
-    <!-- Faqs start -->
-    <section class="section bg-white" id="faqs">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center mb-5">
-                        <div class="small-title">FAQs</div>
-                        <h4>Frequently asked questions</h4>
-                    </div>
-                </div>
-            </div>
-            <!-- end row -->
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="vertical-nav">
-                        <div class="row">
-                            <div class="col-lg-2 col-sm-4">
-                                <div class="nav flex-column nav-pills" role="tablist">
-                                    <a class="nav-link active" id="v-pills-gen-ques-tab" data-toggle="pill"
-                                       href="#v-pills-gen-ques" role="tab">
-                                        <i class="bx bx-help-circle nav-icon d-block mb-2"></i>
-                                        <p class="font-weight-bold mb-0">General Questions</p>
-                                    </a>
-                                    <a class="nav-link" id="v-pills-token-sale-tab" data-toggle="pill"
-                                       href="#v-pills-token-sale" role="tab">
-                                        <i class="bx bx-receipt nav-icon d-block mb-2"></i>
-                                        <p class="font-weight-bold mb-0">How To Rent</p>
-                                    </a>
-                                    <a class="nav-link" id="v-pills-roadmap-tab" data-toggle="pill"
-                                       href="#v-pills-roadmap" role="tab">
-                                        <i class="bx bx-list-plus d-block nav-icon mb-2"></i>
-                                        <p class="font-weight-bold mb-0">How To List</p>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="col-lg-10 col-sm-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="tab-content">
-                                            <div class="tab-pane fade show active" id="v-pills-gen-ques"
-                                                 role="tabpanel">
-                                                <h4 class="card-title mb-4">General Questions</h4>
-
-                                                <div>
-                                                    <div id="gen-ques-accordion" class="accordion custom-accordion">
-                                                        {% for faq in general_faqs %}
-                                                            <div class="mb-3">
-                                                                <a href="#general-collapse{{ faq.id }}"
-                                                                   class="accordion-list"
-                                                                   data-toggle="collapse"
-                                                                   aria-expanded="true"
-                                                                   aria-controls="general-collapse{{ faq.id }}">
-
-                                                                    <div>{{ faq.question }}</div>
-                                                                    <i class="mdi mdi-minus accor-plus-icon"></i>
-
-                                                                </a>
-
-                                                                <div id="general-collapse{{ faq.id }}"
-                                                                     class="collapse show"
-                                                                     data-parent="#gen-ques-accordion">
-                                                                    <div class="card-body">
-                                                                        <p class="mb-0">{{ faq.answer }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        {% endfor %}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#general-collapseTwo"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="general-collapseTwo">#}
-                                                        {#                                                                <div>Why do we use it ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="general-collapseTwo" class="collapse"#}
-                                                        {#                                                                 data-parent="#gen-ques-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">If several languages coalesce, the#}
-                                                        {#                                                                        grammar of the resulting language is more simple#}
-                                                        {#                                                                        and regular than that of the individual#}
-                                                        {#                                                                        languages. The new common language will be more#}
-                                                        {#                                                                        simple and regular than the existing European#}
-                                                        {#                                                                        languages.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#general-collapseThree"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="general-collapseThree">#}
-                                                        {#                                                                <div>Where does it come from ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="general-collapseThree" class="collapse"#}
-                                                        {#                                                                 data-parent="#gen-ques-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
-                                                        {#                                                                        in fact, it will be Occidental. To an English#}
-                                                        {#                                                                        person, it will seem like simplified English, as#}
-                                                        {#                                                                        a skeptical Cambridge friend of mine told me#}
-                                                        {#                                                                        what Occidental.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {#                                                        <div>#}
-                                                        {#                                                            <a href="#general-collapseFour"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="general-collapseFour">#}
-                                                        {#                                                                <div>Where can I get some ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="general-collapseFour" class="collapse"#}
-                                                        {#                                                                 data-parent="#gen-ques-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">To an English person, it will seem#}
-                                                        {#                                                                        like simplified English, as a skeptical#}
-                                                        {#                                                                        Cambridge friend of mine told me what Occidental#}
-                                                        {#                                                                        is. The European languages are members of the#}
-                                                        {#                                                                        same family. Their separate existence is a#}
-                                                        {#                                                                        myth.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="v-pills-token-sale" role="tabpanel">
-                                                <h4 class="card-title mb-4">How To Rent</h4>
-
-                                                <div>
-                                                    <div id="token-accordion" class="accordion custom-accordion">
-                                                        {% for faq in how_to_rent_faqs %}
-                                                            <div class="mb-3">
-                                                                <a href="#token-collapse{{ faq.id }}"
-                                                                   class="accordion-list collapsed"
-                                                                   data-toggle="collapse"
-                                                                   aria-expanded="false"
-                                                                   aria-controls="token-collapse{{ faq.id }}">
-                                                                    <div>{{ faq.question }}</div>
-                                                                    <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                                </a>
-                                                                <div id="token-collapse{{ faq.id }}" class="collapse"
-                                                                     data-parent="#token-accordion">
-                                                                    <div class="card-body">
-                                                                        <p class="mb-0">{{ faq.answer }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#token-collapseTwo" class="accordion-list"#}
-                                                        {#                                                               data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="true"#}
-                                                        {#                                                               aria-controls="token-collapseTwo">#}
-                                                        {##}
-                                                        {#                                                                <div>What is Lorem Ipsum ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {##}
-                                                        {#                                                            </a>#}
-                                                        {##}
-                                                        {#                                                            <div id="token-collapseTwo" class="collapse show"#}
-                                                        {#                                                                 data-parent="#token-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">Everyone realizes why a new common#}
-                                                        {#                                                                        language would be desirable: one could refuse to#}
-                                                        {#                                                                        pay expensive translators. To achieve this, it#}
-                                                        {#                                                                        would be necessary to have uniform grammar,#}
-                                                        {#                                                                        pronunciation and more common words.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#token-collapseThree"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="token-collapseThree">#}
-                                                        {#                                                                <div>Where can I get some ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="token-collapseThree" class="collapse"#}
-                                                        {#                                                                 data-parent="#token-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">To an English person, it will seem#}
-                                                        {#                                                                        like simplified English, as a skeptical#}
-                                                        {#                                                                        Cambridge friend of mine told me what Occidental#}
-                                                        {#                                                                        is. The European languages are members of the#}
-                                                        {#                                                                        same family. Their separate existence is a#}
-                                                        {#                                                                        myth.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {#                                                        <div>#}
-                                                        {#                                                            <a href="#token-collapseFour"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="token-collapseFour">#}
-                                                        {#                                                                <div>Where does it come from ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="token-collapseFour" class="collapse"#}
-                                                        {#                                                                 data-parent="#token-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
-                                                        {#                                                                        in fact, it will be Occidental. To an English#}
-                                                        {#                                                                        person, it will seem like simplified English, as#}
-                                                        {#                                                                        a skeptical Cambridge friend of mine told me#}
-                                                        {#                                                                        what Occidental.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="v-pills-roadmap" role="tabpanel">
-                                                <h4 class="card-title mb-4">How To List</h4>
-
-                                                <div>
-                                                    <div id="roadmap-accordion" class="accordion custom-accordion">
-
-                                                        {% for faq in how_to_rent_faqs %}
-                                                            <div class="mb-3">
-                                                                <a href="#token-collapse{{ faq.id }}"
-                                                                   class="accordion-list collapsed"
-                                                                   data-toggle="collapse"
-                                                                   aria-expanded="false"
-                                                                   aria-controls="token-collapse{{ faq.id }}">
-                                                                    <div>{{ faq.question }}</div>
-                                                                    <i class="mdi mdi-minus accor-plus-icon"></i>
-                                                                </a>
-                                                                <div id="token-collapse{{ faq.id }}" class="collapse"
-                                                                     data-parent="#token-accordion">
-                                                                    <div class="card-body">
-                                                                        <p class="mb-0">{{ faq.answer }}</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#roadmap-collapseOne" class="accordion-list"#}
-                                                        {#                                                               data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="true"#}
-                                                        {#                                                               aria-controls="roadmap-collapseOne">#}
-                                                        {##}
-                                                        {##}
-                                                        {#                                                                <div>Where can I get some ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {##}
-                                                        {#                                                            </a>#}
-                                                        {##}
-                                                        {#                                                            <div id="roadmap-collapseOne" class="collapse show"#}
-                                                        {#                                                                 data-parent="#roadmap-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">Everyone realizes why a new common#}
-                                                        {#                                                                        language would be desirable: one could refuse to#}
-                                                        {#                                                                        pay expensive translators. To achieve this, it#}
-                                                        {#                                                                        would be necessary to have uniform grammar,#}
-                                                        {#                                                                        pronunciation and more common words.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#roadmap-collapseTwo"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="roadmap-collapseTwo">#}
-                                                        {#                                                                <div>What is Lorem Ipsum ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="roadmap-collapseTwo" class="collapse"#}
-                                                        {#                                                                 data-parent="#roadmap-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">If several languages coalesce, the#}
-                                                        {#                                                                        grammar of the resulting language is more simple#}
-                                                        {#                                                                        and regular than that of the individual#}
-                                                        {#                                                                        languages. The new common language will be more#}
-                                                        {#                                                                        simple and regular than the existing European#}
-                                                        {#                                                                        languages.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-                                                        {##}
-                                                        {##}
-                                                        {#                                                        <div class="mb-3">#}
-                                                        {#                                                            <a href="#roadmap-collapseThree"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="roadmap-collapseThree">#}
-                                                        {#                                                                <div>Why do we use it ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="roadmap-collapseThree" class="collapse"#}
-                                                        {#                                                                 data-parent="#roadmap-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">To an English person, it will seem#}
-                                                        {#                                                                        like simplified English, as a skeptical#}
-                                                        {#                                                                        Cambridge friend of mine told me what Occidental#}
-                                                        {#                                                                        is. The European languages are members of the#}
-                                                        {#                                                                        same family. Their separate existence is a#}
-                                                        {#                                                                        myth.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-
-                                                        {#                                                        <div>#}
-                                                        {#                                                            <a href="#roadmap-collapseFour"#}
-                                                        {#                                                               class="accordion-list collapsed" data-toggle="collapse"#}
-                                                        {#                                                               aria-expanded="false"#}
-                                                        {#                                                               aria-controls="roadmap-collapseFour">#}
-                                                        {#                                                                <div>Where does it come from ?</div>#}
-                                                        {#                                                                <i class="mdi mdi-minus accor-plus-icon"></i>#}
-                                                        {#                                                            </a>#}
-                                                        {#                                                            <div id="roadmap-collapseFour" class="collapse"#}
-                                                        {#                                                                 data-parent="#roadmap-accordion">#}
-                                                        {#                                                                <div class="card-body">#}
-                                                        {#                                                                    <p class="mb-0">It will be as simple as Occidental;#}
-                                                        {#                                                                        in fact, it will be Occidental. To an English#}
-                                                        {#                                                                        person, it will seem like simplified English, as#}
-                                                        {#                                                                        a skeptical Cambridge friend of mine told me#}
-                                                        {#                                                                        what Occidental.</p>#}
-                                                        {#                                                                </div>#}
-                                                        {#                                                            </div>#}
-                                                        {#                                                        </div>#}
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end vertical nav -->
-                </div>
-            </div>
-            <!-- end row -->
-        </div>
-        <!-- end container -->
-    </section>
-    <!-- Faqs end -->
 
 
 {% endblock body_content %}

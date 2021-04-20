@@ -29,7 +29,7 @@
 </head>
 <body data-spy="scroll"  data-target="#topnav-menu" data-offset="60">
 {% block nav_bar %}
-    <nav class="navbar navbar-expand-lg navigation fixed-top sticky">
+    <nav class="navbar navbar-expand-lg navigation fixed-top sticky {% block extra_class_header %} bg-dark {% endblock extra_class_header %}">
         <div class="container">
             <a class="navbar-logo" href="index.html">
                 <img src="{% static 'images/logo/logo-large.png' %}" alt="" height="30"
@@ -92,11 +92,10 @@
     <!-- Footer start -->
     <footer class="landing-footer">
         <div class="container">
-
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
-                        <h5 class="mb-3 footer-list-title">Company</h5>
+                        <h5 class="mb-3 footer-list-title">Horsed</h5>
                         <ul class="list-unstyled footer-list-menu">
                             <li><a href="{% url 'Home' %}#about">About Us</a></li>
                             <li><a href="{% url 'Home' %}#how-it-works">How it Works</a></li>
@@ -118,7 +117,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
-                        <h5 class="mb-3 footer-list-title">Links</h5>
+                        <h5 class="mb-3 footer-list-title">Social Media</h5>
                         <ul class="list-unstyled footer-list-menu">
                             <li><a href="{{ social_links.facebook }}"><i class="bx bxl-facebook-square font-size-20"></i> Facebook</a></li>
                             <li><a href="{{ social_links.instagram }}"><i class="bx bxl-instagram font-size-20"></i> Instagram</a></li>
