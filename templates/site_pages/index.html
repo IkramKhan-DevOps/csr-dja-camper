@@ -1,6 +1,6 @@
 {% extends 'site_base.html' %}
 {% load static %}
-{% block title %}Horsedch{% endblock title %}
+{% block title %}Horsed{% endblock title %}
 {% block body_content %}
     <!-- hero section start -->
     <section class="section hero-section" id="home" style='background-image: url("{% static 'images/hero_img.jpg' %}");
@@ -25,6 +25,24 @@
                             <a href="#" class="btn btn-warning" id="rent">Rent A Product</a>
                             <a href="#" class="btn btn-light">List Your Product</a>
                         </div>
+                    </div>
+                    <div class="col-lg-8 col-sm-6 mt-4">
+                        <form class="mt-4 mt-sm-0  form-inline">
+                            <div class="search-box mr-2">
+                                <div class="position-relative">
+                                    <input type="text" class="form-control border-0" placeholder="Search...">
+                                    <i class="bx bx-search-alt search-icon"></i>
+                                </div>
+                            </div>
+                            <ul class="nav nav-pills product-view-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#" style="background-color: #FF7F23"><i
+                                            class="bx bx-search-alt"></i></a>
+                                </li>
+                            </ul>
+
+
+                        </form>
                     </div>
                 </div>
                 <div class="col-lg-5 col-md-8 col-sm-10 ml-lg-auto">
@@ -995,21 +1013,6 @@
 
 
 {% endblock body_content %}
-
-{#Company Contact Information#}
-
-{% block building %}{{ company_contact.building_name }} {% endblock building %}
-{% block street %}{{ company_contact.street }} {% endblock street %}
-{% block post_code %}{{ company_contact.post_code }} {% endblock post_code %}
-{% block email_address %}{{ company_contact.email_address }} {% endblock email_address %}
-{% block phone_number %}{{ company_contact.phone_number }} {% endblock phone_number %}
-
-
-{#Company Social Media Information#}
-
-{% block fb_link %}{{ social_links.facebook }}{% endblock fb_link %}
-{% block insta_link %}{{ social_links.instagram }}{% endblock insta_link %}
-{% block twitter_link %}{{ social_links.twitter }}{% endblock twitter_link %}
 {##}
 {##}
 {#****************************************Login Modal****************************************#}
