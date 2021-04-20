@@ -14,9 +14,9 @@ def add_product(request):
 
 @login_required()
 def all_products(request):
-    user_data = SocialAccount.objects.get(user=request.user)
+    social_account = SocialAccount.objects.get(user=request.user)
     context = {
-        'user_data': user_data.extra_data
+        'social_account': social_account
     }
     return render(request, template_name="shop/products/all-products.html", context=context)
 
