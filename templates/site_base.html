@@ -21,6 +21,9 @@
     <link href="{% static '/css/icons.min.css' %}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="{% static '/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css"/>
+
+{% block extra_css_style %}
+{% endblock extra_css_style %}
     <style>
         html {
             scroll-behavior: smooth;
@@ -81,11 +84,6 @@
 {% endblock body_content %}
 
 
-
-
-
-
-
 {% block footer %}
     <!-- Footer start -->
     <footer class="landing-footer">
@@ -95,9 +93,9 @@
                     <div class="mb-4 mb-lg-0">
                         <h5 class="mb-3 footer-list-title">Horsed</h5>
                         <ul class="list-unstyled footer-list-menu">
-                            <li><a href="{% url 'Home' %}#about">About Us</a></li>
+                            <li><a href="{% url 'About Us' %}">About Us</a></li>
                             <li><a href="{% url 'Home' %}#how-it-works">How it Works</a></li>
-                            <li><a href="{% url 'Home' %}#team">Team</a></li>
+                            <li><a href="{% url 'About Us' %}#team">Team</a></li>
                             <li><a href="{% url 'Home' %}#faqs">FAQs</a></li>
                         </ul>
                     </div>
@@ -119,9 +117,11 @@
                         <ul class="list-unstyled footer-list-menu">
                             <li><a href="{{ social_links.facebook }}" target="_blank"><i
                                     class="bx bxl-facebook-square font-size-20"></i> Facebook</a></li>
-                            <li><a href="{{ social_links.instagram }}" target="_blank"><i class="bx bxl-instagram font-size-20"></i>
+                            <li><a href="{{ social_links.instagram }}" target="_blank"><i
+                                    class="bx bxl-instagram font-size-20"></i>
                                 Instagram</a></li>
-                            <li><a href="{{ social_links.twitter }}" target="_blank"><i class="bx bxl-linkedin-square font-size-20"></i>
+                            <li><a href="{{ social_links.twitter }}" target="_blank"><i
+                                    class="bx bxl-linkedin-square font-size-20"></i>
                                 LinkedIn</a></li>
 
                         </ul>

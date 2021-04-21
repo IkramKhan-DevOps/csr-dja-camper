@@ -30,7 +30,8 @@ urlpatterns = [
     path('data-policy/', views.data_policy, name="Data Policy"),
     path('fairplay/', views.fairplay, name="Fair Play"),
     path('imprint/', views.imprint, name="Imprint"),
-    path('test/', views.test, name="Info"),
+    path('about-us/', views.about_us, name="About Us"),
+    path('faqs/', views.faqs, name="FAQs"),
 
     path('accounts/login/', views.login, name="Login"),
     # path('logout/', views.auth_logout, name="Logout"),

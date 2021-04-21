@@ -41,6 +41,38 @@ def index_view(request):
     return render(request, template_name="site_pages/index.html", context=context)
 
 
+def about_us(request):
+    who_we_are = AboutUs.objects.latest('heading')
+    company_contact = ContactInformation.objects.latest('building_name')
+    social_links = SocialLinks.objects.latest('facebook')
+    team = Team.objects.all()
+    context = {
+        'company_contact': company_contact,
+        'about_us': who_we_are,
+        'team': team,
+        'social_links': social_links,
+
+    }
+    return render(request, template_name="site_pages/about-us.html", context=context)
+
+
+def faqs(request):
+    general_faqs = GeneralFAQs.objects.all()
+    how_to_rent_faqs = HowToRentFAQs.objects.all()
+    how_to_list_faqs = HowToListFAQs.objects.all()
+    company_contact = ContactInformation.objects.latest('building_name')
+    social_links = SocialLinks.objects.latest('facebook')
+    context = {
+        'company_contact': company_contact,
+        'social_links': social_links,
+        'general_faqs': general_faqs,
+        'how_to_rent_faqs': how_to_rent_faqs,
+        'how_to_list_faqs': how_to_list_faqs,
+
+    }
+    return render(request, template_name="site_pages/faqs.html", context=context)
+
+
 def sign_up_view(request):
     return render(request, template_name="authentication/signup_using_email.html")
 
@@ -106,7 +138,6 @@ def imprint(request):
         'social_links': social_links,
     }
     return render(request, template_name="site_pages/imprint.html", context=context)
-
 
 
 def test(request):

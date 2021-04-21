@@ -13,22 +13,23 @@
 
         {% if company_contact %}
             <div class="mt-4">
-            <h2>Kontakt Information</h2>
-            <h4><i class="fa fa-road" style="color: #FF7F23"></i>  {{ company_contact.street }}</h4>
-            <h4><i class="fa fa-home" style="color: #FF7F23"></i>  {{ company_contact.post_code }}</h4>
-            <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> {{ company_contact.email_address }}</h4>
-        </div>
-    {% endif %}
+                <h2>Kontakt Information</h2>
+                <h4><i class="fa fa-road" style="color: #FF7F23"></i> {{ company_contact.street }}</h4>
+                <h4><i class="fa fa-home" style="color: #FF7F23"></i> {{ company_contact.post_code }}</h4>
+                <h4><i class="fa fa-envelope" style="color: #FF7F23"></i> {{ company_contact.email_address }}</h4>
+            </div>
+        {% endif %}
 
         {% if imprint and imprint.is_active %}
 
 
-                <div class="row">
-                    <h4>{{ imprint.title }}</h4>
-                </div>
+            <div class="row">
+                <h4>{{ imprint.title }}</h4>
+            </div>
 
-                <div class="mt-4">
-                    <p class="font-size-18 font-weight-bolder text-wrap text-justify">{{ imprint.description|safe }}</div>
+            <div class="mt-4">
+                <p class="font-size-18 font-weight-bolder text-wrap text-justify">{{ imprint.description|safe }}</p>
+            </div>
 
 
         {% else %}
