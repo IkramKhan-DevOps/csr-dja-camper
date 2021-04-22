@@ -19,7 +19,7 @@
                                 <div class="col-7">
                                     <div class="text-primary p-4">
                                         <h5 class="text-primary">Login</h5>
-                                        <p>Horsedch- Your reliable rental partner</p>
+                                        <p>Horsed- Your reliable rental partner</p>
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
@@ -39,12 +39,12 @@
                                 </a>
                             </div>
                             <div class="p-2">
-                               {% if messages %}
+                                {% if messages %}
                                     {% for message in messages %}
-                                <div class="alert alert-{{ message.tags }} text-center mb-4" role="alert">
-                                        {{ message|safe }}
-                                    </div>
-                                {% endfor %}
+                                        <div class="alert alert-{{ message.tags }} text-center mb-4" role="alert">
+                                            {{ message|safe }}
+                                        </div>
+                                    {% endfor %}
                                 {% endif %}
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
@@ -71,13 +71,15 @@
 
                                 </form>
                                 <div class="mt-4 text-center">
-                                        <a href="{% provider_login_url 'google' %}"  class="btn btn-danger btn-block btn-round">Login Via
-                                            Google
-                                        </a>
-                                        <a href="{% provider_login_url 'facebook' %}" class="btn btn-primary btn-block btn-round">Login Via
-                                            Facebook
-                                        </a>
-                                    </div>
+                                    <a href="{% provider_login_url 'google' %}"
+                                       class="btn btn-danger btn-block btn-round">Login Via
+                                        Google
+                                    </a>
+                                    <a href="{% provider_login_url 'facebook' %}"
+                                       class="btn btn-primary btn-block btn-round">Login Via
+                                        Facebook
+                                    </a>
+                                </div>
                             </div>
 
                         </div>
