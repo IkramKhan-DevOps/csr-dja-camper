@@ -1,16 +1,6 @@
-from datetime import datetime
-from urllib.parse import urlencode
+from django.shortcuts import render
 
-from django.conf.global_settings import AUTHENTICATION_BACKENDS
-from django.contrib import messages
-from django.contrib.auth import logout
-from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from pip._vendor import requests
-from allauth.socialaccount.models import SocialAccount
-from Horsedch import settings
-from Horsedch.models import HowItWork, WhyHorsedCh, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
+from Horsedch.models import HowItWork, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team, ObjectOwnerFAQs, Partner, \
     CustomerCare
 
@@ -100,10 +90,6 @@ def our_partners(request):
     return render(request, template_name="site_pages/partners.html",context=context )
 
 
-def sign_up_view(request):
-    return render(request, template_name="authentication/signup_using_email.html")
-
-
 def conditions(request):
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
@@ -171,139 +157,125 @@ def test(request):
     return render(request, template_name="site_pages/index.html")
 
 
-def login(request):
-    if request.method == "POST":
-        if request.POST.get("email_address") == "seller@horsedch.com":
-            return redirect('/my/account')
-        elif request.POST.get("email_address") == "buyer@horsedch.com":
-            return redirect('/my/account')
-        else:
-            messages.error(request, "Oops! Invalid username or password")
-
-    return render(request, template_name="authentication/auth_login.html")
-
-
-def login_via_google(request):
-    redirect_uri = "%s://%s%s" % (
-        request.scheme, request.get_host(), reverse('login_via_google')
-    )
-    if 'code' in request.GET:
-        params = {
-            'grant_type': 'authorization_code',
-            'code': request.GET.get('code'),
-            'redirect_uri': redirect_uri,
-            'client_id': settings.GP_CLIENT_ID,
-            'client_secret': settings.GP_CLIENT_SECRET
-        }
-        url = 'https://accounts.google.com/o/oauth2/token'
-        response = requests.post(url, data=params)
-        url = 'https://www.googleapis.com/oauth2/v1/userinfo'
-        access_token = response.json().get('access_token')
-        response = requests.get(url, params={'access_token': access_token})
-        user_data = response.json()
-        email = user_data.get('email')
-        print(user_data)
-        if email:
-            user, _ = User.objects.get_or_create(email=email, username=email)
-            gender = user_data.get('gender', '').lower()
-            if gender == 'male':
-                gender = 'M'
-            elif gender == 'female':
-                gender = 'F'
-            else:
-                gender = 'O'
-            data = {
-                'first_name': user_data.get('name', '').split()[0],
-                'last_name': user_data.get('family_name'),
-                'google_avatar': user_data.get('picture'),
-                'gender': gender,
-                'is_active': True
-            }
-            user.__dict__.update(data)
-            user.save()
-            user.backend = AUTHENTICATION_BACKENDS[0]
-            login(request)
-
-        else:
-            messages.error(
-                request,
-                'Unable to login with google Please try again!'
-            )
-        return redirect('/')
-    else:
-        url = "https://accounts.google.com/o/oauth2/auth?client_id=%s&response_type=code&scope=%s&redirect_uri=%s&state=google"
-        scope = [
-            "https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email"
-        ]
-        scope = " ".join(scope)
-        url = url % (settings.GP_CLIENT_ID, scope, redirect_uri)
-        return redirect(url)
-
-
-def login_via_facebook(request):
-    redirect_uri = "%s://%s%s" % (
-        request.scheme, request.get_host(), reverse('login_via_facebook')
-    )
-    if 'code' in request.GET:
-        code = request.GET.get('code')
-        url = 'https://graph.facebook.com/v2.10/oauth/access_token'
-        params = {
-            'client_id': settings.FB_APP_ID,
-            'client_secret': settings.FB_APP_SECRET,
-            'code': code,
-            'redirect_uri': redirect_uri,
-        }
-        response = requests.get(url, params=params)
-        params = response.json()
-        print("params before update: ", params)
-        params.update({
-            'fields': 'id,last_name,first_name,picture,birthday,email,gender'
-        })
-        print("params after update: ", params)
-        url = 'https://graph.facebook.com/me'
-        user_data = requests.get(url, params=params).json()
-        print("user data printing: ", user_data)
-        email = user_data.get('email')
-        if email:
-            user, _ = User.objects.get_or_create(email=email, username=email)
-            gender = user_data.get('gender', '').lower()
-            dob = user_data.get('birthday')
-            if gender == 'male':
-                gender = 'M'
-            elif gender == 'female':
-                gender = 'F'
-            else:
-                gender = 'O'
-            data = {
-                'first_name': user_data.get('first_name'),
-                'last_name': user_data.get('last_name'),
-                'fb_avatar': user_data.get('picture', {}).get('data', {}).get('url'),
-                'gender': gender,
-                'dob': datetime.strptime(dob, "%m/%d/%Y") if dob else None,
-                'is_active': True
-            }
-            user.__dict__.update(data)
-            user.save()
-            user.backend = AUTHENTICATION_BACKENDS[0]
-            login(request)
-        else:
-            messages.error(
-                request,
-                'Unable to login with Facebook Please try again!'
-            )
-        return redirect('/')
-    else:
-        url = "https://graph.facebook.com/oauth/authorize"
-        params = {
-            'client_id': settings.FB_APP_ID,
-            'redirect_uri': redirect_uri,
-            'scope': 'email,public_profile,user_birthday'
-        }
-        url += '?' + urlencode(params)
-        return redirect(url)
+# def login_via_google(request):
+#     redirect_uri = "%s://%s%s" % (
+#         request.scheme, request.get_host(), reverse('login_via_google')
+#     )
+#     if 'code' in request.GET:
+#         params = {
+#             'grant_type': 'authorization_code',
+#             'code': request.GET.get('code'),
+#             'redirect_uri': redirect_uri,
+#             'client_id': settings.GP_CLIENT_ID,
+#             'client_secret': settings.GP_CLIENT_SECRET
+#         }
+#         url = 'https://accounts.google.com/o/oauth2/token'
+#         response = requests.post(url, data=params)
+#         url = 'https://www.googleapis.com/oauth2/v1/userinfo'
+#         access_token = response.json().get('access_token')
+#         response = requests.get(url, params={'access_token': access_token})
+#         user_data = response.json()
+#         email = user_data.get('email')
+#         print(user_data)
+#         if email:
+#             user, _ = User.objects.get_or_create(email=email, username=email)
+#             gender = user_data.get('gender', '').lower()
+#             if gender == 'male':
+#                 gender = 'M'
+#             elif gender == 'female':
+#                 gender = 'F'
+#             else:
+#                 gender = 'O'
+#             data = {
+#                 'first_name': user_data.get('name', '').split()[0],
+#                 'last_name': user_data.get('family_name'),
+#                 'google_avatar': user_data.get('picture'),
+#                 'gender': gender,
+#                 'is_active': True
+#             }
+#             user.__dict__.update(data)
+#             user.save()
+#             user.backend = AUTHENTICATION_BACKENDS[0]
+#             login(request)
+#
+#         else:
+#             messages.error(
+#                 request,
+#                 'Unable to login with google Please try again!'
+#             )
+#         return redirect('/')
+#     else:
+#         url = "https://accounts.google.com/o/oauth2/auth?client_id=%s&response_type=code&scope=%s&redirect_uri=%s&state=google"
+#         scope = [
+#             "https://www.googleapis.com/auth/userinfo.profile",
+#             "https://www.googleapis.com/auth/userinfo.email"
+#         ]
+#         scope = " ".join(scope)
+#         url = url % (settings.GP_CLIENT_ID, scope, redirect_uri)
+#         return redirect(url)
+#
+#
+# def login_via_facebook(request):
+#     redirect_uri = "%s://%s%s" % (
+#         request.scheme, request.get_host(), reverse('login_via_facebook')
+#     )
+#     if 'code' in request.GET:
+#         code = request.GET.get('code')
+#         url = 'https://graph.facebook.com/v2.10/oauth/access_token'
+#         params = {
+#             'client_id': settings.FB_APP_ID,
+#             'client_secret': settings.FB_APP_SECRET,
+#             'code': code,
+#             'redirect_uri': redirect_uri,
+#         }
+#         response = requests.get(url, params=params)
+#         params = response.json()
+#         print("params before update: ", params)
+#         params.update({
+#             'fields': 'id,last_name,first_name,picture,birthday,email,gender'
+#         })
+#         print("params after update: ", params)
+#         url = 'https://graph.facebook.com/me'
+#         user_data = requests.get(url, params=params).json()
+#         print("user data printing: ", user_data)
+#         email = user_data.get('email')
+#         if email:
+#             user, _ = User.objects.get_or_create(email=email, username=email)
+#             gender = user_data.get('gender', '').lower()
+#             dob = user_data.get('birthday')
+#             if gender == 'male':
+#                 gender = 'M'
+#             elif gender == 'female':
+#                 gender = 'F'
+#             else:
+#                 gender = 'O'
+#             data = {
+#                 'first_name': user_data.get('first_name'),
+#                 'last_name': user_data.get('last_name'),
+#                 'fb_avatar': user_data.get('picture', {}).get('data', {}).get('url'),
+#                 'gender': gender,
+#                 'dob': datetime.strptime(dob, "%m/%d/%Y") if dob else None,
+#                 'is_active': True
+#             }
+#             user.__dict__.update(data)
+#             user.save()
+#             user.backend = AUTHENTICATION_BACKENDS[0]
+#             login(request)
+#         else:
+#             messages.error(
+#                 request,
+#                 'Unable to login with Facebook Please try again!'
+#             )
+#         return redirect('/')
+#     else:
+#         url = "https://graph.facebook.com/oauth/authorize"
+#         params = {
+#             'client_id': settings.FB_APP_ID,
+#             'redirect_uri': redirect_uri,
+#             'scope': 'email,public_profile,user_birthday'
+#         }
+#         url += '?' + urlencode(params)
+#         return redirect(url)
 
 
-def auth_logout(request):
-    logout(request)
-    return redirect('Login')
+

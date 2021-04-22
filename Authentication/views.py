@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
@@ -8,6 +9,21 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from Horsedch.models import Member, Landlord, Renter
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
+
+
+def sign_up_view(request):
+    return render(request, template_name="authentication/signup_using_email.html")
+
+
+def login(request):
+    if request.user.is_authenticated:
+        
+    return render(request, template_name="authentication/auth_login.html")
+
+
+def auth_logout(request):
+    logout(request)
+    return redirect('Login')
 
 
 def choose_role(request):
