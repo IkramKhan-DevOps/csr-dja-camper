@@ -11,18 +11,19 @@ from pip._vendor import requests
 from allauth.socialaccount.models import SocialAccount
 from Horsedch import settings
 from Horsedch.models import HowItWork, WhyHorsedCh, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
-    HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team
+    HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team, ObjectOwnerFAQs, Partner, \
+    CustomerCare
 
 
 def index_view(request):
     hero_section = HeroSection.objects.latest('site_title')
     box = Box.objects.all()
     about_us = AboutUs.objects.latest('heading')
-    team = Team.objects.all()
+    team = CustomerCare.objects.all()
     general_faqs = GeneralFAQs.objects.all()
     how_to_rent_faqs = HowToRentFAQs.objects.all()
     how_to_list_faqs = HowToListFAQs.objects.all()
-    how_it_works = HowItWork.objects.all()
+    how_it_works = HowItWork.objects.filter(is_active=True)
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
     context = {
@@ -71,6 +72,32 @@ def faqs(request):
 
     }
     return render(request, template_name="site_pages/faqs.html", context=context)
+
+
+def faqs_object_owners(request):
+    object_owner_faqs = ObjectOwnerFAQs.objects.all()
+    company_contact = ContactInformation.objects.latest('building_name')
+    social_links = SocialLinks.objects.latest('facebook')
+    context = {
+        'company_contact': company_contact,
+        'social_links': social_links,
+        'object_owner_faqs': object_owner_faqs,
+
+    }
+    return render(request, template_name="site_pages/faqs-object-owners.html", context=context)
+
+
+def our_partners(request):
+    partners = Partner.objects.filter(is_active=True)
+    company_contact = ContactInformation.objects.latest('building_name')
+    social_links = SocialLinks.objects.latest('facebook')
+    context = {
+        'company_contact': company_contact,
+        'social_links': social_links,
+        'partners': partners,
+
+    }
+    return render(request, template_name="site_pages/partners.html",context=context )
 
 
 def sign_up_view(request):

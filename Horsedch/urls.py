@@ -32,6 +32,8 @@ urlpatterns = [
     path('imprint/', views.imprint, name="Imprint"),
     path('about-us/', views.about_us, name="About Us"),
     path('faqs/', views.faqs, name="FAQs"),
+    path('faqs/object-owners/', views.faqs_object_owners, name="FAQs_Object_Owners"),
+    path('partners/', views.our_partners, name="Partners"),
 
     path('accounts/login/', views.login, name="Login"),
     # path('logout/', views.auth_logout, name="Logout"),

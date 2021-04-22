@@ -63,9 +63,23 @@ class Team(models.Model):
         verbose_name_plural = "Teams Section"
 
 
+class CustomerCare(models.Model):
+    person_img = models.ImageField(upload_to="images/customer_care_team/", null=True, blank=True,
+                                   help_text="Please select an image of the person.")
+    full_name = models.CharField(max_length=50, help_text="Enter person name.")
+    designation = models.CharField(max_length=50, help_text="Enter person's designation.")
+
+    def __str__(self):
+        return self.designation
+
+    class Meta:
+        verbose_name = "Customer Care Team"
+        verbose_name_plural = "Customer Care Team"
+
+
 class GeneralFAQs(models.Model):
     question = models.CharField(max_length=100, help_text="Enter question here.")
-    answer = models.TextField(max_length=300, help_text="Enter question here.")
+    answer = models.TextField(max_length=300, help_text="Enter answer here.")
 
     def __str__(self):
         return self.question
@@ -77,7 +91,7 @@ class GeneralFAQs(models.Model):
 
 class HowToRentFAQs(models.Model):
     question = models.CharField(max_length=100, help_text="Enter question here.")
-    answer = models.TextField(max_length=300, help_text="Enter question here.")
+    answer = models.TextField(max_length=300, help_text="Enter answer here.")
 
     def __str__(self):
         return self.question
@@ -89,7 +103,7 @@ class HowToRentFAQs(models.Model):
 
 class HowToListFAQs(models.Model):
     question = models.CharField(max_length=100, help_text="Enter question here.")
-    answer = models.TextField(max_length=300, help_text="Enter question here.")
+    answer = models.TextField(max_length=300, help_text="Enter answer here.")
 
     def __str__(self):
         return self.question
@@ -97,6 +111,35 @@ class HowToListFAQs(models.Model):
     class Meta:
         verbose_name = "How to list FAQs"
         verbose_name_plural = "How to list FAQs"
+
+
+class ObjectOwnerFAQs(models.Model):
+    question = models.CharField(max_length=100, help_text="Enter question here.")
+    answer = models.TextField(max_length=300, help_text="Enter answer here.")
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        verbose_name = "Object Owners FAQs"
+        verbose_name_plural = "Object Owners FAQs"
+
+
+class Partner(models.Model):
+    partner_logo = models.ImageField(upload_to="images/partners/", verbose_name="Partner's Logo",
+                                     help_text="Please select Partner's logo.")
+    title = models.CharField(max_length=200, null=True, blank=True, verbose_name="Partner Name",
+                             help_text="Please provide enter partner name.")
+
+    is_active = models.BooleanField(default=False,
+                                    help_text="Uncheck to hide this partner from website instead of deleting.")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Our Partners"
+        verbose_name_plural = "Our Partners"
 
 
 class HowItWork(models.Model):
@@ -127,14 +170,14 @@ class WhyHorsedCh(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = "Why Horsed.ch Section"
-        verbose_name_plural = "Why Horsed.ch Section"
+        verbose_name = "Why Horsed Section"
+        verbose_name_plural = "Why Horsed Section"
 
 
 class SocialLinks(models.Model):
     facebook = models.URLField(max_length=200, help_text="Please enter facebook profile/page URL.")
     instagram = models.URLField(max_length=200, help_text="Please enter instagram profile URL.")
-    twitter = models.URLField(max_length=200, help_text="Please enter twitter page URL.")
+    linkedIn = models.URLField(max_length=200, help_text="Please enter linkedIn page URL.", default="www.linkedIn.com")
     is_active = models.BooleanField(default=False, help_text="Uncheck to hide this link from website")
 
     def __str__(self):

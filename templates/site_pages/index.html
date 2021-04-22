@@ -303,81 +303,35 @@
             <!-- end row -->
 
             <div class="row justify-content-center">
-                <div class="col-md-2 col-24 text-center">
-                    <div class="mb-4">
-                        <img alt="Icon search"
-                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
-                    </div>
-                    <div class="font-weight-bold">
-                        1. Search Object
-                    </div>
-                    <div>
-                        {% lorem 6 w %}
-                    </div>
-                </div>
-                <div class="d-none d-md-flex align-items-start col-md-1">
-                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
-                         class="svg-icon mr-2rem svg-icon"
-                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
-                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
-                              fill-rule="evenodd" stroke-linecap="round"></path>
-                    </svg>
-                </div>
+                {% for data in how_it_works %}
+                    <div class="col-md-2 text-center">
+                        <div class="mb-4">
+                            <img alt="Icon search"
+                                 src="{{ data.picture.url }}" style="width: 130px; height: 90px" lazy="loaded">
+                        </div>
+                        <div class="font-weight-bold">
+                            {{ data.title }}
+                        </div>
+                        <div>
+                            {{ data.description }}
 
-                <div class="col-md-2 col-24 text-center">
-                    <div class="mb-4">
-                        <img alt="Icon search"
-                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
+                        </div>
                     </div>
-                    <div class="font-weight-bold">
-                        1. Search Object
-                    </div>
-                    <div>
-                        {% lorem 6 w %}
-                    </div>
-                </div>
-                <div class="d-none d-md-flex align-items-start col-md-1">
-                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
-                         class="svg-icon mr-2rem svg-icon"
-                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
-                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
-                              fill-rule="evenodd" stroke-linecap="round"></path>
-                    </svg>
-                </div>
+                    {% if forloop.last %}
+                    {% else %}
+                        <div class="d-none d-md-flex align-items-start">
+                            <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
+                                 class="svg-icon svg-icon"
+                                 style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
+                                <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
+                                      fill-rule="evenodd" stroke-linecap="round"></path>
+                            </svg>
 
-                <div class="col-md-2 col-24 text-center">
-                    <div class="mb-4">
-                        <img alt="Icon search"
-                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
-                    </div>
-                    <div class="font-weight-bold">
-                        1. Search Object
-                    </div>
-                    <div>
-                        {% lorem 6 w %}
-                    </div>
-                </div>
-                <div class="d-none d-md-flex align-items-start col-md-1">
-                    <svg width="13" height="19" xmlns="http://www.w3.org/2000/svg"
-                         class="svg-icon mr-2rem svg-icon"
-                         style="width: 24px; height: 24px; color: rgb(241, 84, 36); stroke: rgb(241, 84, 36); fill: transparent;">
-                        <path d="M2.23 2L10 9.39 2 17" stroke="#F15424" stroke-width="3" fill="none"
-                              fill-rule="evenodd" stroke-linecap="round"></path>
-                    </svg>
-                </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
 
-                <div class="col-md-2 col-24 text-center">
-                    <div class="mb-4">
-                        <img alt="Icon search"
-                             src="{% static 'images/icons/howitworks-1.png' %}" lazy="loaded">
-                    </div>
-                    <div class="font-weight-bold">
-                        1. Search Object
-                    </div>
-                    <div>
-                        {% lorem 6 w %}
-                    </div>
-                </div>
+
             </div>
             <!-- end row -->
         </div>
@@ -386,7 +340,7 @@
     <!-- How It Works end -->
 
 
-    <!-- Team start -->
+    <!-- Customer Care Team start -->
     <section class="section" id="team">
         <div class="container">
             <div class="row">
@@ -418,7 +372,7 @@
                                 <div class="card-footer bg-transparent border-top">
                                     <div class="d-flex mb-0">
                                         <div class="flex-fill">
-                                           {{ person.designation }}
+                                            {{ person.designation }}
                                         </div>
                                     </div>
                                 </div>
@@ -428,14 +382,14 @@
 
                 </div>
             </div>
-        <div class="row mt-4 justify-content-center">
+            <div class="row mt-4 justify-content-center">
                 <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Find an Answer</a>
             </div>
             <!-- end row -->
         </div>
         <!-- end container -->
     </section>
-    <!-- Team end -->
+    <!-- Customer Care Team end -->
 
 
 {% endblock body_content %}
