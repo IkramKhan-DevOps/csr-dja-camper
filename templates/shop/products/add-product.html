@@ -31,17 +31,43 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
+                                {% if messages %}
+                                    <ul class="messages">
+                                        {% for message in messages %}
+                                             {% if message.tags == "error" %}
+                                            <div class="alert alert-danger">
+                                            {% else %}
+                                            <div class="alert alert-success">
+                                            {% endif %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
 
+                                        <a class="close" data-dismiss="alert">×</a>
+                                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                    Important: {% endif %}
+                                                {{ message }}
+
+                                            </li>
+                                            </div>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
                                 <h4 class="card-title">Basic Information</h4>
                                 <p class="card-title-desc">Fill all information below</p>
 
-                                <form>
+                                <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="product_title">Product Title</label>
                                                 <input id="product_title" name="product_title" type="text"
-                                                       class="form-control">
+                                                       class="form-control" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter product title.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    looks good!
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-4">
@@ -64,7 +90,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="price">Price</label>
-                                                        <input id="price" name="price" type="text"
+                                                        <input id="price" name="price" type="number" step=".01"
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -80,6 +106,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
+
                                             </div>
 
 
@@ -93,14 +120,41 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <label class="control-label">Category</label>
-                                                        <select class="form-control select">
+                                                        <label class="control-label">Category 1</label>
+                                                        <select class="form-control select" name="category_1">
                                                             <option>Select</option>
-                                                            <option value="AK">Pony</option>
-                                                            <option value="HI">Blanket</option>
+                                                            {% for category in categories %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category 2</label>
+                                                        <select class="form-control select" name="category_2">
+                                                            <option>Select</option>
+                                                            {% for category in categories %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category 3</label>
+                                                        <select class="form-control select" name="category_3">
+                                                            <option>Select</option>
+                                                            {% for category in categories %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <p class="text-danger"> 1 Category is mandatory, You can select up to 3
+                                                    Categories.</p>
                                             </div>
                                         </div>
 
@@ -116,7 +170,8 @@
                                                 <div class="col-lg-6 text-center">
                                                     <div class="form-group">
                                                         <div><label>Hide Item</label></div>
-                                                        <input type="checkbox" id="hide_item" switch="warning">
+                                                        <input type="checkbox" id="hide_item" name="hide_item"
+                                                               switch="warning">
                                                         <label for="hide_item" data-on-label="Yes"
                                                                data-off-label="No"></label>
                                                         <p class="text-info">Temporarily not showing the item for rent.
@@ -127,7 +182,9 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="product_description">Product Description</label>
-                                                <textarea class="form-control" id="product_description" rows="5">
+                                                <textarea class="form-control" name="product_description"
+                                                          id="product_description" rows="5"
+                                                          maxlength="500">
 
                                                 </textarea>
                                             </div>
@@ -135,7 +192,7 @@
 
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" id="offer_shipping" name="delivery_type"
+                                                    <input type="checkbox" id="offer_shipping" name="offer_shipping"
                                                            class="custom-control-input" required>
                                                     <label class="custom-control-label" for="offer_shipping">Offer
                                                         Shipping?(you send the rental property and receive 10.- for
@@ -145,7 +202,7 @@
 
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" id="pick_up" name="delivery_type"
+                                                    <input type="checkbox" id="pick_up" name="pick_up"
                                                            class="custom-control-input" required>
                                                     <label class="custom-control-label" for="pick_up">Pick up (the
                                                         tenant picks up the goods from you)</label>
@@ -154,6 +211,11 @@
 
                                         </div>
                                     </div>
+
+                                    <button type="submit" name="add-product"
+                                            class="btn btn-primary mr-1 waves-effect waves-light">Save Changes
+                                    </button>
+                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
                                 </form>
 
@@ -168,32 +230,36 @@
                                 <div class="row mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_1">
+                                            <input type="file" class="custom-file-input" id="product_img_1"
+                                                   name="product_img_1">
                                             <label class="custom-file-label" for="product_img_1">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="row  mb-3">
+                                <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_2">
-                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="product_img_2"
+                                                   name="product_img_2">
+                                            <label class="custom-file-label" for="product_img_2">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="row  mb-3">
+                                <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_3">
-                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="product_img_3"
+                                                   name="product_img_3">
+                                            <label class="custom-file-label" for="product_img_3">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                                 <div class="row  mb-3">
+                                <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_4">
-                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="product_img_4"
+                                                   name="product_img_4">
+                                            <label class="custom-file-label" for="product_img_4">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +270,8 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Meta Data <br><span class="text-info mr-3">Note For Stakeholders: We will use this information for SEO (Search Engine Optimization) within our system. It will be helpful in ranking the products.</span></h4>
+                                <h4 class="card-title">Meta Data <br><span class="text-info mr-3">Note For Stakeholders: We will use this information for SEO (Search Engine Optimization) within our system. It will be helpful in ranking the products.</span>
+                                </h4>
                                 <p class="card-title-desc">Fill all information below</p>
 
                                 <form>
@@ -212,12 +279,12 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="metatitle">Meta title</label>
-                                                <input id="metatitle" name="productname" type="text"
+                                                <input id="metatitle" name="meta_title" type="text"
                                                        class="form-control">
                                             </div>
                                             <div class="form-group">
                                                 <label for="metakeywords">Meta Keywords</label>
-                                                <input id="metakeywords" name="manufacturername" type="text"
+                                                <input id="metakeywords" name="meta_keywords" type="text"
                                                        class="form-control">
                                             </div>
                                         </div>
@@ -225,7 +292,8 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="metadescription">Meta Description</label>
-                                                <textarea class="form-control" id="metadescription" rows="5"></textarea>
+                                                <textarea class="form-control" id="metadescription"
+                                                          name="meta_description" rows="5"></textarea>
                                             </div>
                                         </div>
                                     </div>

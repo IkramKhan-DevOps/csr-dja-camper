@@ -15,7 +15,7 @@ from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 
 def sign_up_with_email(request):
     if request.user.is_authenticated:
-        return redirect(request.GET.get('next'))
+        return redirect('My Account')
     else:
         if request.method == "POST":
             if request.POST.get("password") != request.POST.get("confirm_password"):
@@ -42,15 +42,10 @@ def sign_up_with_email(request):
 
 
 def auth_login(request):
-    next_url = request.GET.get('next')
-
     if request.method == 'POST':
         username = request.POST.get("email_address")
         password = request.POST.get("password")
-        print(username)
-        print(password)
         user = authenticate(request, username=username, password=password)
-        print(user)
         if user is not None:
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             if Member.objects.filter(user=user).exists():
@@ -88,8 +83,9 @@ def update_member_role(request, role):
     try:
         social_account = SocialAccount.objects.filter(user=request.user)
         if social_account.exists():
-            verified_email = social_account.extra_data["verified_email"]
-            picture = social_account.extra_data["picture"]
+            for data in social_account:
+                verified_email = data.extra_data["verified_email"]
+                picture = data.extra_data["picture"]
             member = Member.objects.create(
                 first_name=request.user.first_name,
                 last_name=request.user.last_name,

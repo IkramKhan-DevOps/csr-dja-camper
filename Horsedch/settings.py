@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'decouple',
     "django.contrib.sites",
-
+    'autoslug',
     # Social Authenticator App
 
     "allauth",
