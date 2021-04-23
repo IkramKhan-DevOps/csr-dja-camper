@@ -1,13 +1,70 @@
 from django.contrib import messages
+from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 from django.utils.datastructures import MultiValueDictKeyError
 
 from Horsedch.models import Member, Landlord, Renter
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
+
+
+def sign_up_with_email(request):
+    if request.user.is_authenticated:
+        return redirect(request.GET.get('next'))
+    else:
+        if request.method == "POST":
+            if request.POST.get("password") != request.POST.get("confirm_password"):
+                messages.error(request, "Error: Password and confirm password doesn't match!")
+            else:
+                try:
+                    user = User.objects.get_or_create(
+                        first_name=request.POST.get("first_name"),
+                        last_name=request.POST.get("last_name"),
+                        email=request.POST.get("email_address"),
+                        username=request.POST.get("email_address"),
+                        password=make_password(request.POST.get("password")),
+                        is_active=True
+                    )
+                    user = authenticate(request, username=request.POST.get("email_address"),
+                                        password=request.POST.get("password"))
+                    if user is not None:
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        return redirect('choose_role')
+                except IntegrityError:
+                    messages.error(request, "Error: User with the email already exist!")
+
+    return render(request, template_name="authentication/signup_using_email.html")
+
+
+def auth_login(request):
+    next_url = request.GET.get('next')
+
+    if request.method == 'POST':
+        username = request.POST.get("email_address")
+        password = request.POST.get("password")
+        print(username)
+        print(password)
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            if Member.objects.filter(user=user).exists():
+                return redirect("My Account")
+            else:
+                return redirect('choose_role')
+        else:
+            messages.error(request, "Invalid email address/password!")
+    return render(request, template_name="authentication/auth_login.html")
+
+
+def auth_logout(request):
+    logout(request)
+    return redirect('Login')
 
 
 def choose_role(request):
@@ -29,8 +86,8 @@ def update_member_role(request, role):
     verified_email = False
     picture = "no-image-icon.png"
     try:
-        social_account = SocialAccount.objects.get(user=request.user)
-        if social_account is not None:
+        social_account = SocialAccount.objects.filter(user=request.user)
+        if social_account.exists():
             verified_email = social_account.extra_data["verified_email"]
             picture = social_account.extra_data["picture"]
             member = Member.objects.create(
@@ -47,6 +104,7 @@ def update_member_role(request, role):
             user.username = request.user.email
             user.save()
         else:
+            print("Im in else of social account update member role")
             member = Member.objects.create(
                 first_name=request.user.first_name,
                 last_name=request.user.last_name,
@@ -64,6 +122,7 @@ def update_member_role(request, role):
 
     except ObjectDoesNotExist:
         print("No social account exist")
+        print("social_account")
     return redirect('Edit Profile')
 
 
@@ -73,7 +132,7 @@ def edit_profile(request):
     try:
         member = Member.objects.get(user=request.user)
     except ObjectDoesNotExist:
-        messages.error(request, "Error: You're not a member(Landlord, Renter) on Horsed!")
+        messages.error(request, "")
     try:
         social_account = SocialAccount.objects.get(user=request.user)
     except ObjectDoesNotExist:
@@ -86,7 +145,7 @@ def edit_profile(request):
 
     try:
         language = Language.objects.get(landlord__member=member)
-    except ObjectDoesNotExist:
+    except:
         language = ""
     try:
         social_links = SocialMediaLinks.objects.get(landlord__member=member)
@@ -222,5 +281,6 @@ def edit_profile(request):
     return render(request, template_name="authentication/profile/edit-profile.html", context=context)
 
 
+@login_required()
 def my_account(request):
     return render(request, template_name="authentication/profile/my-account.html")

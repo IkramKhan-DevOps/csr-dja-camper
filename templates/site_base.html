@@ -22,8 +22,8 @@
     <!-- App Css-->
     <link href="{% static '/css/app.min.css' %}" id="app-style" rel="stylesheet" type="text/css"/>
 
-{% block extra_css_style %}
-{% endblock extra_css_style %}
+    {% block extra_css_style %}
+    {% endblock extra_css_style %}
     <style>
         html {
             scroll-behavior: smooth;
@@ -49,10 +49,10 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav ml-auto" id="topnav-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Home' %}#about">Rent</a>
+                        <a class="nav-link" href="{% url 'Login' %}">Rent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Home' %}#how-it-works">Rent Out</a>
+                        <a class="nav-link" href="{% url 'Login' %}">Rent Out</a>
                     </li>
 
                     {% if user.is_authenticated is False %}
@@ -96,22 +96,30 @@
                             <li><a href="{% url 'About Us' %}">About Us</a></li>
                             <li><a href="{% url 'Home' %}#how-it-works">How it Works</a></li>
                             <li><a href="{% url 'About Us' %}#team">Team</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <h5 class="mb-3 footer-list-title">Rent</h5>
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a href="#">Insurance</a></li>
+                            <li><a href="{% url 'Fair Play' %}">Fair Play</a></li>
                             <li><a href="{% url 'FAQs' %}">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
-                        <h5 class="mb-3 footer-list-title">Resources</h5>
+                        <h5 class="mb-3 footer-list-title">Rent Out</h5>
                         <ul class="list-unstyled footer-list-menu">
-                            <li><a href="{% url 'Imprint' %}">Imprint</a></li>
-                            <li><a href="{% url 'Fair Play' %}">Fair Play</a></li>
-                            <li><a href="{% url 'Data Policy' %}">Privacy Policy</a></li>
-                            <li><a href="{% url 'Conditions' %}">Terms & Conditions</a></li>
+                            <li><a href="#">Insurance Conditions</a></li>
+                            <li><a href="{% url 'FAQs_Object_Owners' %}">FAQs Landlord</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <div class="mb-4 mb-lg-0">
                         <h5 class="mb-3 footer-list-title">Social Media</h5>
                         <ul class="list-unstyled footer-list-menu">
@@ -128,7 +136,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-2 col-sm-6">
                     <div class="mb-4 mb-lg-0">
                         <h5 class="mb-3 footer-list-title">Contact</h5>
                         <ul class="list-unstyled footer-list-menu">
@@ -141,6 +149,31 @@
                             <li>{% block phone_number %}
                                 {{ company_contact.phone_number }}{% endblock phone_number %}</li>
 
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <ul class="list-unstyled footer-list-menu">
+                            <li><a class="btn btn-lg btn-default" style="background-color: #FF7F23">Subscribe to
+                                Newsletter</a></li>
+                            <a href="{% url 'Conditions' %}" class="">Terms & Conditions</a> | <a
+                                href="{% url 'Imprint' %}">Imprint</a> | <a href="{% url 'Data Policy' %}">Privacy
+                            Policy</a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <ul class="list-unstyled footer-list-menu">
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+                        <ul class="list-unstyled footer-list-menu">
+                            <li></li>
                         </ul>
                     </div>
                 </div>
@@ -257,8 +290,19 @@
 
     <script src="{% static 'js/app.js' %}"></script>
 
-
-
 {% endblock scripts %}
+
+{% block cutom_js %}
+    <script>
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() == $('#confirm_password').val()) {
+                $('#message').html('<i class="fa fa-check-circle"></i>').css('color', 'green');
+
+            } else
+                $('#message').html('<i class="fa fa-times-circle"></i>').css('color', 'red');
+
+        });
+    </script>
+{% endblock cutom_js %}
 </body>
 </html>

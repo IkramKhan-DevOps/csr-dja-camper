@@ -74,7 +74,7 @@
                              {% if social_account != "" %}
                                  {{ social_account.extra_data.name }}
                              {% else %}
-                                 src="{{ member.first_name }} {{ member.last_name }}"
+                                 {{ member.first_name }} {{ member.last_name }}
                              {% endif %}</span>
                         <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                     </button>
