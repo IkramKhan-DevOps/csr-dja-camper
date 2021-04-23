@@ -15,7 +15,7 @@ from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 
 def sign_up_with_email(request):
     if request.user.is_authenticated:
-        return render(request.GET.get('next'))
+        return redirect(request.GET.get('next'))
     else:
         if request.method == "POST":
             if request.POST.get("password") != request.POST.get("confirm_password"):
@@ -33,7 +33,7 @@ def sign_up_with_email(request):
                     user = authenticate(request, username=request.POST.get("email_address"),
                                         password=request.POST.get("password"))
                     if user is not None:
-                        login(request, user)
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                         return redirect('choose_role')
                 except IntegrityError:
                     messages.error(request, "Error: User with the email already exist!")
@@ -43,10 +43,22 @@ def sign_up_with_email(request):
 
 def auth_login(request):
     next_url = request.GET.get('next')
-    if request.method == "POST":
-        if next_url != "":
-            return redirect(next_url)
-        print(next_url)
+
+    if request.method == 'POST':
+        username = request.POST.get("email_address")
+        password = request.POST.get("password")
+        print(username)
+        print(password)
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            if Member.objects.filter(user=user).exists():
+                return redirect("My Account")
+            else:
+                return redirect('choose_role')
+        else:
+            messages.error(request, "Invalid email address/password!")
     return render(request, template_name="authentication/auth_login.html")
 
 

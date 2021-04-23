@@ -41,7 +41,7 @@
                             <div class="p-2">
                                 {% if messages %}
                                     {% for message in messages %}
-                                        <div class="alert alert-{{ message.tags }} text-center mb-4" role="alert">
+                                        <div class="alert alert-danger text-center mb-4" role="alert">
                                             {{ message|safe }}
                                         </div>
                                     {% endfor %}
@@ -56,7 +56,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="password">Password</label>
-                                        <input type="password" class="form-control" id="password"
+                                        <input type="password" class="form-control" id="password" name="password"
                                                placeholder="Enter your password" required>
                                     </div>
 
