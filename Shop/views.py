@@ -9,7 +9,7 @@ from allauth.socialaccount.models import SocialAccount
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
 from Shop.forms import ProductForm
-from Shop.models import Category
+from Shop.models import Category, ProductCategory
 
 
 @login_required()
@@ -24,7 +24,7 @@ def add_product(request):
     if social_account:
         print(social_account)
     else:
-        print("NO social accunt")
+        print("NO social account")
 
     if request.method == "POST":
         if "add-product" in request.POST:
@@ -33,8 +33,17 @@ def add_product(request):
                 landlord = Landlord.objects.get(member__user=request.user)
                 product = form.save(commit=False)
                 product.landlord = landlord
-                product.save()
-                messages.success(request, "Action Completed Successfully!")
+                print(request.POST["category_1"])
+                if request.POST["category_1"] != "Select":
+                    product.save()
+                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_1"])
+                    messages.success(request, "Action Completed Successfully!")
+                else:
+                    messages.error(request, "Please select product category.")
+                if request.POST["category_2"] != "Select":
+                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_2"])
+                if request.POST["category_3"] != "Select":
+                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_3"])
             else:
                 messages.error(request, form.errors)
                 print(form.errors)
