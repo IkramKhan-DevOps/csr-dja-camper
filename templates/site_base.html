@@ -57,7 +57,7 @@
 
                     {% if user.is_authenticated is False %}
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Register</a>
+                            <a href="{% url 'Sign Up' %}" class="nav-link">Register</a>
                         </li>
 
                     {% endif %}

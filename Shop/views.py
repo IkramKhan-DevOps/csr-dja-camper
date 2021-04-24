@@ -58,9 +58,16 @@ def add_product(request):
 
 @login_required()
 def all_products(request):
-    social_account = SocialAccount.objects.get(user=request.user)
+    social_account = ""
+    member = ""
+    try:
+        social_account = has_social_account(request.user)
+    except:
+        member = get_member(request.user)
+
     context = {
-        'social_account': social_account
+        'social_account': social_account,
+        'member': member,
     }
     return render(request, template_name="shop/products/all-products.html", context=context)
 
