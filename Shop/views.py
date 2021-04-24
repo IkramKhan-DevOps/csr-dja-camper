@@ -36,14 +36,14 @@ def add_product(request):
                 print(request.POST["category_1"])
                 if request.POST["category_1"] != "Select":
                     product.save()
-                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_1"])
+                    ProductCategory.objects.create(product_id=product.id, category_id=request.POST["category_1"])
                     messages.success(request, "Action Completed Successfully!")
                 else:
                     messages.error(request, "Please select product category.")
                 if request.POST["category_2"] != "Select":
-                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_2"])
+                    ProductCategory.objects.create(product_id=product.id, category_id=request.POST["category_2"])
                 if request.POST["category_3"] != "Select":
-                    ProductCategory.objects.create(product_id=product.id, category=request.POST["category_3"])
+                    ProductCategory.objects.create(product_id=product.id, category_id=request.POST["category_3"])
             else:
                 messages.error(request, form.errors)
                 print(form.errors)
