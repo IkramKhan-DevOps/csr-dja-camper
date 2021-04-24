@@ -28,12 +28,10 @@
 
 
                 <div class="row">
-
                     <div class="col-12">
-                    <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
+                    <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                    {% csrf_token %}
                         <div class="card">
-
                             <div class="card-body">
                                 {% if messages %}
                                     <ul class="messages">
@@ -59,161 +57,161 @@
                                 <p class="card-title-desc">Fill all information below</p>
 
 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="product_title">Product Title</label>
-                                                <input id="product_title" name="product_title" type="text"
-                                                       class="form-control" required>
-                                                <div class="invalid-feedback">
-                                                    Please enter product title.
-                                                </div>
-                                                <div class="valid-feedback">
-                                                    looks good!
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="product_title">Product Title</label>
+                                            <input id="product_title" name="product_title" type="text"
+                                                   class="form-control" required>
+                                            <div class="invalid-feedback">
+                                                Please enter product title.
+                                            </div>
+                                            <div class="valid-feedback">
+                                                looks good!
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label for="zip_code">Zip Code</label>
+                                                    <input id="zip_code" name="zip_code" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="zip_code">Zip Code</label>
-                                                        <input id="zip_code" name="zip_code" type="text"
-                                                               class="form-control">
-                                                    </div>
+                                            <div class="col-lg-8">
+                                                <div class="form-group">
+                                                    <label for="city_name">City</label>
+                                                    <input id="city_name" name="city_name" type="text"
+                                                           class="form-control">
                                                 </div>
-                                                <div class="col-lg-8">
-                                                    <div class="form-group">
-                                                        <label for="city_name">City</label>
-                                                        <input id="city_name" name="city_name" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="price">Price</label>
-                                                        <input id="price" name="price" type="number" step=".01"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label" for="rental_type">Per</label>
-                                                        <select class="form-control" id="rental_type"
-                                                                name="rental_type">
-                                                            <option>Select</option>
-                                                            <option value="Per Day">Per Day</option>
-                                                            <option value="Per Month">Per Month</option>
-                                                            <option value="Per Year">Per Year</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="brand">Brand</label>
-                                                        <input id="brand" name="brand" type="text"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Category 1</label>
-                                                        <select class="form-control select" name="category_1" required>
-                                                            <option>Select</option>
-                                                            {% for category in categories %}
-                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                            {% endfor %}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Category 2</label>
-                                                        <select class="form-control select" name="category_2">
-                                                            <option>Select</option>
-                                                            {% for category in categories %}
-                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                            {% endfor %}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label class="control-label">Category 3</label>
-                                                        <select class="form-control select" name="category_3">
-                                                            <option>Select</option>
-                                                            {% for category in categories %}
-                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                            {% endfor %}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <p class="text-danger"> 1 Category is mandatory, You can select up to 3
-                                                    Categories.</p>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-6">
-                                            <div class="row">
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="available_from">Available From</label>
-                                                        <input id="available_from" name="available_from" type="date"
-                                                               class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6 text-center">
-                                                    <div class="form-group">
-                                                        <div><label>Hide Item</label></div>
-                                                        <input type="checkbox" id="hide_item" name="hide_item"
-                                                               switch="warning">
-                                                        <label for="hide_item" data-on-label="Yes"
-                                                               data-off-label="No"></label>
-                                                        <p class="text-info">Temporarily not showing the item for rent.
-                                                            The article is not visible to other users.</p>
-
-                                                    </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="price">Price</label>
+                                                    <input id="price" name="price" type="number" step=".01"
+                                                           class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="product_description">Product Description</label>
-                                                <textarea class="form-control" name="product_description"
-                                                          id="product_description" rows="5"
-                                                          maxlength="500">
-
-                                                </textarea>
-                                            </div>
-
-
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" id="offer_shipping" name="offer_shipping"
-                                                           class="custom-control-input" required>
-                                                    <label class="custom-control-label" for="offer_shipping">Offer
-                                                        Shipping?(you send the rental property and receive 10.- for
-                                                        postage)</label>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label" for="rental_type">Per</label>
+                                                    <select class="form-control" id="rental_type"
+                                                            name="rental_type">
+                                                        <option>Select</option>
+                                                        <option value="Per Day">Per Day</option>
+                                                        <option value="Per Month">Per Month</option>
+                                                        <option value="Per Year">Per Year</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" id="pick_up" name="pick_up"
-                                                           class="custom-control-input" required>
-                                                    <label class="custom-control-label" for="pick_up">Pick up (the
-                                                        tenant picks up the goods from you)</label>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="brand">Brand</label>
+                                                    <input id="brand" name="brand" type="text"
+                                                           class="form-control">
                                                 </div>
                                             </div>
-
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Category 1</label>
+                                                    <select class="form-control select" name="category_1" required>
+                                                        <option>Select</option>
+                                                        {% for category in categories %}
+                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Category 2</label>
+                                                    <select class="form-control select" name="category_2">
+                                                        <option>Select</option>
+                                                        {% for category in categories %}
+                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Category 3</label>
+                                                    <select class="form-control select" name="category_3">
+                                                        <option>Select</option>
+                                                        {% for category in categories %}
+                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <p class="text-danger"> 1 Category is mandatory, You can select up to 3
+                                                Categories.</p>
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="available_from">Available From</label>
+                                                    <input id="available_from" name="available_from" type="date"
+                                                           class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 text-center">
+                                                <div class="form-group">
+                                                    <div><label>Hide Item</label></div>
+                                                    <input type="checkbox" id="hide_item" name="hide_item"
+                                                           switch="warning">
+                                                    <label for="hide_item" data-on-label="Yes"
+                                                           data-off-label="No"></label>
+                                                    <p class="text-info">Temporarily not showing the item for rent.
+                                                        The article is not visible to other users.</p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="product_description">Product Description</label>
+                                            <textarea class="form-control" name="product_description"
+                                                      id="product_description" rows="5"
+                                                      maxlength="500">
+
+                                                </textarea>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="offer_shipping" name="offer_shipping"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label" for="offer_shipping">Offer
+                                                    Shipping?(you send the rental property and receive 10.- for
+                                                    postage)</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" id="pick_up" name="pick_up"
+                                                       class="custom-control-input">
+                                                <label class="custom-control-label" for="pick_up">Pick up (the
+                                                    tenant picks up the goods from you)</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -226,48 +224,48 @@
                                 <div class="row mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_1"
-                                                   name="product_img_1">
-                                            <label class="custom-file-label" for="product_img_1">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="image_1"
+                                                   name="image_1" required>
+                                            <label class="custom-file-label" for="image_1">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_2"
-                                                   name="product_img_2">
-                                            <label class="custom-file-label" for="product_img_2">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="image_2"
+                                                   name="image_2">
+                                            <label class="custom-file-label" for="image_2">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_3"
-                                                   name="product_img_3">
-                                            <label class="custom-file-label" for="product_img_3">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="image_3"
+                                                   name="image_3">
+                                            <label class="custom-file-label" for="image_3">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row  mb-3">
                                     <div class="col-lg-4">
                                         <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="product_img_4"
-                                                   name="product_img_4">
-                                            <label class="custom-file-label" for="product_img_4">Choose file</label>
+                                            <input type="file" class="custom-file-input" id="image_4"
+                                                   name="image_4">
+                                            <label class="custom-file-label" for="image_4">Choose file</label>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                             <button type="submit" name="add-product"
-                                            class="btn btn-primary mr-1 waves-effect waves-light">Save Changes
-                                    </button>
-                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+                                <button type="submit" name="add-product"
+                                class="btn btn-primary mr-1 waves-effect waves-light">Save Changes
+                        </button>
+                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
-                            </form>
+                            </div>
                         </div> <!-- end card-->
 
+                        </form>
                         <div class="card">
                             <div class="card-body">
 
