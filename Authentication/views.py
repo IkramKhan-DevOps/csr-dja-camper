@@ -83,6 +83,9 @@ def activate(request, uidb64, token):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
+        member = Member.objects.get(user=user)
+        member.email_verified = True
+        member.save()
         messages.success(request, "Thank you for email confirmation, You can login now!")
         return redirect('Login')
     else:
@@ -332,4 +335,19 @@ def my_account(request):
         pass
     else:
         create_member(user=request.user)
-    return render(request, template_name="authentication/profile/my-account.html")
+
+    member = ""
+    try:
+        member = Member.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "")
+    try:
+        social_account = SocialAccount.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        social_account = ""
+
+    context = {
+        "member": member,
+        "social_account": social_account,
+    }
+    return render(request, template_name="authentication/profile/my-account.html", context=context)
