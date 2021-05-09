@@ -1,14 +1,22 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.backends import UserModel
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from post_office import mail
 
+from Horsedch.bll import create_member
 from Horsedch.models import Member, Landlord, Renter
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 
@@ -28,17 +36,61 @@ def sign_up_with_email(request):
                         email=request.POST.get("email_address"),
                         username=request.POST.get("email_address"),
                         password=make_password(request.POST.get("password")),
-                        is_active=True
+                        is_active=False
                     )
-                    user = authenticate(request, username=request.POST.get("email_address"),
-                                        password=request.POST.get("password"))
-                    if user is not None:
-                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        return redirect('choose_role')
+                    if user:
+                        user = User.objects.get(username=request.POST.get("email_address"))
+                    try:
+                        member = Member.objects.create(
+                            first_name=request.POST.get("first_name"),
+                            last_name=request.POST.get("last_name"),
+                            email_address=request.POST.get("email_address"),
+                            role="Renter",
+                            user=User.objects.get(username=request.POST.get("email_address"))
+                        )
+                        Renter.objects.create(member=member)
+                    except:
+                        print("Problem in creating member")
+
+                    current_site = get_current_site(request)
+                    mail.send(
+                        [request.POST.get("email_address")],
+                        'no-reply@example.com',
+                        template='welcome_email',
+                        context={
+                            'first_name': request.POST.get("first_name"),
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': default_token_generator.make_token(user=user)
+                        },
+                        priority='now',
+                    )
+
+                    messages.success(request, "Thank you for signing up. An email has been sent to " + request.POST.get(
+                        "email_address") + ". Please confirm it to continue.")
                 except IntegrityError:
                     messages.error(request, "Error: User with the email already exist!")
 
     return render(request, template_name="authentication/signup_using_email.html")
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = UserModel._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        member = Member.objects.get(user=user)
+        member.email_verified = True
+        member.save()
+        messages.success(request, "Thank you for email confirmation, You can login now!")
+        return redirect('Login')
+    else:
+
+        return HttpResponse("Invalid email validation link!")
 
 
 def auth_login(request):
@@ -50,8 +102,6 @@ def auth_login(request):
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             if Member.objects.filter(user=user).exists():
                 return redirect("My Account")
-            else:
-                return redirect('choose_role')
         else:
             messages.error(request, "Invalid email address/password!")
     return render(request, template_name="authentication/auth_login.html")
@@ -62,6 +112,7 @@ def auth_logout(request):
     return redirect('Login')
 
 
+# This has been deferred. choose_role will be removed in next update 1.23.1
 def choose_role(request):
     try:
         member = Member.objects.get(user=request.user)
@@ -76,6 +127,7 @@ def choose_role(request):
     return render(request, template_name="shop/role/choose-role.html")
 
 
+# This has been deferred. update_member_profile will be removed in next update 1.23.1
 @login_required()
 def update_member_role(request, role):
     verified_email = False
@@ -119,7 +171,7 @@ def update_member_role(request, role):
     except ObjectDoesNotExist:
         print("No social account exist")
         print("social_account")
-    return redirect('Edit Profile')
+    return redirect('Edit Profile')  # Defere
 
 
 def edit_profile(request):
@@ -264,7 +316,7 @@ def edit_profile(request):
             user.set_password(request.POST.get("password"))
             user.save()
             SocialAccount.objects.get(user=request.user).delete()
-            messages.success(request, "Account disconnect successfully! Please login with your email to continue.")
+            messages.success(request, "Account disconnected successfully! Please login with your email to continue.")
             return redirect("Logout")
     context = {
         "member": member,
@@ -279,4 +331,23 @@ def edit_profile(request):
 
 @login_required()
 def my_account(request):
-    return render(request, template_name="authentication/profile/my-account.html")
+    if Member.objects.filter(user=request.user).exists():
+        pass
+    else:
+        create_member(user=request.user)
+
+    member = ""
+    try:
+        member = Member.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "")
+    try:
+        social_account = SocialAccount.objects.get(user=request.user)
+    except ObjectDoesNotExist:
+        social_account = ""
+
+    context = {
+        "member": member,
+        "social_account": social_account,
+    }
+    return render(request, template_name="authentication/profile/my-account.html", context=context)

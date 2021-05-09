@@ -39,8 +39,11 @@ INSTALLED_APPS = [
     'decouple',
     "django.contrib.sites",
     'autoslug',
-    # Social Authenticator App
 
+    # Mailing App
+    'post_office',
+
+    # Social Authenticator App
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -143,6 +146,13 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
+
+EMAIL_BACKEND = 'post_office.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'osmanamin689@gmail.com'
+EMAIL_HOST_PASSWORD = 'oznswlcwuqjlwgos'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

@@ -41,7 +41,8 @@
                             <div class="p-2">
                                 {% if messages %}
                                     {% for message in messages %}
-                                        <div class="alert alert-danger text-center mb-4" role="alert">
+                                        <div class="alert {% if message.tags == "error" %}alert-danger {% else %}alert-success{% endif %} text-center mb-4"
+                                             role="alert">
                                             {{ message|safe }}
                                         </div>
                                     {% endfor %}
