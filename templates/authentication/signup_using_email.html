@@ -39,13 +39,12 @@
                             <div class="p-2">
                                 {% if messages %}
                                     {% for message in messages %}
-                                        <div class="alert alert-danger text-center mb-4" role="alert">
+                                        <div class="alert {% if message.tags == "error" %}alert-danger {% else %}alert-success{% endif %} text-center mb-4" role="alert">
                                             {{ message|safe }}
                                         </div>
                                     {% endfor %}
                                 {% endif %}
                                 <form class="form-horizontal" method="post" enctype="multipart/form-data">
-
                                     {% csrf_token %}
                                     <label for="first_name">First Name</label>
                                     <input type="text" class="form-control" id="first_name" name="first_name"
