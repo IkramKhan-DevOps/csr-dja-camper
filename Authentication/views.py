@@ -1,13 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth import logout, authenticate, login
+from django.contrib.auth.backends import UserModel
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 from django.utils.datastructures import MultiValueDictKeyError
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from post_office import mail
 
 from Horsedch.bll import create_member
@@ -32,6 +38,8 @@ def sign_up_with_email(request):
                         password=make_password(request.POST.get("password")),
                         is_active=False
                     )
+                    if user:
+                        user = User.objects.get(username=request.POST.get("email_address"))
                     try:
                         member = Member.objects.create(
                             first_name=request.POST.get("first_name"),
@@ -44,11 +52,17 @@ def sign_up_with_email(request):
                     except:
                         print("Problem in creating member")
 
+                    current_site = get_current_site(request)
                     mail.send(
                         [request.POST.get("email_address")],
                         'no-reply@example.com',
                         template='welcome_email',
-                        context={'first_name': request.POST.get("first_name")},
+                        context={
+                            'first_name': request.POST.get("first_name"),
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': default_token_generator.make_token(user=user)
+                        },
                         priority='now',
                     )
 
@@ -58,6 +72,22 @@ def sign_up_with_email(request):
                     messages.error(request, "Error: User with the email already exist!")
 
     return render(request, template_name="authentication/signup_using_email.html")
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = UserModel._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and default_token_generator.check_token(user, token):
+        user.is_active = True
+        user.save()
+        messages.success(request, "Thank you for email confirmation, You can login now!")
+        return redirect('Login')
+    else:
+
+        return HttpResponse("Invalid email validation link!")
 
 
 def auth_login(request):
@@ -79,6 +109,7 @@ def auth_logout(request):
     return redirect('Login')
 
 
+# This has been deferred. choose_role will be removed in next update 1.23.1
 def choose_role(request):
     try:
         member = Member.objects.get(user=request.user)
@@ -93,6 +124,7 @@ def choose_role(request):
     return render(request, template_name="shop/role/choose-role.html")
 
 
+# This has been deferred. update_member_profile will be removed in next update 1.23.1
 @login_required()
 def update_member_role(request, role):
     verified_email = False
@@ -136,7 +168,7 @@ def update_member_role(request, role):
     except ObjectDoesNotExist:
         print("No social account exist")
         print("social_account")
-    return redirect('Edit Profile')
+    return redirect('Edit Profile')  # Defere
 
 
 def edit_profile(request):

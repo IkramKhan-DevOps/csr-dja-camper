@@ -37,7 +37,8 @@ urlpatterns = [
     path('accounts/login/', auth_views.auth_login, name="Login"),
     path('logout', LogoutView.as_view(), name="Logout"),
     path('accounts/signup/', auth_views.sign_up_with_email, name="Sign Up"),
-
+    path('activate/<slug:uidb64>/<slug:token>/', auth_views.activate, name='activate'),
+    
     # path('logout/', auth_views.auth_logout, name="Logout"),
     # url(r'^google-login/$', views.login_via_google, name="login_via_google"),
     # url(r'^facebook-login/$', views.login_via_facebook, name="login_via_facebook"),
