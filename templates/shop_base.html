@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} {% endblock title %}</title>
+    <title>{% block title %} {% endblock title %} | Horsed</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description"/>
     <meta content="Themesbrand" name="author"/>
@@ -83,6 +83,14 @@
                         <a class="dropdown-item" href="{% url 'My Account' %}"><i
                                 class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
 
+                        {% if member.role == "Landlord" %}
+                        <a class="dropdown-item" href="{% url 'switch_to_renter' %}"><i
+                                class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Renter</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'switch_to_landlord' %}"><i
+                                class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Landlord</a>
+                        {% endif %}
+
                         <a class="dropdown-item d-block" href="{% url 'Edit Profile' %}"><i
                                 class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
 
@@ -124,8 +132,9 @@
                             </a>
                         </li>
 
+                         {% if member.role == "Landlord" %}
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
+                            <a class="nav-link text-white" href="{% url 'My Products' %}" id="" role="button">
                                 <i class="bx bx-collection mr-2"></i>My Products
                             </a>
 
@@ -137,15 +146,21 @@
                             </a>
 
                         </li>
+                             {% else %}
+                             <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
+                                <i class="bx bx-collection mr-2"></i>Shop
+                            </a>
 
+                        </li>
+                        {% endif %}
 
-                        <li class="nav-item">
+                     <li class="nav-item">
                             <a class="nav-link text-white" href="{% url 'Logout' %}" id="" role="button"
                                aria-expanded="false">
                                 <i class="bx bx-log-out-circle mr-2"></i>Logout
                             </a>
                         </li>
-
                     </ul>
                 </div>
             </nav>

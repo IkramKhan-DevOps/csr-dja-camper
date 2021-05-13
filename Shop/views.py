@@ -9,7 +9,7 @@ from allauth.socialaccount.models import SocialAccount
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
 from Shop.forms import ProductForm
-from Shop.models import Category, ProductCategory
+from Shop.models import Category, ProductCategory, Product
 
 
 @login_required()
@@ -73,7 +73,25 @@ def all_products(request):
 
 
 def my_products(request):
-    return render(request, template_name="shop/products/my-products.html")
+    social_account = ""
+    member = ""
+    try:
+        social_account = has_social_account(request.user)
+    except:
+        member = get_member(request.user)
+
+    products = ""
+    try:
+        products = Product.objects.filter(landlord__member__user=request.user)
+    except ObjectDoesNotExist:
+        messages.error(request, "You don't have added any product yet.")
+
+    context = {
+        "products": products,
+        'social_account': social_account,
+        'member': member,
+    }
+    return render(request, template_name="shop/products/my-products.html", context=context)
 
 
 def rate_rental_experience(request):
