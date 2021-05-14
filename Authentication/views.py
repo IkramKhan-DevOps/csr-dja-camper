@@ -175,6 +175,7 @@ def update_member_role(request, role):
 
 
 def edit_profile(request):
+
     bank_account = ""
     member = ""
     try:
@@ -331,23 +332,55 @@ def edit_profile(request):
 
 @login_required()
 def my_account(request):
-    if Member.objects.filter(user=request.user).exists():
-        pass
-    else:
-        create_member(user=request.user)
-
     member = ""
+    social_account = ""
     try:
-        member = Member.objects.get(user=request.user)
-    except ObjectDoesNotExist:
-        messages.error(request, "")
-    try:
-        social_account = SocialAccount.objects.get(user=request.user)
-    except ObjectDoesNotExist:
-        social_account = ""
+        if Member.objects.filter(user=request.user).exists():
+            pass
+        else:
+            create_member(user=request.user)
+        try:
+            member = Member.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            messages.error(request, "")
+        try:
+            social_account = SocialAccount.objects.get(user=request.user)
+        except ObjectDoesNotExist:
+            social_account = ""
+    except:
+        print("Error in my_account")
 
     context = {
         "member": member,
         "social_account": social_account,
     }
     return render(request, template_name="authentication/profile/my-account.html", context=context)
+
+
+def switch_to_landlord(request):
+    try:
+        member = Member.objects.get(user=request.user)
+        landlord = Landlord.objects.filter(member=member)
+        if landlord.exists():
+            print("landlord already exists")
+            member.role = "Landlord"
+            member.save()
+        else:
+            Landlord.objects.create(member=member)
+            member.role = "Landlord"
+            member.save()
+    except:
+        print("Error in switch_to_landlord")
+
+    return redirect("My Account")
+
+
+def switch_to_renter(request):
+    try:
+        member = Member.objects.get(user=request.user)
+        member.role = "Renter"
+        member.save()
+    except:
+        print("Error in switch_to_renter")
+
+    return redirect("My Account")

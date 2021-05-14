@@ -3,13 +3,14 @@ import urllib
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Avg
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
 from Shop.forms import ProductForm
-from Shop.models import Category, ProductCategory
+from Shop.models import Category, ProductCategory, Product, Order
 
 
 @login_required()
@@ -73,7 +74,41 @@ def all_products(request):
 
 
 def my_products(request):
-    return render(request, template_name="shop/products/my-products.html")
+    social_account = ""
+    member = ""
+    try:
+        social_account = has_social_account(request.user)
+    except:
+        member = get_member(request.user)
+
+    products = ""
+    try:
+        landlord = Landlord.objects.get(member__user=request.user)
+        query = "SELECT Shop_product.id, product_title, price, rental_type, image_1, avg(stars_by_renter) AS stars FROM Shop_product left outer join Shop_order on Shop_product.id=Shop_order.product_id WHERE Shop_product.landlord_id=%s" % landlord.id
+        products = Product.objects.raw(query)
+
+    except:
+        messages.error(request, "You don't have added any product yet.")
+
+    context = {
+        "products": products,
+        'social_account': social_account,
+        'member': member,
+    }
+    return render(request, template_name="shop/products/my-products.html", context=context)
+
+
+def edit_product(request, p_id):
+    product = ""
+    try:
+        product = Product.objects.get(id=p_id, landlord__member__user=request.user)
+    except:
+        print("No product exists")
+
+    context = {
+        "product": product
+    }
+
 
 
 def rate_rental_experience(request):

@@ -12,4 +12,6 @@ urlpatterns = [
     path('my/account/', views.my_account, name="My Account"),
     path('select/role/', views.choose_role, name="choose_role"),
     path('select/role/<str:role>/', views.update_member_role, name="update_member_role"),
+    path('switch-to-landlord/', views.switch_to_landlord, name="switch_to_landlord"),
+    path('switch-to-renter/', views.switch_to_renter, name="switch_to_renter"),
 ]
