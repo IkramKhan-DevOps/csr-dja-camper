@@ -19,6 +19,7 @@ from post_office import mail
 from Horsedch.bll import create_member
 from Horsedch.models import Member, Landlord, Renter
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
+from Shop.models import Order
 
 
 def sign_up_with_email(request):
@@ -334,6 +335,7 @@ def edit_profile(request):
 def my_account(request):
     member = ""
     social_account = ""
+
     try:
         if Member.objects.filter(user=request.user).exists():
             pass
@@ -350,9 +352,21 @@ def my_account(request):
     except:
         print("Error in my_account")
 
+    completed_order = Order.objects.filter(landlord__member__user=request.user, is_completed=True).count()
+    orders = Order.objects.filter(landlord__member__user=request.user, is_completed=False)
+    orders_amount = Order.objects.filter(landlord__member__user=request.user, is_completed=True)
+    total_revenue = 0.0
+    for order in orders_amount:
+        total_revenue += order.landlord_amount
+
+
     context = {
         "member": member,
         "social_account": social_account,
+        "completed_order": completed_order,
+        "pending_order": orders.count(),
+        "orders": orders,
+        "total_revenue": total_revenue,
     }
     return render(request, template_name="authentication/profile/my-account.html", context=context)
 

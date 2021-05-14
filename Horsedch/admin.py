@@ -3,7 +3,7 @@ from django.contrib import admin
 from Horsedch.models import HowItWork, WhyHorsedCh, SocialLinks, ContactInformation, Condition, DataPolicy, FairPlay, \
     Imprint, HeroSection, Box, AboutUs, Team, GeneralFAQs, HowToRentFAQs, HowToListFAQs, ObjectOwnerFAQs, Partner, \
     CustomerCare
-from Shop.models import Product, Category, ProductCategory
+from Shop.models import Product, Category
 
 admin.site.site_header = "Horsed Administration Panel"
 admin.site.index_title = "Horsed Administration"
@@ -125,4 +125,4 @@ admin.site.register(FairPlay, FairPlayAdmin)
 admin.site.register(Imprint, ImprintAdmin)
 admin.site.register(Product)
 admin.site.register(Category)
-admin.site.register(ProductCategory)
+

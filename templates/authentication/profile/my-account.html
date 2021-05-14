@@ -65,11 +65,11 @@
 
                                             <div class="row">
                                                 <div class="col-6">
-                                                    <h5 class="font-size-15">125</h5>
+                                                    <h5 class="font-size-15">{{ completed_order }}</h5>
                                                     <p class="text-muted mb-0">Orders</p>
                                                 </div>
                                                 <div class="col-6">
-                                                    <h5 class="font-size-15">$1245</h5>
+                                                    <h5 class="font-size-15">{{ total_revenue }}</h5>
                                                     <p class="text-muted mb-0">Revenue</p>
                                                 </div>
                                             </div>
@@ -145,7 +145,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p class="text-muted font-weight-medium">Completed Orders</p>
-                                                <h4 class="mb-0">125</h4>
+                                                <h4 class="mb-0">{{ completed_order }}</h4>
                                             </div>
 
                                             <div class="mini-stat-icon avatar-sm align-self-center rounded-circle bg-primary">
@@ -163,7 +163,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p class="text-muted font-weight-medium">Pending Orders</p>
-                                                <h4 class="mb-0">12</h4>
+                                                <h4 class="mb-0">{{ pending_order }}</h4>
                                             </div>
 
                                             <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
@@ -181,7 +181,7 @@
                                         <div class="media">
                                             <div class="media-body">
                                                 <p class="text-muted font-weight-medium">Total Revenue</p>
-                                                <h4 class="mb-0">$36,524</h4>
+                                                <h4 class="mb-0">{{ total_revenue }}</h4>
                                             </div>
 
                                             <div class="avatar-sm align-self-center mini-stat-icon rounded-circle bg-primary">
@@ -201,32 +201,33 @@
                         {#                                    </div>#}
                         {#                                </div>#}
 
-                        <div class="card">
+                       {% if orders.count != 0  %}
+                            <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Items on Rent</h4>
                                 <div class="table-responsive">
                                     <table class="table table-nowrap table-hover mb-0">
                                         <thead>
                                         <tr>
-                                            <th scope="col">#</th>
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Start Date</th>
                                             <th scope="col">End Date</th>
                                             <th scope="col">Total Rent</th>
-                                            <th scope="col">Client Name</th>
-                                            <th scope="col">Client Contact</th>
+                                            <th scope="col">Renter Name</th>
+                                            <th scope="col">Renter Contact</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        {% for order in orders %}
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Blanket</td>
-                                            <td>2 Sep, 2019</td>
-                                            <td>20 Oct, 2019</td>
-                                            <td>$506</td>
-                                            <td>Sara</td>
-                                            <td>+12345678</td>
+                                            <td>{{ order.product.product_title }}</td>
+                                            <td>{{ order.book_from }}</td>
+                                            <td>{{ order.book_till }}</td>
+                                            <td>{{ order.landlord_amount }}</td>
+                                            <td>{{ order.renter.member.first_name }}</td>
+                                            <td>{{ order.renter.member.phone_number }}</td>
                                         </tr>
+                                        {% endfor %}
 
 
                                         </tbody>
@@ -234,6 +235,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- end row -->
