@@ -2,7 +2,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from autoslug import AutoSlugField
 
-from Horsedch.models import Landlord
+from Horsedch.models import Landlord, Renter
 
 
 class Category(models.Model):
@@ -41,3 +41,17 @@ class ProductMetaData(models.Model):
     meta_title = models.CharField(max_length=100)
     meta_keywords = models.CharField(max_length=100)
     meta_description = models.CharField(max_length=300)
+
+
+class Order(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE)
+    renter = models.ForeignKey(Renter, on_delete=models.CASCADE)
+
+    is_completed = models.BooleanField(default=False)
+
+    stars_by_renter = models.FloatField(null=True, blank=True)
+    stars_by_landlord = models.FloatField(null=True, blank=True)
+    comment_by_renter = models.CharField(max_length=500, null=True, blank=True)
+    comment_by_landlord = models.CharField(max_length=500, null=True, blank=True)
+
