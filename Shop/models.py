@@ -26,15 +26,20 @@ class Product(models.Model):
     image_2 = models.ImageField(upload_to="images/products/", default="no-image-icon.png", null=True, blank=True)
     image_3 = models.ImageField(upload_to="images/products/", default="no-image-icon.png", null=True, blank=True)
     image_4 = models.ImageField(upload_to="images/products/", default="no-image-icon.png", null=True, blank=True)
+    category_1 = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category_1")
+    category_2 = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, related_name="category_2")
+    category_3 = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, related_name="category_3")
+
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return str(self.product_slug)
 
 
-class ProductCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#Deferred
+# class ProductCategory(models.Model):
+#     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
 
 
 class ProductMetaData(models.Model):
@@ -44,6 +49,10 @@ class ProductMetaData(models.Model):
 
 
 class Order(models.Model):
+    book_from = models.DateField()
+    book_till = models.DateField()
+    total_amount = models.FloatField()
+    landlord_amount = models.FloatField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE)
     renter = models.ForeignKey(Renter, on_delete=models.CASCADE)

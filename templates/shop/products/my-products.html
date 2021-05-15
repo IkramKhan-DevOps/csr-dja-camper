@@ -28,29 +28,33 @@
 
                 {% if products != "" %}
                     <div class="row">
-
                         {% for data in products %}
-                            <div class="card" style="width: 18rem;">
-                                <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
-                                    <p class="card-text">
-                                        <span class="font-weight-bold">{{ data.rental_type }}</span>
-                                        <span class="float-right">{{ data.price }}</span>
-                                    </p>
-                                    <p class="card-text">
-                                        <span class="float-left font-weight-bold">Ratings</span>
-                                        <span class="float-right">
-                                       {% if data.stars %}
-                                           {{ data.stars }}<i class="bx bxs-star text-warning"></i>
-                                       {% else %}
-                                           Not rated
-                                       {% endif %}
-                                      </span>
-                                    </p>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <a href="{% url "edit_my_product" data.id %}" class="btn btn-warning">Edit Product</a>
+                            <div class="col-lg-3">
+                                <div class="card" style="width: 18rem;">
+                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
+                                        <p class="card-text">
+                                            <span class="font-weight-bold">{{ data.rental_type }}</span>
+                                            <span class="float-right">{{ data.price }}</span>
+                                        </p>
+                                        <p class="card-text">
+                                            <span class="float-left font-weight-bold">Ratings</span>
+                                            <span class="float-right">
+                                                {% if data.stars %}
+                                                    {{ data.stars }}
+                                                    <i class="bx bxs-star text-warning"></i>
+                                                {% else %}
+                                                    Not
+                                                    rated
+                                                {% endif %}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="{% url "edit_my_product" data.id %}" class="btn btn-warning">Edit
+                                            Product</a>
+                                    </div>
                                 </div>
                             </div>
                         {% endfor %}
