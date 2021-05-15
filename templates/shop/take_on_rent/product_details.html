@@ -40,25 +40,25 @@
                                                         <a class="nav-link active" id="product-1-tab" data-toggle="pill"
                                                            href="#product-1" role="tab" aria-controls="product-1"
                                                            aria-selected="true">
-                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                            <img src="{{ product.image_1.url }}" alt=""
                                                                  class="img-fluid mx-auto d-block rounded">
                                                         </a>
                                                         <a class="nav-link" id="product-2-tab" data-toggle="pill"
                                                            href="#product-2" role="tab" aria-controls="product-2"
                                                            aria-selected="false">
-                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                            <img src="{{ product.image_2.url }}" alt=""
                                                                  class="img-fluid mx-auto d-block rounded">
                                                         </a>
                                                         <a class="nav-link" id="product-3-tab" data-toggle="pill"
                                                            href="#product-3" role="tab" aria-controls="product-3"
                                                            aria-selected="false">
-                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                            <img src="{{ product.image_3.url }}" alt=""
                                                                  class="img-fluid mx-auto d-block rounded">
                                                         </a>
                                                         <a class="nav-link" id="product-4-tab" data-toggle="pill"
                                                            href="#product-4" role="tab" aria-controls="product-4"
                                                            aria-selected="false">
-                                                            <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                            <img src="{{ product.image_4.url }}" alt=""
                                                                  class="img-fluid mx-auto d-block rounded">
                                                         </a>
                                                     </div>
@@ -68,28 +68,28 @@
                                                         <div class="tab-pane fade show active" id="product-1"
                                                              role="tabpanel" aria-labelledby="product-1-tab">
                                                             <div>
-                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                <img src="{{ product.image_1.url }}"
                                                                      alt="" class="img-fluid mx-auto d-block">
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="product-2" role="tabpanel"
                                                              aria-labelledby="product-2-tab">
                                                             <div>
-                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                <img src="{{ product.image_2.url }}"
                                                                      alt="" class="img-fluid mx-auto d-block">
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="product-3" role="tabpanel"
                                                              aria-labelledby="product-3-tab">
                                                             <div>
-                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                <img src="{{ product.image_3.url }}"
                                                                      alt="" class="img-fluid mx-auto d-block">
                                                             </div>
                                                         </div>
                                                         <div class="tab-pane fade" id="product-4" role="tabpanel"
                                                              aria-labelledby="product-4-tab">
                                                             <div>
-                                                                <img src="{% static 'images/product/horse.png' %}"
+                                                                <img src="{{ product.image_4.url }}"
                                                                      alt="" class="img-fluid mx-auto d-block">
                                                             </div>
                                                         </div>
@@ -102,25 +102,20 @@
 
                                     <div class="col-xl-6">
                                         <div class="mt-4 mt-xl-3">
-                                            <a href="#" class="text-primary">Blankets</a>
-                                            <h4 class="mt-1 mb-3">Bemer blanket with gaiters</h4>
-
+                                            <a href="#" class="text-primary">{{ product.category_1.category_name }}</a>
+                                            <h4 class="mt-1 mb-3">{{ product.product_title }}</h4>
+                                            {% if product_reviews > 0 %}
                                             <p class="text-muted float-left mr-3">
-                                                <span class="bx bx-star text-warning"></span>
-                                                <span class="bx bx-star text-warning"></span>
-                                                <span class="bx bx-star text-warning"></span>
-                                                <span class="bx bx-star text-warning"></span>
-                                                <span class="bx bx-star"></span>
+                                                {{ product_reviews.stars_by_renter__avg }}<span class="bx bxs-star text-warning"></span>
                                             </p>
-                                            <p class="text-muted mb-4">( 152 Customers Review )</p>
+                                            <p class="text-muted mb-4">( {{ total_reviews }} Renters Review )</p>
+                                                {% else %}
+                                            <p class="text-muted mb-4">( Not Rated Yet )</p>
+                                            {% endif %}
 
                                             {#                                                    <h6 class="text-success text-uppercase">20 % Off</h6>#}
-                                            <h5 class="mb-4">Price : <b>$225 USD</b> Per Day</h5>
-                                            <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consetetur sadipscing
-                                                elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                                                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                                                dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                                                est Lorem ipsum dolor sit amet.</p>
+                                            <h5 class="mb-4">Price : <b>{{ product.price }}</b> {{ product.rental_type }}</h5>
+                                            <p class="text-muted mb-4">{{ product.product_description }}</p>
 
                                             <form class="form-horizontal" enctype="multipart/form-data">
                                                 <div class="text-center">
@@ -156,19 +151,37 @@
                                             <tbody>
                                             <tr>
                                                 <th scope="row" style="width: 400px;">Name</th>
-                                                <td>Sara Smith</td>
+                                                <td>{{ product.landlord.member.first_name }} {{ product.landlord.member.last_name }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Zip Code</th>
-                                                <td>8000</td>
+                                                <td>{{ product.landlord.member.zip_code }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">City</th>
-                                                <td>Zurich</td>
+                                                <td>{{ product.landlord.member.city }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Languages</th>
-                                                <td>Deutsch, Französisch</td>
+                                                <td>
+                                                    {% if language %}
+                                                        {% if language.dutch %}
+                                                            Dutch
+                                                            {% endif %}
+                                                        {% if language.italian %}
+                                                            ,Italian
+                                                            {% endif %}
+                                                        {% if language.french %}
+                                                            ,French
+                                                            {% endif %}
+                                                        {% if language.english %}
+                                                            ,English
+                                                            {% endif %}
+                                                        {% else %}
+                                                        No Language Provided.
+                                                    {% endif %}
+
+                                                </td>
                                             </tr>
 
                                             </tbody>
@@ -196,7 +209,7 @@
                                         <div class="card-body">
                                             <div class="row align-items-center">
                                                 <div class="col-md-4">
-                                                    <img src="{% static 'images/product/horse.png' %}" alt=""
+                                                    <img src="{{ product.image_1.url }}" alt=""
                                                          class="img-fluid mx-auto d-block">
                                                 </div>
                                                 <div class="col-md-8">
@@ -276,18 +289,9 @@
                     </div>
                 </div>
                 <!-- end row -->
-
-
             </div>
         </div>
-
-
     </div> <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
-    </div>
 
-    </div>
-    <!-- end main content-->
 {% endblock content %}
 

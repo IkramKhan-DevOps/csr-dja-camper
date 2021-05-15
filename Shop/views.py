@@ -3,12 +3,14 @@ import urllib
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import connection
 from django.db.models import Avg
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
+from Landlord.models import Language
 from Shop.forms import ProductForm
 from Shop.models import Category, Product, Order
 
@@ -52,13 +54,25 @@ def add_product(request):
 def all_products(request):
     social_account = ""
     member = ""
+    products = ""
     try:
         social_account = has_social_account(request.user)
-    except:
+    except ObjectDoesNotExist:
         member = get_member(request.user)
+    try:
+        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id"
+        products = Product.objects.raw(query)
+    except:
+        print("Error in loading products")
+
+    # with connection.cursor() as cursor:
+    #     cursor.execute(query)
+    #     products = cursor.fetchall()
+    # print(products)
     context = {
         'social_account': social_account,
         'member': member,
+        'products': products,
     }
     return render(request, template_name="shop/products/all-products.html", context=context)
 
@@ -143,7 +157,6 @@ def edit_product(request, p_id):
     return render(request, template_name="shop/products/edit-product.html", context=context)
 
 
-
 def rate_rental_experience(request):
     return render(request, template_name="shop/reviews/rate-rental-experience.html")
 
@@ -152,8 +165,35 @@ def checkout(request):
     return render(request, template_name="shop/take_on_rent/checkout.html")
 
 
-def single_product_details(request):
-    return render(request, template_name="shop/take_on_rent/product_details.html")
+def single_product_details(request, slug):
+    social_account = ""
+    member = ""
+    product = ""
+    product_reviews = ""
+    total_reviews = ""
+    language = ""
+    try:
+        social_account = has_social_account(request.user)
+    except ObjectDoesNotExist:
+        member = get_member(request.user)
+    try:
+        product = Product.objects.get(product_slug=slug)
+        product_reviews = Order.objects.filter(product=product).aggregate(Avg('stars_by_renter'))
+        total_reviews = Order.objects.filter(product=product, stars_by_renter__isnull=False).count()
+        language = Language.objects.get(landlord=product.landlord)
+    except ObjectDoesNotExist:
+        print("Product does not exists")
+        #return to 404.
+
+    context = {
+        'product': product,
+        'product_reviews': product_reviews,
+        'total_reviews': total_reviews,
+        'language': language,
+        'social_account': social_account,
+        'member': member,
+    }
+    return render(request, template_name="shop/take_on_rent/product_details.html", context=context)
 
 
 def profile_reviews(request):

@@ -9,7 +9,7 @@ urlpatterns = [
     path('my-products/', views.my_products, name="My Products"),
     path('rate-rental-experience/', views.rate_rental_experience, name="Rate Rental Experience"),
     path('checkout/', views.checkout, name="Checkout"),
-    path('product/details/', views.single_product_details, name="Single Product"),
+    path('<slug:slug>/details/', views.single_product_details, name="single_product_details"),
     path('user/profile/reviews/', views.profile_reviews, name="Profile Reviews"),
 
 ]
