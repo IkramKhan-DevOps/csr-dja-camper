@@ -117,19 +117,21 @@
                                             <h5 class="mb-4">Price : <b>{{ product.price }}</b> {{ product.rental_type }}</h5>
                                             <p class="text-muted mb-4">{{ product.product_description }}</p>
 
-                                            <form class="form-horizontal" enctype="multipart/form-data">
+                                            <form class="form-horizontal" method="post" action="{% url 'checkout' %}" enctype="multipart/form-data">
+                                                {% csrf_token %}
                                                 <div class="text-center">
                                                     <label for="rent_from_date"> Rental Period From
                                                         <input type="date" class="form-control"
-                                                               id="rent_from_date" name="rent_from_date">
+                                                               id="rent_from_date" name="rent_from_date" required>
                                                     </label>
                                                     <label for="rent_till_date"> Rental Period Till
                                                         <input type="date" class="form-control"
-                                                               id="rent_till_date" name="rent_till_date">
+                                                               id="rent_till_date" name="rent_till_date" required>
                                                     </label>
+                                                    <input type="number" value="{{ product.id }}" name="product_id" hidden>
                                                 </div>
                                                 <div class="text-center">
-                                                    <button type="button"
+                                                    <button type="submit" name="book-now" id="book-now"
                                                             class="btn waves-effect text-white mt-2 waves-light"
                                                             style="background-color: #FF7F23">
                                                         <i class="bx bx-shopping-bag mr-2"></i>Book now

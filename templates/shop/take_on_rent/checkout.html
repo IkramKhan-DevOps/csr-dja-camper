@@ -1,5 +1,10 @@
 {% extends 'shop_base.html' %}
 {% load static %}
+{% block extra_css_block %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+{% endblock extra_css_block %}
 {% block content %}
     <div class="main-content">
 
@@ -38,12 +43,12 @@
                                            href="#v-pills-shipping" role="tab" aria-controls="v-pills-shipping"
                                            aria-selected="true">
                                             <i class="bx bxs-truck d-block check-nav-icon mt-4 mb-2"></i>
-                                            <p class="font-weight-bold mb-4">Personal Info</p>
+                                            <p class="font-weight-bold mb-4">Shipping Info</p>
                                         </a>
 
                                         <a class="nav-link" id="v-pills-duration-tab" data-toggle="pill"
                                            href="#v-pills-duration" role="tab" aria-controls="v-pills-duration"
-                                           aria-selected="true">
+                                           aria-selected="false">
                                             <i class="bx bxs-watch d-block check-nav-icon mt-4 mb-2"></i>
                                             <p class="font-weight-bold mb-4">Rental Duration</p>
                                         </a>
@@ -188,7 +193,7 @@
 
                                                 {#                                            Retnal Durantion Card Starts Here                                                #}
 
-                                                <div class="tab-pane fade show active" id="v-pills-duration"
+                                                <div class="tab-pane fade" id="v-pills-duration"
                                                      role="tabpanel"
                                                      aria-labelledby="v-pills-duration-tab">
                                                     <div>
@@ -237,7 +242,7 @@
 
                                                             </div>
 
-                                                            <div class="form-group row mb-4">
+                                                            {% comment %} <div class="form-group row mb-4">
                                                                 <label for="rental_duration"
                                                                        class="col-md-2 col-form-label">Duration</label>
                                                                 <div class="col-md-10">
@@ -247,7 +252,7 @@
                                                                 </div>
 
                                                             </div>
-
+{% endcomment %}
 
                                                         </form>
                                                     </div>
@@ -265,30 +270,30 @@
                                                             <div class="custom-control custom-radio custom-control-inline mr-4">
                                                                 <input type="radio" id="customRadioInline1"
                                                                        name="customRadioInline1"
-                                                                       class="custom-control-input">
+                                                                       class="custom-control-input" checked>
                                                                 <label class="custom-control-label"
                                                                        for="customRadioInline1"><i
                                                                         class="fab fa-cc-mastercard mr-1 font-size-20 align-top"></i>
                                                                     Credit / Debit Card</label>
                                                             </div>
-                                                            <div class="custom-control custom-radio custom-control-inline mr-4">
-                                                                <input type="radio" id="customRadioInline2"
-                                                                       name="customRadioInline1"
-                                                                       class="custom-control-input">
-                                                                <label class="custom-control-label"
-                                                                       for="customRadioInline2"><i
-                                                                        class="fab fa-cc-paypal mr-1 font-size-20 align-top"></i>
-                                                                    Paypal</label>
-                                                            </div>
-                                                            <div class="custom-control custom-radio custom-control-inline mr-4">
-                                                                <input type="radio" id="customRadioInline3"
-                                                                       name="customRadioInline1"
-                                                                       class="custom-control-input" checked>
-                                                                <label class="custom-control-label"
-                                                                       for="customRadioInline3"><i
-                                                                        class="far fa-money-bill-alt mr-1 font-size-20 align-top"></i>
-                                                                    Cash on Delivery</label>
-                                                            </div>
+                                                            {#                                                            <div class="custom-control custom-radio custom-control-inline mr-4">#}
+                                                            {#                                                                <input type="radio" id="customRadioInline2"#}
+                                                            {#                                                                       name="customRadioInline1"#}
+                                                            {#                                                                       class="custom-control-input">#}
+                                                            {#                                                                <label class="custom-control-label"#}
+                                                            {#                                                                       for="customRadioInline2"><i#}
+                                                            {#                                                                        class="fab fa-cc-paypal mr-1 font-size-20 align-top"></i>#}
+                                                            {#                                                                    Paypal</label>#}
+                                                            {#                                                            </div>#}
+                                                            {#                                                            <div class="custom-control custom-radio custom-control-inline mr-4">#}
+                                                            {#                                                                <input type="radio" id="customRadioInline3"#}
+                                                            {#                                                                       name="customRadioInline1"#}
+                                                            {#                                                                       class="custom-control-input" checked>#}
+                                                            {#                                                                <label class="custom-control-label"#}
+                                                            {#                                                                       for="customRadioInline3"><i#}
+                                                            {#                                                                        class="far fa-money-bill-alt mr-1 font-size-20 align-top"></i>#}
+                                                            {#                                                                    Cash on Delivery</label>#}
+                                                            {#                                                            </div>#}
                                                         </div>
 
                                                         <h5 class="mt-5 mb-3 font-size-15">For card Payment</h5>
@@ -314,6 +319,9 @@
                                                                         <div class="form-group mt-4 mb-0">
                                                                             <label for="expirydateInput">Expiry
                                                                                 date</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   id="expirydateInput"
+                                                                                   placeholder="MM/YY">
                                                                             <input type="text" class="form-control"
                                                                                    id="expirydateInput"
                                                                                    placeholder="MM/YY">
@@ -378,27 +386,30 @@
                                                                     <thead class="thead-light">
                                                                     <tr>
                                                                         <th scope="col">Product</th>
-                                                                        <th scope="col">Product Desc</th>
+                                                                        <th scope="col">Product Name</th>
                                                                         <th scope="col">Price</th>
                                                                         <th scope="col">Rental From</th>
                                                                         <th scope="col">Rental Till</th>
+                                                                        <th scope="col">Duration</th>
                                                                     </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                     <tr>
                                                                         <th scope="row"><img
-                                                                                src="{% static 'images/product/horse.png' %}"
+                                                                                src="{{ product.image_1.url }}"
                                                                                 alt="product-img" title="product-img"
                                                                                 class="avatar-md"></th>
                                                                         <td>
                                                                             <h5 class="font-size-14 text-truncate"><a
-                                                                                    href=""
-                                                                                    class="text-dark">Blanket </a></h5>
+                                                                                    href="#"
+                                                                                    class="text-dark">{{ product.product_title }} </a>
+                                                                            </h5>
 
                                                                         </td>
-                                                                        <td>$ 450</td>
-                                                                        <td>11 June 2021</td>
-                                                                        <td>11 July 2021</td>
+                                                                        <td>{{ product.price }} {{ product.rental_type }}</td>
+                                                                        <td>{{ from_date }}</td>
+                                                                        <td>{{ till_date }}</td>
+                                                                        <td>{{ duration_days }}</td>
                                                                     </tr>
                                                                     {#                                                                <tr>#}
                                                                     {#                                                                    <td colspan="3">#}
@@ -486,16 +497,16 @@
                                     <table class="table mb-0">
                                         <tbody>
                                         <tr>
-                                            <td>Grand Total :</td>
-                                            <td>$ 1,857</td>
+                                            <td>Sub Total :</td>
+                                            <td>{{ rent_amount }}</td>
                                         </tr>
                                         <tr>
                                             <td>Service Charges (10%) :</td>
-                                            <td>$ 25</td>
+                                            <td>{{ service_charges }}</td>
                                         </tr>
                                         <tr>
                                             <th>Total :</th>
-                                            <th>$ 1744.22</th>
+                                            <th>{{ rent_amount|add:service_charges }}</th>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -506,8 +517,8 @@
                         </div>
                         <!-- end card -->
                         <div class="text-sm-right">
-                            <a href="" class="btn text-white" style="background-color: #FF7F23">
-                                <i class="mdi mdi-truck-fast mr-1"></i> Proceed to Payment </a>
+                            <button class="btn text-white" style="background-color: #FF7F23" id="proceed-to-payment">
+                                <i class="mdi mdi-truck-fast mr-1"></i> Proceed to Payment </button>
                         </div>
                     </div>
 
@@ -519,13 +530,5 @@
         </div>
     </div>
 
-
-    </div> <!-- container-fluid -->
-    </div>
-    <!-- End Page-content -->
-    </div>
-
-    </div>
-    <!-- end main content-->
 {% endblock content %}
 

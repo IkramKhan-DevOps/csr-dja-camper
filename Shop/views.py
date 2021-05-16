@@ -5,14 +5,20 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import connection
 from django.db.models import Avg
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
+from django.utils import timezone
+from django.utils.dateparse import parse_date
+from django.views.decorators.csrf import csrf_exempt
 
+from Horsedch import settings
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
 from Landlord.models import Language
 from Shop.forms import ProductForm
 from Shop.models import Category, Product, Order
+import stripe
 
 
 @login_required()
@@ -161,8 +167,54 @@ def rate_rental_experience(request):
     return render(request, template_name="shop/reviews/rate-rental-experience.html")
 
 
+# def book_product(request, p_id):
+
+
 def checkout(request):
-    return render(request, template_name="shop/take_on_rent/checkout.html")
+    social_account = ""
+    member = ""
+    product = ""
+    from_date = ""
+    till_date = timezone.now()
+    duration_days = timezone.now()
+    rent_amount = 0.0
+    service_charges = 0.0
+    try:
+        social_account = has_social_account(request.user)
+    except ObjectDoesNotExist:
+        member = get_member(request.user)
+
+    if request.method == "POST" and "book-now" in request.POST:
+        try:
+            product = Product.objects.get(id=request.POST.get("product_id"))
+            from_date = parse_date(request.POST.get("rent_from_date"))
+            till_date = parse_date(request.POST.get("rent_till_date"))
+            duration_days = till_date - from_date
+            if product.rental_type == "Per Day":
+                rent_amount = product.price * duration_days.days
+            elif product.rental_type == "Per Month":
+                rent_amount = (product.price/30) * duration_days.days
+            elif product.rental_type == "Per Year":
+                rent_amount = (product.price/365) * duration_days.days
+
+            service_charges = rent_amount*0.10
+
+            print(duration_days.days)
+        except:
+            print("something happened in checkout")
+
+    context = {
+        'social_account': social_account,
+        'member': member,
+        'product': product,
+        'from_date': from_date,
+        'till_date': till_date,
+        'duration_days': duration_days,
+        'rent_amount': rent_amount,
+        'service_charges': service_charges,
+    }
+
+    return render(request, template_name="shop/take_on_rent/checkout.html", context=context)
 
 
 def single_product_details(request, slug):
@@ -175,7 +227,9 @@ def single_product_details(request, slug):
     try:
         social_account = has_social_account(request.user)
     except ObjectDoesNotExist:
+        print("Social Account does not exists")
         member = get_member(request.user)
+
     try:
         product = Product.objects.get(product_slug=slug)
         product_reviews = Order.objects.filter(product=product).aggregate(Avg('stars_by_renter'))
@@ -183,7 +237,7 @@ def single_product_details(request, slug):
         language = Language.objects.get(landlord=product.landlord)
     except ObjectDoesNotExist:
         print("Product does not exists")
-        #return to 404.
+        # return to 404.
 
     context = {
         'product': product,
@@ -198,3 +252,59 @@ def single_product_details(request, slug):
 
 def profile_reviews(request):
     return render(request, template_name="shop/reviews/reviews.html")
+
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
+
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer] - if you have an existing Stripe Customer ID
+            # [payment_intent_data] - capture the payment later
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
+                line_items=[
+                    {
+                        'name': 'T-shirt',
+                        'quantity': 1,
+                        'currency': 'usd',
+                        'amount': '2000',
+                    }
+                ]
+            )
+
+            # payment_intent = stripe.PaymentIntent.create(
+            #     # success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+            #     # cancel_url=domain_url + 'cancelled/',
+            #     payment_method_types=['card'],
+            #     amount=1000,
+            #     currency='usd',
+            #     application_fee_amount=123,
+            #     transfer_data={
+            #         'destination': '{{CONNECTED_STRIPE_ACCOUNT_ID}}',
+            #     }
+            # )
+            # print(payment_intent)
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
