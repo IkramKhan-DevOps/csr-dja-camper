@@ -49,8 +49,6 @@ class ProductMetaData(models.Model):
 
 
 class Order(models.Model):
-    book_from = models.DateField()
-    book_till = models.DateField()
     total_amount = models.FloatField()
     landlord_amount = models.FloatField()
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -64,3 +62,21 @@ class Order(models.Model):
     comment_by_renter = models.CharField(max_length=500, null=True, blank=True)
     comment_by_landlord = models.CharField(max_length=500, null=True, blank=True)
 
+
+class OrderCheckOutDetails(models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=50)
+    street_address = models.TextField(max_length=300)
+    house_number = models.CharField(max_length=50)
+    zip_code = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    date_of_birth = models.DateField()
+    language = models.CharField(max_length=50)
+    book_from = models.DateField()
+    book_till = models.DateField()
+    pick_up = models.BooleanField(default=False)
+    delivery = models.BooleanField(default=True)
+    card_number = models.CharField(max_length=50)

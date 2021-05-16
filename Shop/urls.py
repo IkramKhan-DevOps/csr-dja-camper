@@ -11,5 +11,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name="Checkout"),
     path('<slug:slug>/details/', views.single_product_details, name="single_product_details"),
     path('user/profile/reviews/', views.profile_reviews, name="Profile Reviews"),
-
+    path('checkout/', views.checkout, name="checkout"),
+    path('config/', views.stripe_config),
+    path('create-checkout-session/', views.create_checkout_session),
 ]
