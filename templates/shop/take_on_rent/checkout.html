@@ -517,8 +517,9 @@
                         </div>
                         <!-- end card -->
                         <div class="text-sm-right">
-                            <button class="btn text-white" style="background-color: #FF7F23" id="proceed-to-payment">
-                                <i class="mdi mdi-truck-fast mr-1"></i> Proceed to Payment </button>
+                            <button class="btn text-white" style="background-color: #FF7F23" id="purchase-btn">
+                                <i class="mdi mdi-truck-fast mr-1"></i> Proceed to Payment
+                            </button>
                         </div>
                     </div>
 
@@ -532,3 +533,54 @@
 
 {% endblock content %}
 
+{% block extra_js_block %}
+    <script>var generated_csrf_token = '{{ csrf_token }}';</script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script>
+        $(() => {
+            var handler = StripeCheckout.configure({
+                key: '{{ key }}',
+                locale: 'auto',
+                token: function (token) {
+                    $('.notification-success-wrapper').css('display', 'none');
+                    $('.notification-danger-wrapper').css('display', 'none');
+                    $.ajax({
+                        url: '/shop/charge/',
+                        method: 'POST',
+                        data: JSON.stringify({
+                            token: token.id,
+                            amount: "{{ rent_amount|add:service_charges }}" ,
+                            description: "{{ product.product_title }}",
+                            product_id: "{{ product.id }}",
+                            service_charges: "{{ service_charges }}",
+                        }),
+                        headers: {'X-CSRFToken': generated_csrf_token},
+                    })
+                        .done((res) => {
+                            const message = 'Thanks for purchasing!'
+                            $('div > .notification.is-success').html(message);
+                            $('.notification-success-wrapper').css('display', 'block');
+                        })
+                        .fail((err) => {
+                            const message = 'There was a problem processing your payment. Please use a different payment method or contact your payment method provider.<br><br>Please contact us if you continue to have problems.'
+                            $('div > .notification.is-danger').html(message);
+                            $('.notification-danger-wrapper').css('display', 'block');
+                        });
+                }
+            });
+            document.getElementById('purchase-btn').addEventListener('click', function (e) {
+                // Open Checkout with further options:
+                handler.open({
+                    name: "Rent a product",
+                    description: "{{ member.email_address }}",
+                    amount: "{{ rent_amount|add:service_charges }}" * 100
+                });
+                e.preventDefault();
+            });
+            // Close Checkout on page navigation:
+            window.addEventListener('popstate', function () {
+                handler.close();
+            });
+        });
+    </script>
+{% endblock extra_js_block %}

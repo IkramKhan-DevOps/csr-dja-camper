@@ -8,18 +8,24 @@ from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
+from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.views import View
 from post_office import mail
 
+from Horsedch import settings
 from Horsedch.bll import create_member
 from Horsedch.models import Member, Landlord, Renter
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 from Shop.models import Order
+
+import urllib
+import requests
 
 
 def sign_up_with_email(request):
@@ -176,7 +182,6 @@ def update_member_role(request, role):
 
 
 def edit_profile(request):
-
     bank_account = ""
     member = ""
     try:
@@ -359,7 +364,6 @@ def my_account(request):
     for order in orders_amount:
         total_revenue += order.landlord_amount
 
-
     context = {
         "member": member,
         "social_account": social_account,
@@ -398,3 +402,53 @@ def switch_to_renter(request):
         print("Error in switch_to_renter")
 
     return redirect("My Account")
+
+
+class StripeAuthorizeView(View):
+
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return HttpResponseRedirect(reverse('Login'))
+        url = 'https://connect.stripe.com/oauth/authorize'
+        params = {
+            'response_type': 'code',
+            'scope': 'read_write',
+            'client_id': settings.STRIPE_CONNECT_CLIENT_ID,
+            'redirect_uri': f'http://localhost:8000/oauth/callback'
+        }
+        url = f'{url}?{urllib.parse.urlencode(params)}'
+        return redirect(url)
+
+
+class StripeAuthorizeCallbackView(View):
+    login_required = True
+    template_name = "authentication/login"
+
+    def get(self, request):
+        code = request.GET.get('code')
+        if code:
+            data = {
+                'client_secret': settings.STRIPE_SECRET_KEY,
+                'grant_type': 'authorization_code',
+                'client_id': settings.STRIPE_CONNECT_CLIENT_ID,
+                'code': code
+            }
+            url = 'https://connect.stripe.com/oauth/token'
+            resp = requests.post(url, params=data)
+            print(resp.json())
+            stripe_user_id = resp.json()['stripe_user_id']
+            stripe_access_token = resp.json()['access_token']
+            member = 13
+            # if self.request.user.is_authenticated:
+            #     member = Member.objects.get(user=self.request.user)
+            # else:
+            #     print("User is not authenticated")
+            landlord = Landlord.objects.get(member_id=member)
+            bank_info = LandlordBankAccount.objects.create(
+                stripe_user_id=stripe_user_id,
+                stripe_access_token=stripe_access_token,
+                landlord=landlord
+            )
+        url = reverse('Edit Profile')
+        response = redirect(url)
+        return response

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from Shop import views
+from Shop.views import CourseChargeView
 
 urlpatterns = [
     path('add/product/', views.add_product, name="Add Product"),
@@ -14,4 +15,5 @@ urlpatterns = [
     path('checkout/', views.checkout, name="checkout"),
     path('config/', views.stripe_config),
     path('create-checkout-session/', views.create_checkout_session),
+    path('charge/', CourseChargeView.as_view(), name='charge'),
 ]
