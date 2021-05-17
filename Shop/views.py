@@ -1,3 +1,4 @@
+import json
 import urllib
 
 from django.contrib import messages
@@ -10,12 +11,13 @@ from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 from django.utils import timezone
 from django.utils.dateparse import parse_date
+from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 
 from Horsedch import settings
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
-from Landlord.models import Language
+from Landlord.models import Language, LandlordBankAccount
 from Shop.forms import ProductForm
 from Shop.models import Category, Product, Order
 import stripe
@@ -212,6 +214,7 @@ def checkout(request):
         'duration_days': duration_days,
         'rent_amount': rent_amount,
         'service_charges': service_charges,
+        'key': settings.STRIPE_PUBLISHABLE_KEY
     }
 
     return render(request, template_name="shop/take_on_rent/checkout.html", context=context)
@@ -308,3 +311,55 @@ def create_checkout_session(request):
             return JsonResponse({'sessionId': checkout_session['id']})
         except Exception as e:
             return JsonResponse({'error': str(e)})
+
+
+class CourseChargeView(View):
+
+    def post(self, request, *args, **kwargs):
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        json_data = json.loads(request.body)
+        product = Product.objects.filter(id=json_data['product_id']).first()
+        # fee_percentage = .01 * int(product.fee)
+        bank_info = LandlordBankAccount.objects.get(landlord=product.landlord)
+        try:
+            customer = get_or_create_customer(
+                self.request.user.email,
+                json_data['token'],
+            )
+            total_amount = float(json_data['amount'])
+            service_charges = float(json_data['service_charges'])
+            total_amount = total_amount - service_charges
+            print("this is total amount: ",total_amount)
+            charge = stripe.Charge.create(
+                amount=int(json_data['amount'])*100,
+                currency='usd',
+                customer=customer.id,
+                description=json_data['description'],
+                application_fee_amount=int(service_charges)*100,
+                transfer_data={
+                    # 'amount': int(total_amount)*100,
+                    'destination': bank_info.stripe_user_id,
+                }
+            )
+            if charge:
+                print("Charges successfully")
+                return JsonResponse({'status': 'success'}, status=202)
+
+        except stripe.error.StripeError as e:
+            print(e)
+            return JsonResponse({'status': 'error'}, status=500)
+
+# helpers
+
+def get_or_create_customer(email, token):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    connected_customers = stripe.Customer.list()
+    for customer in connected_customers:
+        if customer.email == email:
+            print(f'{email} found')
+            return customer
+    print(f'{email} created')
+    return stripe.Customer.create(
+        email=email,
+        source=token,
+    )

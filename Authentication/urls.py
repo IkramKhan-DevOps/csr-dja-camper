@@ -2,6 +2,7 @@ from django.contrib.auth.views import LogoutView
 from django.urls import path
 
 from Authentication import views
+from Authentication.views import StripeAuthorizeView, StripeAuthorizeCallbackView
 
 urlpatterns = [
     # path('accounts/login/', views.login, name="Login"),
@@ -14,4 +15,6 @@ urlpatterns = [
     path('select/role/<str:role>/', views.update_member_role, name="update_member_role"),
     path('switch-to-landlord/', views.switch_to_landlord, name="switch_to_landlord"),
     path('switch-to-renter/', views.switch_to_renter, name="switch_to_renter"),
+    path('authorize/', StripeAuthorizeView.as_view(), name='authorize'),
+    path('oauth/callback/', StripeAuthorizeCallbackView.as_view(), name='authorize_callback'),
 ]

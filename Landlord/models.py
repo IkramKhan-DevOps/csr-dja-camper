@@ -44,6 +44,10 @@ class LandlordBankAccount(models.Model):
     country = models.CharField(max_length=50, null=True, blank=True)
     IBAN = models.CharField(max_length=50, null=True, blank=True)
     BIC = models.CharField(max_length=50, null=True, blank=True)
+
+    stripe_user_id = models.CharField(max_length=255, blank=True)
+    stripe_access_token = models.CharField(max_length=255, blank=True)
+
     landlord = models.OneToOneField(Landlord, on_delete=models.CASCADE)
 
     def __str__(self):
