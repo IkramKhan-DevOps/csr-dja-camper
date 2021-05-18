@@ -4,6 +4,7 @@ import urllib
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.paginator import Paginator, EmptyPage
 from django.db import connection
 from django.db.models import Avg
 from django.http import JsonResponse
@@ -68,12 +69,20 @@ def all_products(request):
         social_account = has_social_account(request.user)
     except ObjectDoesNotExist:
         member = get_member(request.user)
+
+
     try:
         query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id"
         products = Product.objects.raw(query)
     except:
         print("Error in loading products")
 
+    page = request.GET.get('page', 1)
+    paginator = Paginator(products, 10)
+    try:
+        products = paginator.page(page)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
     # with connection.cursor() as cursor:
     #     cursor.execute(query)
     #     products = cursor.fetchall()
