@@ -23,23 +23,24 @@
                         {% endif %}
 
                         <div class="button-items mt-4">
-                            <a href="#" class="btn" style="background-color: #FF7F23; color: white" id="rent">Rent A
+                            <a href="{% url 'All Products' %}" class="btn" style="background-color: #FF7F23; color: white" id="rent">Rent A
                                 Product</a>
-                            <a href="#" class="btn btn-light">List Your Product</a>
+                            <a href="{% url 'My Account' %}" class="btn btn-light">List Your Product</a>
                         </div>
                     </div>
                     <div class="col-lg-8 col-sm-6 mt-4">
-                        <form class="mt-4 mt-sm-0  form-inline">
+                        <form class="mt-4 mt-sm-0  form-inline" method="post" action="{% url 'All Products' %}">
+                            {% csrf_token %}
                             <div class="search-box mr-2">
                                 <div class="position-relative">
-                                    <input type="text" class="form-control border-0" placeholder="Search...">
+                                    <input type="text" class="form-control border-0" minlength="3" name="product_title_search" placeholder="Search..." required>
                                     <i class="bx bx-search-alt search-icon"></i>
                                 </div>
                             </div>
                             <ul class="nav nav-pills product-view-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#" style="background-color: #FF7F23"><i
-                                            class="bx bx-search-alt"></i></a>
+                                    <button class="nav-link active" name="search-product" type="submit" style="background-color: #FF7F23"><i
+                                            class="bx bx-search-alt"></i></button>
                                 </li>
                             </ul>
 
@@ -105,85 +106,40 @@
             <!-- end row -->
 
             <div class="row mt-4">
+                 {% for data in recent_products %}
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
+                                <div class="card shadow shadow-md" style="width: 18rem;">
+                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
+                                        <p class="card-text">
+                                            <span class="font-weight-bold">{{ data.rental_type }}</span>
+                                            <span class="float-right">${{ data.price }}</span>
+                                        </p>
+{#                                        <p class="card-text">#}
+{#                                            <span class="float-left font-weight-bold">Ratings</span>#}
+{#                                            <span class="float-right">#}
+{#                                                {% if data.stars %}#}
+{#                                                    {{ data.stars }}#}
+{#                                                    <i class="bx bxs-star text-warning"></i>#}
+{#                                                {% else %}#}
+{#                                                    Not#}
+{#                                                    rated#}
+{#                                                {% endif %}#}
+{#                                            </span>#}
+{#                                        </p>#}
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="{% url "single_product_details" data.product_slug %}" class="btn btn-warning">Rent
+                                            Product</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
-                            </div>
-
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
-                            </div>
-
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <!-- end row -->
             <div class="row mt-4 justify-content-center">
-                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Show All Products</a>
+                <a class="btn btn-lg btn-default" href="{% url 'All Products' %}" style="background-color: #FF7F23; color: white">Show All Products</a>
             </div>
 
         </div>
@@ -204,85 +160,92 @@
             </div>
             <!-- end row -->
             <div class="row mt-4">
+                {% for data in recent_products %}
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
+                                <div class="card shadow shadow-md" style="width: 18rem;">
+                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
+                                        <p class="card-text">
+                                            <span class="font-weight-bold">{{ data.rental_type }}</span>
+                                            <span class="float-right">${{ data.price }}</span>
+                                        </p>
+{#                                        <p class="card-text">#}
+{#                                            <span class="float-left font-weight-bold">Ratings</span>#}
+{#                                            <span class="float-right">#}
+{#                                                {% if data.stars %}#}
+{#                                                    {{ data.stars }}#}
+{#                                                    <i class="bx bxs-star text-warning"></i>#}
+{#                                                {% else %}#}
+{#                                                    Not#}
+{#                                                    rated#}
+{#                                                {% endif %}#}
+{#                                            </span>#}
+{#                                        </p>#}
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <a href="{% url "single_product_details" data.product_slug %}" class="btn btn-warning">Rent
+                                            Product</a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
-                            </div>
-
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <div class="card-img-top">
-                                <img src="{% static 'images/product/horse.png' %}" alt="">
-                            </div>
-
-                        </div>
-                        <div class="card-footer mt-4 text-center">
-                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1
-                            </a></h5>
-
-                            <p class="text-muted">
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star text-warning"></i>
-                                <i class="bx bx-star"></i>
-                            </p>
-                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>
-                                <b>$225</b>
-                            </h5>
-
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+{#                <div class="col-lg-4 col-sm-6 mb-4">#}
+{#                    <div class="card h-100">#}
+{#                        <div class="card-body">#}
+{#                            <div class="card-img-top">#}
+{#                                <img src="{% static 'images/product/horse.png' %}" alt="">#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                        <div class="card-footer mt-4 text-center">#}
+{#                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1#}
+{#                            </a></h5>#}
+{##}
+{#                            <p class="text-muted">#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star"></i>#}
+{#                            </p>#}
+{#                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>#}
+{#                                <b>$225</b>#}
+{#                            </h5>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="col-lg-4 col-sm-6 mb-4">#}
+{#                    <div class="card h-100">#}
+{#                        <div class="card-body">#}
+{#                            <div class="card-img-top">#}
+{#                                <img src="{% static 'images/product/horse.png' %}" alt="">#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+{#                        <div class="card-footer mt-4 text-center">#}
+{#                            <h5 class="mb-3 text-truncate"><a href="#" class="text-dark">Item 1#}
+{#                            </a></h5>#}
+{##}
+{#                            <p class="text-muted">#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star text-warning"></i>#}
+{#                                <i class="bx bx-star"></i>#}
+{#                            </p>#}
+{#                            <h5 class="my-0"><span class="text-muted mr-2">Per Year</span>#}
+{#                                <b>$225</b>#}
+{#                            </h5>#}
+{##}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
             </div>
             <!-- end row -->
             <div class="row mt-4 justify-content-center">
-                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Show All Products</a>
+                <a class="btn btn-lg btn-default" href="{% url 'All Products' %}" style="background-color: #FF7F23; color: white">Show All Products</a>
             </div>
         </div>
         <!-- end container -->
@@ -383,7 +346,7 @@
                 </div>
             </div>
             <div class="row mt-4 justify-content-center">
-                <a class="btn btn-lg btn-default" style="background-color: #FF7F23; color: white">Find an Answer</a>
+                <a class="btn btn-lg btn-default" href="{% url 'FAQs' %}" style="background-color: #FF7F23; color: white">Find an Answer</a>
             </div>
             <!-- end row -->
         </div>

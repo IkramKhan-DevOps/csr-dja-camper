@@ -49,10 +49,10 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav ml-auto" id="topnav-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Login' %}">Rent</a>
+                        <a class="nav-link" href="{% url 'All Products' %}">Rent</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'Login' %}">Rent Out</a>
+                        <a class="nav-link" href="{% url 'My Account' %}">Rent Out</a>
                     </li>
 
                     {% if user.is_authenticated is False %}

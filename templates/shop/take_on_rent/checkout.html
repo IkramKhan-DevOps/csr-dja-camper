@@ -299,45 +299,45 @@
                                                         <h5 class="mt-5 mb-3 font-size-15">For card Payment</h5>
                                                         <div class="p-4 border">
                                                             <form>
-                                                                <div class="form-group mb-0">
-                                                                    <label for="cardnumberInput">Card Number</label>
-                                                                    <input type="text" class="form-control"
-                                                                           id="cardnumberInput"
-                                                                           placeholder="0000 0000 0000 0000">
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-lg-6">
-                                                                        <div class="form-group mt-4 mb-0">
-                                                                            <label for="cardnameInput">Name on
-                                                                                card</label>
-                                                                            <input type="text" class="form-control"
-                                                                                   id="cardnameInput"
-                                                                                   placeholder="Name on Card">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-group mt-4 mb-0">
-                                                                            <label for="expirydateInput">Expiry
-                                                                                date</label>
-                                                                            <input type="text" class="form-control"
-                                                                                   id="expirydateInput"
-                                                                                   placeholder="MM/YY">
-                                                                            <input type="text" class="form-control"
-                                                                                   id="expirydateInput"
-                                                                                   placeholder="MM/YY">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-3">
-                                                                        <div class="form-group mt-4 mb-0">
-                                                                            <label for="cvvcodeInput">CVV Code</label>
-                                                                            <input type="text" class="form-control"
-                                                                                   id="cvvcodeInput"
-                                                                                   placeholder="Enter CVV Code">
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                </div>
+{#                                                                <div class="form-group mb-0">#}
+{#                                                                    <label for="cardnumberInput">Card Number</label>#}
+{#                                                                    <input type="text" class="form-control"#}
+{#                                                                           id="cardnumberInput"#}
+{#                                                                           placeholder="0000 0000 0000 0000">#}
+{#                                                                </div>#}
+{#                                                                <div class="row">#}
+{#                                                                    <div class="col-lg-6">#}
+{#                                                                        <div class="form-group mt-4 mb-0">#}
+{#                                                                            <label for="cardnameInput">Name on#}
+{#                                                                                card</label>#}
+{#                                                                            <input type="text" class="form-control"#}
+{#                                                                                   id="cardnameInput"#}
+{#                                                                                   placeholder="Name on Card">#}
+{#                                                                        </div>#}
+{#                                                                    </div>#}
+{#                                                                    <div class="col-lg-3">#}
+{#                                                                        <div class="form-group mt-4 mb-0">#}
+{#                                                                            <label for="expirydateInput">Expiry#}
+{#                                                                                date</label>#}
+{#                                                                            <input type="text" class="form-control"#}
+{#                                                                                   id="expirydateInput"#}
+{#                                                                                   placeholder="MM/YY">#}
+{#                                                                            <input type="text" class="form-control"#}
+{#                                                                                   id="expirydateInput"#}
+{#                                                                                   placeholder="MM/YY">#}
+{#                                                                        </div>#}
+{#                                                                    </div>#}
+{#                                                                    <div class="col-lg-3">#}
+{#                                                                        <div class="form-group mt-4 mb-0">#}
+{#                                                                            <label for="cvvcodeInput">CVV Code</label>#}
+{#                                                                            <input type="text" class="form-control"#}
+{#                                                                                   id="cvvcodeInput"#}
+{#                                                                                   placeholder="Enter CVV Code">#}
+{#                                                                        </div>#}
+{#                                                                    </div>#}
+{##}
+{##}
+{#                                                                </div>#}
                                                                 <div class="mt-3">
                                                                     <p>With this booking, the renter confirms to treat
                                                                         the item given to him/her for use with care and
@@ -557,7 +557,7 @@
                         headers: {'X-CSRFToken': generated_csrf_token},
                     })
                         .done((res) => {
-                            const message = 'Thanks for purchasing!'
+                             const message = 'Thanks for purchasing!'
                             $('div > .notification.is-success').html(message);
                             $('.notification-success-wrapper').css('display', 'block');
                         })
@@ -571,7 +571,7 @@
             document.getElementById('purchase-btn').addEventListener('click', function (e) {
                 // Open Checkout with further options:
                 handler.open({
-                    name: "Rent a product",
+                    name: "Rent {{ product.product_title }}",
                     description: "{{ member.email_address }}",
                     amount: "{{ rent_amount|add:service_charges }}" * 100
                 });

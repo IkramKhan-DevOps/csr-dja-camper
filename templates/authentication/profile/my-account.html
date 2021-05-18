@@ -15,7 +15,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Contacts</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Account</a></li>
                                     <li class="breadcrumb-item active">Profile</li>
                                 </ol>
                             </div>
@@ -60,6 +60,7 @@
                                         {#                                        <p class="text-muted mb-0 text-truncate">Items Renter</p>#}
                                     </div>
 
+                                {% if member.role == "Landlord" %}
                                     <div class="col-sm-8">
                                         <div class="pt-4">
 
@@ -75,6 +76,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -137,7 +139,7 @@
                     </div>
 
                     <div class="col-xl-8">
-
+                            {% if member.role == "Landlord" %}
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card mini-stats-wid">
@@ -194,13 +196,8 @@
                                 </div>
                             </div>
                         </div>
-                        {#                                <div class="card">#}
-                        {#                                    <div class="card-body">#}
-                        {#                                        <h4 class="card-title mb-4">Revenue</h4>#}
-                        {#                                        <div id="revenue-chart" class="apex-charts"></div>#}
-                        {#                                    </div>#}
-                        {#                                </div>#}
-
+                    {% endif %}
+                     {% if member.role == "Landlord" %}
                        {% if orders.count != 0  %}
                             <div class="card">
                             <div class="card-body">
@@ -237,6 +234,44 @@
                         </div>
                         {% endif %}
                     </div>
+                         {% else %}
+                         {% if renter_orders.count != 0  %}
+                            <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Items on Rent</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-nowrap table-hover mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">End Date</th>
+                                            <th scope="col">Total Rent</th>
+                                            <th scope="col">Owner Name</th>
+                                            <th scope="col">Owner Contact</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for order in renter_orders %}
+                                        <tr>
+                                            <td>{{ order.product.product_title }}</td>
+                                            <td>{{ order.book_from }}</td>
+                                            <td>{{ order.book_till }}</td>
+                                            <td>{{ order.total_amount }}</td>
+                                            <td>{{ order.landlord.member.first_name }}</td>
+                                            <td>{{ order.landlord.member.phone_number }}</td>
+                                        </tr>
+                                        {% endfor %}
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                {% endif %}
                 </div>
                 <!-- end row -->
 

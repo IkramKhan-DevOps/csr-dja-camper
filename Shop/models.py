@@ -36,7 +36,7 @@ class Product(models.Model):
         return str(self.product_slug)
 
 
-#Deferred
+# Deferred
 # class ProductCategory(models.Model):
 #     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 #     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -79,4 +79,10 @@ class OrderCheckOutDetails(models.Model):
     book_till = models.DateField()
     pick_up = models.BooleanField(default=False)
     delivery = models.BooleanField(default=True)
-    card_number = models.CharField(max_length=50)
+
+    order = models.OneToOneField(Order, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.email_address
+
+

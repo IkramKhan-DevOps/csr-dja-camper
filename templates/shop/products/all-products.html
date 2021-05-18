@@ -28,210 +28,273 @@
 
 
                 <div class="row">
+
                     <div class="col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-4">Filter</h4>
+                        <form>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Filter</h4> <button class="btn btn-success float-right">Filter</button>
 
-                                <div>
-                                    <h5 class="font-size-14 mb-3"></h5>
-                                   <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="newest_objects" name="newest_objects">
-                                        <label class="custom-control-label font-size-14 font-weight-bolder" for="newest_objects">Newest Objects</label>
-                                    </div>
-
-                                     <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="popular_objects" name="popular_objects">
-                                        <label class="custom-control-label font-size-14 font-weight-bolder" for="popular_objects">Popular Objects</label>
-                                    </div>
-
-                                </div>
-
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3">All Categories</h5>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" name="horses" id="horses">
-                                        <label class="custom-control-label" for="horses">Horses</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="horse_blankets">
-                                        <label class="custom-control-label" for="horse_blankets">Horse blankets</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="gaiter_bandages" name="gaiter_bandages" checked>
-                                        <label class="custom-control-label" for="gaiter_bandages">Gaiters & bandages</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="fly_protection" name="fly_protection">
-                                        <label class="custom-control-label" for="fly_protection">Fly protection</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="bridles_accessories" name="bridles_accessories">
-                                        <label class="custom-control-label" for="bridles_accessories">Bridles and accessories</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="snaffles" name="snaffles">
-                                        <label class="custom-control-label" for="snaffles">Snaffles / bits</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="saddle" name="saddle">
-                                        <label class="custom-control-label" for="saddle">Saddle</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="saddle_pads" name="saddle_pads">
-                                        <label class="custom-control-label" for="saddle_pads">Saddle pads</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="saddle_accessories" name="saddle_accessories">
-                                        <label class="custom-control-label" for="saddle_accessories">Saddle accessories</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="lighting_articles" name="lighting_articles">
-                                        <label class="custom-control-label" for="lighting_articles">Lighting articles</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="lungeing_and_groundwork" name="lungeing_and_groundwork">
-                                        <label class="custom-control-label" for="lungeing_and_groundwork">Lungeing and groundwork</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="transport" name="transport">
-                                        <label class="custom-control-label" for="transport">Transport</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="scissors" name="scissors">
-                                        <label class="custom-control-label" for="scissors">Scissors</label>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3">Reiter</h5>
                                     <div>
-                                         <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Ladies equestrian items</label>
-                                    </div>
+                                        <h5 class="font-size-14 mb-3"></h5>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="newest_objects"
+                                                   name="order_type">
+                                            <label class="custom-control-label font-size-14 font-weight-bolder"
+                                                   for="newest_objects">Newest Objects</label>
+                                        </div>
 
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Men's equestrian items</label>
-                                    </div>
-
-                                         <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Children's equestrian items</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Helmets & cylinders</label>
-                                    </div>
-                                         <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Safety vests</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-2">
-                                        <input type="checkbox" class="custom-control-input" id="productdiscountCheck6">
-                                        <label class="custom-control-label" for="productdiscountCheck6">Riding boots & riding shoes</label>
-                                    </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="popular_objects"
+                                                   name="order_type">
+                                            <label class="custom-control-label font-size-14 font-weight-bolder"
+                                                   for="popular_objects">Popular Objects</label>
+                                        </div>
 
                                     </div>
-                                </div>
 
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3"></h5>
-                                    <div>
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="western" name="western" value="western">
-                                        <label class="custom-control-label font-weight-bolder" for="western">Western</label>
+                                    <div class="mt-4 pt-3">
+                                        <h5 class="font-size-14 mb-3">All Categories</h5>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" name="categories"
+                                                   id="horses">
+                                            <label class="custom-control-label" for="horses">Horses</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="horse_blankets" name="categories">
+                                            <label class="custom-control-label" for="horse_blankets">Horse
+                                                blankets</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="gaiter_bandages"
+                                                   name="categories" checked>
+                                            <label class="custom-control-label" for="gaiter_bandages">Gaiters &
+                                                bandages</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="fly_protection"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="fly_protection">Fly
+                                                protection</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="bridles_accessories"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="bridles_accessories">Bridles and
+                                                accessories</label>
+                                        </div>
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="snaffles"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="snaffles">Snaffles / bits</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="saddle"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="saddle">Saddle</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="saddle_pads"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="saddle_pads">Saddle pads</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="saddle_accessories"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="saddle_accessories">Saddle
+                                                accessories</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="lighting_articles"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="lighting_articles">Lighting
+                                                articles</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input"
+                                                   id="lungeing_and_groundwork"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="lungeing_and_groundwork">Lungeing
+                                                and
+                                                groundwork</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="transport"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="transport">Transport</label>
+                                        </div>
+
+                                        <div class="custom-control custom-checkbox mt-2">
+                                            <input type="radio" class="custom-control-input" id="scissors"
+                                                   name="categories">
+                                            <label class="custom-control-label" for="scissors">Scissors</label>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="mt-4 pt-3">
+                                        <h5 class="font-size-14 mb-3">Reiter</h5>
+                                        <div>
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Ladies
+                                                    equestrian items</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Men's
+                                                    equestrian items</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Children's
+                                                    equestrian items</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Helmets
+                                                    &
+                                                    cylinders</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Safety
+                                                    vests</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-2">
+                                                <input type="radio" class="custom-control-input" name="categories"
+                                                       id="productdiscountCheck6">
+                                                <label class="custom-control-label" for="productdiscountCheck6">Riding
+                                                    boots
+                                                    & riding shoes</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3">
+                                        <h5 class="font-size-14 mb-3"></h5>
+                                        <div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="western"
+                                                       name="categories" value="western">
+                                                <label class="custom-control-label font-weight-bolder"
+                                                       for="western">Western</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="voltige"
+                                                       name="categories" value="voltige">
+                                                <label class="custom-control-label font-weight-bolder"
+                                                       for="voltige">Voltige</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="ponies"
+                                                       name="categories" value="ponies">
+                                                <label class="custom-control-label font-weight-bolder"
+                                                       for="ponies">Ponies</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="icelanders"
+                                                       name="categories" value="icelanders">
+                                                <label class="custom-control-label font-weight-bolder" for="icelanders">Icelanders</label>
+                                            </div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="foal"
+                                                       name="categories"
+                                                       value="foal">
+                                                <label class="custom-control-label font-weight-bolder"
+                                                       for="foal">foal</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input"
+                                                       id="therapy_and_regeneration" name="categories"
+                                                       value="therapy_and_regeneration">
+                                                <label class="custom-control-label font-weight-bolder"
+                                                       for="therapy_and_regeneration">Therapy & regeneration</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-3">
+                                        <h5 class="font-size-14 mb-3 font-weight-bolder">Criteria</h5>
+                                        <div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input"
+                                                       id="immidiate_booking"
+                                                       name="criteria" value="Immediate booking">
+                                                <label class="custom-control-label" for="immidiate_booking">Immediate
+                                                    booking</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input"
+                                                       id="shipping_available"
+                                                       name="criteria" value="Shipping is possible">
+                                                <label class="custom-control-label" for="shipping_available">Shipping is
+                                                    possible</label>
+                                            </div>
+
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input"
+                                                       id="long_term_rental"
+                                                       name="criteria" value="Long term rental possible">
+                                                <label class="custom-control-label" for="long_term_rental">Long term
+                                                    rental
+                                                    possible</label>
+                                            </div>
+
+
+                                        </div>
                                     </div>
 
-                                    <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="voltige" name="voltige" value="voltige">
-                                        <label class="custom-control-label font-weight-bolder" for="voltige">Voltige</label>
-                                    </div>
+                                    <div class="mt-4 pt-3">
+                                        <h5 class="font-size-14 mb-3 font-weight-bolder">Brand</h5>
+                                        <div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="bremer"
+                                                       name="brands" value="Bremer">
+                                                <label class="custom-control-label" for="bremer">Bremer</label>
+                                            </div>
 
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="ponies" name="ponies" value="ponies">
-                                        <label class="custom-control-label font-weight-bolder" for="ponies">Ponies</label>
-                                    </div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="franklin"
+                                                       name="brands" value="Franklin">
+                                                <label class="custom-control-label" for="franklin">Franklin</label>
+                                            </div>
 
-                                    <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="icelanders" name="icelanders" value="icelanders">
-                                        <label class="custom-control-label font-weight-bolder" for="icelanders">Icelanders</label>
-                                    </div>
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="foal" name="foal" value="foal">
-                                        <label class="custom-control-label font-weight-bolder" for="foal">foal</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="therapy_and_regeneration" name="therapy_and_regeneration" value="therapy_and_regeneration">
-                                        <label class="custom-control-label font-weight-bolder" for="therapy_and_regeneration">Therapy & regeneration</label>
-                                    </div>
-
-                                    </div>
-                                </div>
+                                            <div class="custom-control custom-checkbox mt-3">
+                                                <input type="radio" class="custom-control-input" id="heiniger"
+                                                       name="brands" value="Heiniger">
+                                                <label class="custom-control-label" for="heiniger">Heiniger</label>
+                                            </div>
 
 
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3 font-weight-bolder">Criteria</h5>
-                                    <div>
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="immidiate_booking" name="immidiate_booking" value="Immediate booking">
-                                        <label class="custom-control-label" for="immidiate_booking">Immediate booking</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="shipping_available" name="shipping_available" value="Shipping is possible">
-                                        <label class="custom-control-label" for="shipping_available">Shipping is possible</label>
-                                    </div>
-
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="long_term_rental" name="long_term_rental" value="Long term rental possible">
-                                        <label class="custom-control-label" for="long_term_rental">Long term rental possible</label>
-                                    </div>
-
-
-                                    </div>
-                                </div>
-
-                                <div class="mt-4 pt-3">
-                                    <h5 class="font-size-14 mb-3 font-weight-bolder">Brand</h5>
-                                    <div>
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="bremer" name="bremer" value="Bremer">
-                                        <label class="custom-control-label" for="bremer">Bremer</label>
-                                    </div>
-
-                                    <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="franklin" name="franklin" value="Franklin">
-                                        <label class="custom-control-label" for="franklin">Franklin</label>
-                                    </div>
-
-                                         <div class="custom-control custom-checkbox mt-3">
-                                        <input type="checkbox" class="custom-control-input" id="heiniger" name="heiniger" value="Heiniger">
-                                        <label class="custom-control-label" for="heiniger">Heiniger</label>
-                                    </div>
-
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        </form>
                     </div>
-                    <div class="col-lg-9">
 
+                    <div class="col-lg-9">
                         <div class="row mb-3">
                             <div class="col-xl-4 col-sm-6">
                                 <div class="mt-2">
@@ -239,16 +302,20 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 col-sm-6">
-                                <form class="mt-4 mt-sm-0 float-sm-right form-inline">
+                                <form class="mt-4 mt-sm-0 float-sm-right form-inline" method="post">
+                                    {% csrf_token %}
                                     <div class="search-box mr-2">
                                         <div class="position-relative">
-                                            <input type="text" class="form-control border-0" placeholder="Search...">
+                                            <input type="text" class="form-control border-0" minlength="3"
+                                                   name="product_title_search" placeholder="Search..." required>
                                             <i class="bx bx-search-alt search-icon "></i>
                                         </div>
                                     </div>
                                     <ul class="nav nav-pills product-view-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" href="#" style="background-color: #FF7F23"><i class="bx bx-search-alt"></i></a>
+                                            <button class="nav-link active" name="search-product" type="submit"
+                                                    style="background-color: #FF7F23"><i
+                                                    class="bx bx-search-alt"></i></button>
                                         </li>
                                     </ul>
 
@@ -257,19 +324,19 @@
                             </div>
                         </div>
                         <div class="row">
-                        {% for data in products %}
-                            <div class="col-lg-4 col-sm-6 mb-4">
-                                <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
-                                    <div class="card-body">
-                                        <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
-                                        <p class="card-text">
-                                            <span class="font-weight-bold">{{ data.rental_type }}</span>
-                                            <span class="float-right">{{ data.price }}</span>
-                                        </p>
-                                        <p class="card-text">
-                                            <span class="float-left font-weight-bold">Ratings</span>
-                                            <span class="float-right">
+                            {% for data in products %}
+                                <div class="col-lg-4 col-sm-6 mb-4">
+                                    <div class="card" style="width: 18rem;">
+                                        <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                        <div class="card-body">
+                                            <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
+                                            <p class="card-text">
+                                                <span class="font-weight-bold">{{ data.rental_type }}</span>
+                                                <span class="float-right">{{ data.price }}</span>
+                                            </p>
+                                            <p class="card-text">
+                                                <span class="float-left font-weight-bold">Ratings</span>
+                                                <span class="float-right">
                                                 {% if data.stars %}
                                                     {{ data.stars }}
                                                     <i class="bx bxs-star text-warning"></i>
@@ -278,15 +345,16 @@
                                                     rated
                                                 {% endif %}
                                             </span>
-                                        </p>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <a href="{% url "single_product_details" data.product_slug %}" class="btn btn-warning">Rent
-                                            Product</a>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer text-center">
+                                            <a href="{% url "single_product_details" data.product_slug %}"
+                                               class="btn btn-warning">Rent
+                                                Product</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                    {% endfor %}
+                            {% endfor %}
                         </div>
                         <!-- end row -->
 
