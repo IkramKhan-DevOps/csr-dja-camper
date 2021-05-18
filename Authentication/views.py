@@ -360,6 +360,11 @@ def my_account(request):
     completed_order = Order.objects.filter(landlord__member__user=request.user, is_completed=True).count()
     orders = Order.objects.filter(landlord__member__user=request.user, is_completed=False)
     orders_amount = Order.objects.filter(landlord__member__user=request.user, is_completed=True)
+    renter_orders = ""
+    try:
+        renter_orders = Order.objects.get(renter__member__user=request.user, is_completed=False)
+    except:
+        print("renter_orders does not exist")
     total_revenue = 0.0
     for order in orders_amount:
         total_revenue += order.landlord_amount
@@ -371,6 +376,7 @@ def my_account(request):
         "pending_order": orders.count(),
         "orders": orders,
         "total_revenue": total_revenue,
+        "renter_orders": renter_orders,
     }
     return render(request, template_name="authentication/profile/my-account.html", context=context)
 

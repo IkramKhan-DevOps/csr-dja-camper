@@ -18,7 +18,8 @@ from Horsedch import settings
 from Horsedch.bll import has_social_account, get_member
 from Horsedch.models import Member, Landlord
 from Landlord.models import Language, LandlordBankAccount
-from Shop.forms import ProductForm
+from Shop.forms import ProductForm, OrderCheckOutDetailsForm
+from Shop.helpers import get_or_create_customer
 from Shop.models import Category, Product, Order
 import stripe
 
@@ -77,6 +78,16 @@ def all_products(request):
     #     cursor.execute(query)
     #     products = cursor.fetchall()
     # print(products)
+
+    if request.method == "POST" and "search-product" in request.POST:
+        try:
+            query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.product_title LIKE '%"+request.POST.get("product_title_search")+"' OR Shop_product.product_title LIKE '"+request.POST.get("product_title_search")+"%' GROUP BY Shop_product.id"
+            print(query)
+            products = Product.objects.raw(query)
+        except:
+            print("No product found")
+            messages.info(request, "Unfortunately, we don't have your required item.")
+
     context = {
         'social_account': social_account,
         'member': member,
@@ -313,7 +324,7 @@ def create_checkout_session(request):
             return JsonResponse({'error': str(e)})
 
 
-class CourseChargeView(View):
+class RentChargeView(View):
 
     def post(self, request, *args, **kwargs):
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -343,23 +354,23 @@ class CourseChargeView(View):
             )
             if charge:
                 print("Charges successfully")
+                form = OrderCheckOutDetailsForm(data=request.POST, files=request.FILES)
+                if form.is_valid():
+                    form.save()
+                else:
+                    print(form.errors)
                 return JsonResponse({'status': 'success'}, status=202)
 
         except stripe.error.StripeError as e:
             print(e)
             return JsonResponse({'status': 'error'}, status=500)
 
-# helpers
 
-def get_or_create_customer(email, token):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    connected_customers = stripe.Customer.list()
-    for customer in connected_customers:
-        if customer.email == email:
-            print(f'{email} found')
-            return customer
-    print(f'{email} created')
-    return stripe.Customer.create(
-        email=email,
-        source=token,
-    )
+
+# def search_product(request):
+#     if request.method == "POST":
+#         products = Product.objects.filter(product_title__search=request.POST.get("product_title_search"))
+#
+#     context = {
+#         'products': products
+#     }

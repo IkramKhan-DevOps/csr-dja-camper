@@ -3,6 +3,7 @@ from django.shortcuts import render
 from Horsedch.models import HowItWork, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team, ObjectOwnerFAQs, Partner, \
     CustomerCare
+from Shop.models import Product, Order
 
 
 def index_view(request):
@@ -16,6 +17,9 @@ def index_view(request):
     how_it_works = HowItWork.objects.filter(is_active=True)
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
+    recent_products = Product.objects.all()[:4][::-1]
+    query = "SELECT Shop_order.id, Shop_order.product_id,count('Shop_order.product_id') AS total_order From Shop_order GROUP BY Shop_order.product_id LIMIT 4"
+    popular_products = Order.objects.raw(query)
     context = {
         'how_it_works': how_it_works,
         'company_contact': company_contact,
@@ -27,6 +31,8 @@ def index_view(request):
         'how_to_rent_faqs': how_to_rent_faqs,
         'how_to_list_faqs': how_to_list_faqs,
         'social_links': social_links,
+        'recent_products': recent_products,
+        'popular_products': popular_products,
 
     }
     return render(request, template_name="site_pages/index.html", context=context)
