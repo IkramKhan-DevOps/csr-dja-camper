@@ -91,7 +91,6 @@ def all_products(request):
     if request.method == "POST" and "search-product" in request.POST:
         try:
             query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.product_title LIKE '%"+request.POST.get("product_title_search")+"' OR Shop_product.product_title LIKE '"+request.POST.get("product_title_search")+"%' GROUP BY Shop_product.id"
-            print(query)
             products = Product.objects.raw(query)
         except:
             print("No product found")

@@ -18,9 +18,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+if not DEBUG:
+    ALLOWED_HOSTS = ['horsedch.pythonanywhere.com']
+else:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -127,13 +130,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if not DEBUG:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = '/home/horsedch/csr-dja-camper/static'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = '/home/horsedch/csr-dja-camper/media'
+else:
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FB_APP_ID = '180914477204180'
 FB_APP_SECRET = '81791c807c513a62297d5854ac1b7ef2'
