@@ -70,7 +70,6 @@ def all_products(request):
     except ObjectDoesNotExist:
         member = get_member(request.user)
 
-
     try:
         query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id"
         products = Product.objects.raw(query)
@@ -90,7 +89,9 @@ def all_products(request):
 
     if request.method == "POST" and "search-product" in request.POST:
         try:
-            query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.product_title LIKE '%"+request.POST.get("product_title_search")+"' OR Shop_product.product_title LIKE '"+request.POST.get("product_title_search")+"%' GROUP BY Shop_product.id"
+            query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.product_title LIKE '%" + request.POST.get(
+                "product_title_search") + "' OR Shop_product.product_title LIKE '" + request.POST.get(
+                "product_title_search") + "%' GROUP BY Shop_product.id"
             products = Product.objects.raw(query)
         except:
             print("No product found")
@@ -104,6 +105,7 @@ def all_products(request):
     return render(request, template_name="shop/products/all-products.html", context=context)
 
 
+@login_required()
 def my_products(request):
     social_account = ""
     member = ""
@@ -130,6 +132,7 @@ def my_products(request):
     return render(request, template_name="shop/products/my-products.html", context=context)
 
 
+@login_required()
 def edit_product(request, p_id):
     social_account = ""
     member = ""
@@ -164,14 +167,14 @@ def edit_product(request, p_id):
         product.image_4 = request.POST["image_4"]
 
         if request.POST["category_1"] != "Select":
-            category_1 = request.POST["category_1"]
+            product.category_1 = request.POST["category_1"]
             messages.success(request, "Action Completed Successfully!")
         else:
             messages.error(request, "Please select product category.")
         if request.POST["category_2"] != "Select":
-            category_2 = request.POST["category_2"]
+            product.category_2 = request.POST["category_2"]
         if request.POST["category_3"] != "Select":
-            category_3 = request.POST["category_3"]
+            product.category_3 = request.POST["category_3"]
         product.save()
 
     context = {
@@ -184,6 +187,7 @@ def edit_product(request, p_id):
     return render(request, template_name="shop/products/edit-product.html", context=context)
 
 
+@login_required()
 def rate_rental_experience(request):
     return render(request, template_name="shop/reviews/rate-rental-experience.html")
 
@@ -214,11 +218,11 @@ def checkout(request):
             if product.rental_type == "Per Day":
                 rent_amount = product.price * duration_days.days
             elif product.rental_type == "Per Month":
-                rent_amount = (product.price/30) * duration_days.days
+                rent_amount = (product.price / 30) * duration_days.days
             elif product.rental_type == "Per Year":
-                rent_amount = (product.price/365) * duration_days.days
+                rent_amount = (product.price / 365) * duration_days.days
 
-            service_charges = rent_amount*0.10
+            service_charges = rent_amount * 0.10
 
             print(duration_days.days)
         except:
@@ -239,6 +243,7 @@ def checkout(request):
     return render(request, template_name="shop/take_on_rent/checkout.html", context=context)
 
 
+@login_required()
 def single_product_details(request, slug):
     social_account = ""
     member = ""
@@ -277,6 +282,7 @@ def profile_reviews(request):
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 @csrf_exempt
 def stripe_config(request):
@@ -348,13 +354,13 @@ class RentChargeView(View):
             total_amount = float(json_data['amount'])
             service_charges = float(json_data['service_charges'])
             total_amount = total_amount - service_charges
-            print("this is total amount: ",total_amount)
+            print("this is total amount: ", total_amount)
             charge = stripe.Charge.create(
-                amount=int(json_data['amount'])*100,
+                amount=int(json_data['amount']) * 100,
                 currency='usd',
                 customer=customer.id,
                 description=json_data['description'],
-                application_fee_amount=int(service_charges)*100,
+                application_fee_amount=int(service_charges) * 100,
                 transfer_data={
                     # 'amount': int(total_amount)*100,
                     'destination': bank_info.stripe_user_id,
@@ -372,8 +378,6 @@ class RentChargeView(View):
         except stripe.error.StripeError as e:
             print(e)
             return JsonResponse({'status': 'error'}, status=500)
-
-
 
 # def search_product(request):
 #     if request.method == "POST":
