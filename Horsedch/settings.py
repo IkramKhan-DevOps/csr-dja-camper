@@ -19,7 +19,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 if not DEBUG:
     ALLOWED_HOSTS = ['horsedch.pythonanywhere.com']
@@ -157,12 +157,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
+
 EMAIL_BACKEND = 'post_office.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'osmanamin689@gmail.com'
-EMAIL_HOST_PASSWORD = 'oznswlcwuqjlwgos'
+EMAIL_HOST_PASSWORD = 'pggcziywzyrwelzm'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

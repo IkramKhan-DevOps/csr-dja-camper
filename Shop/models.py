@@ -32,6 +32,9 @@ class Product(models.Model):
 
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, blank=True)
 
+    created_on = models.DateField(auto_now_add=True, null=True, blank=True)
+    updated_on = models.DateField(auto_now_add=True, null=True, blank=True)
+
     def __str__(self):
         return str(self.product_slug)
 
