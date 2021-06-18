@@ -60,15 +60,16 @@ def add_product(request):
     return render(request, template_name="shop/products/add-product.html", context=context)
 
 
-@login_required()
+#@login_required()
 def all_products(request):
     social_account = ""
     member = ""
     products = ""
-    try:
-        social_account = has_social_account(request.user)
-    except ObjectDoesNotExist:
-        member = get_member(request.user)
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            member = get_member(request.user)
 
     try:
         query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id"

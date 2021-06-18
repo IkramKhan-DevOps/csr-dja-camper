@@ -59,7 +59,7 @@
                     </button>
                 </div>
 
-
+    {% if user.is_authenticated %}
                 <div class="dropdown d-inline-block">
                     <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -98,7 +98,7 @@
                                 class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
                     </div>
                 </div>
-
+{% endif %}
             </div>
         </div>
     </header>
@@ -107,6 +107,7 @@
         <div class="container-fluid text-center">
             <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
 
+            {% if user.is_authenticated %}
                 <div class="collapse navbar-collapse" id="topnav-menu-content">
                     <ul class="navbar-nav">
 
@@ -163,6 +164,7 @@
                         </li>
                     </ul>
                 </div>
+            {% endif %}
             </nav>
         </div>
     </div>

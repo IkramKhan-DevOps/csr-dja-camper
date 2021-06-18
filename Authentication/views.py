@@ -75,7 +75,7 @@ def sign_up_with_email(request):
 
                     messages.success(request, "Thank you for signing up. An email has been sent to " + request.POST.get(
                         "email_address") + ". Please confirm it to continue.")
-                except IntegrityError:
+                except:
                     messages.error(request, "Error: User with the email already exist!")
 
     return render(request, template_name="authentication/signup_using_email.html")

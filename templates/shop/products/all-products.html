@@ -1,5 +1,6 @@
 {% extends 'shop_base.html' %}
 {% load static %}
+{% block title %}Shop {% endblock title %}
 {% block content %}
     <div class="main-content">
 
@@ -67,7 +68,7 @@
                                         </div>
                                         <div class="custom-control custom-checkbox mt-2">
                                             <input type="radio" class="custom-control-input" id="gaiter_bandages"
-                                                   name="categories" checked>
+                                                   name="categories">
                                             <label class="custom-control-label" for="gaiter_bandages">Gaiters &
                                                 bandages</label>
                                         </div>
@@ -143,43 +144,43 @@
                                         <div>
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Ladies
+                                                       id="ladies">
+                                                <label class="custom-control-label" for="ladies">Ladies
                                                     equestrian items</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Men's
+                                                       id="men">
+                                                <label class="custom-control-label" for="men">Men's
                                                     equestrian items</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Children's
+                                                       id="children">
+                                                <label class="custom-control-label" for="children">Children's
                                                     equestrian items</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Helmets
+                                                       id="helmets">
+                                                <label class="custom-control-label" for="helmets">Helmets
                                                     &
                                                     cylinders</label>
                                             </div>
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Safety
+                                                       id="safety-vests">
+                                                <label class="custom-control-label" for="safety-vests">Safety
                                                     vests</label>
                                             </div>
 
                                             <div class="custom-control custom-checkbox mt-2">
                                                 <input type="radio" class="custom-control-input" name="categories"
-                                                       id="productdiscountCheck6">
-                                                <label class="custom-control-label" for="productdiscountCheck6">Riding
+                                                       id="shoes">
+                                                <label class="custom-control-label" for="shoes">Riding
                                                     boots
                                                     & riding shoes</label>
                                             </div>
@@ -406,6 +407,14 @@
     <!-- End Page-content -->
     <!-- end main content-->
 {% endblock content %}
+
+{% block custom_js %}
+    <script>
+        $(document).ready(function () {
+            $("input:radio").attr("checked", true)
+        })
+    </script>
+{% endblock custom_js %}
 
 
 
