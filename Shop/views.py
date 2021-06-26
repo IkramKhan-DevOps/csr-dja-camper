@@ -60,7 +60,7 @@ def add_product(request):
     return render(request, template_name="shop/products/add-product.html", context=context)
 
 
-#@login_required()
+# @login_required()
 def all_products(request):
     social_account = ""
     member = ""
@@ -106,6 +106,114 @@ def all_products(request):
         'products': products,
     }
     return render(request, template_name="shop/products/all-products.html", context=context)
+
+
+def products_time_filter(request, filter_type):
+    social_account = ""
+    member = ""
+    products = ""
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            member = get_member(request.user)
+
+    try:
+        if filter_type == "newest-products":
+            query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id ORDER BY Shop_product.id DESC"
+            products = Product.objects.raw(query)
+
+        elif filter_type == "popular-products":
+            query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id GROUP BY Shop_product.id ORDER BY Shop_product.id DESC"
+            products = Product.objects.raw(query)
+
+    except:
+        print("Error in loading products")
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(products, 10)
+    try:
+        products = paginator.page(page)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    context = {
+        'social_account': social_account,
+        'member': member,
+        'products': products,
+    }
+    return render(request, template_name="shop/products/all-products.html", context=context)
+
+
+def products_category_filter(request, cate_name):
+    social_account = ""
+    member = ""
+    products = ""
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            member = get_member(request.user)
+
+    try:
+        category = Category.objects.get(category_name=cate_name)
+
+        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.category_1_id="+str(category.pk)+" OR Shop_product.category_2_id="+str(category.pk)+" OR Shop_product.category_3_id="+str(category.pk)+" GROUP BY Shop_product.id "
+        products = Product.objects.raw(query)
+        if not products:
+            messages.info(request, "Unfortunately, we don't have your required item.")
+    except ObjectDoesNotExist:
+        print("Error in loading products")
+        messages.info(request, "Unfortunately, we don't have your required item.")
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(products, 10)
+    try:
+        products = paginator.page(page)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    context = {
+        'social_account': social_account,
+        'member': member,
+        'products': products,
+    }
+    return render(request, template_name="shop/products/all-products.html", context=context)
+
+
+def products_brand_filter(request, brand):
+    social_account = ""
+    member = ""
+    products = ""
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            member = get_member(request.user)
+
+    try:
+        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.brand='"+brand+"' GROUP BY Shop_product.id "
+        products = Product.objects.raw(query)
+        if not products:
+            messages.info(request, "Unfortunately, we don't have your required item.")
+    except ObjectDoesNotExist:
+        print("Error in loading products")
+        messages.info(request, "Unfortunately, we don't have your required item.")
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(products, 10)
+    try:
+        products = paginator.page(page)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    context = {
+        'social_account': social_account,
+        'member': member,
+        'products': products,
+    }
+    return render(request, template_name="shop/products/all-products.html", context=context)
+
 
 
 @login_required()

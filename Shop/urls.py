@@ -16,4 +16,9 @@ urlpatterns = [
     path('config/', views.stripe_config),
     path('create-checkout-session/', views.create_checkout_session),
     path('charge/', RentChargeView.as_view(), name='charge'),
+
+
+    path('filter/<str:filter_type>/', views.products_time_filter, name="products_time_filter"),
+    path('cate/<str:cate_name>/', views.products_category_filter, name="product_cate_filter"),
+    path('brand/<str:brand>/', views.products_brand_filter, name="product_brand_filter"),
 ]
