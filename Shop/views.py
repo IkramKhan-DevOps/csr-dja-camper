@@ -196,6 +196,7 @@ def rate_rental_experience(request):
 # def book_product(request, p_id):
 
 
+@login_required()
 def checkout(request):
     social_account = ""
     member = ""
@@ -205,10 +206,11 @@ def checkout(request):
     duration_days = timezone.now()
     rent_amount = 0.0
     service_charges = 0.0
-    try:
-        social_account = has_social_account(request.user)
-    except ObjectDoesNotExist:
-        member = get_member(request.user)
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            member = get_member(request.user)
 
     if request.method == "POST" and "book-now" in request.POST:
         try:
@@ -244,7 +246,6 @@ def checkout(request):
     return render(request, template_name="shop/take_on_rent/checkout.html", context=context)
 
 
-@login_required()
 def single_product_details(request, slug):
     social_account = ""
     member = ""
@@ -252,11 +253,12 @@ def single_product_details(request, slug):
     product_reviews = ""
     total_reviews = ""
     language = ""
-    try:
-        social_account = has_social_account(request.user)
-    except ObjectDoesNotExist:
-        print("Social Account does not exists")
-        member = get_member(request.user)
+    if request.user.is_authenticated:
+        try:
+            social_account = has_social_account(request.user)
+        except ObjectDoesNotExist:
+            print("Social Account does not exists")
+            member = get_member(request.user)
 
     try:
         product = Product.objects.get(product_slug=slug)
