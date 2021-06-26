@@ -94,6 +94,8 @@ def all_products(request):
                 "product_title_search") + "' OR Shop_product.product_title LIKE '" + request.POST.get(
                 "product_title_search") + "%' GROUP BY Shop_product.id"
             products = Product.objects.raw(query)
+            if not products:
+                messages.info(request, "Unfortunately, we don't have your required item.")
         except:
             print("No product found")
             messages.info(request, "Unfortunately, we don't have your required item.")

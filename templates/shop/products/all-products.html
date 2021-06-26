@@ -34,7 +34,8 @@
                         <form>
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Filter</h4> <button class="btn btn-success float-right">Filter</button>
+                                    <h4 class="card-title mb-4">Filter</h4>
+                                    <button class="btn btn-success float-right">Filter</button>
 
                                     <div>
                                         <h5 class="font-size-14 mb-3"></h5>
@@ -62,7 +63,8 @@
                                             <label class="custom-control-label" for="horses">Horses</label>
                                         </div>
                                         <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="horse_blankets" name="categories">
+                                            <input type="radio" class="custom-control-input" id="horse_blankets"
+                                                   name="categories">
                                             <label class="custom-control-label" for="horse_blankets">Horse
                                                 blankets</label>
                                         </div>
@@ -319,11 +321,17 @@
                                                     class="bx bx-search-alt"></i></button>
                                         </li>
                                     </ul>
-
-
                                 </form>
                             </div>
                         </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    <a class="close" data-dismiss="alert">×</a>
+                                    {{ message|safe }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="row">
                             {% for data in products %}
                                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -359,44 +367,46 @@
                         </div>
                         <!-- end row -->
 
-                    {% if products.has_other_pages %}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="pagination pagination-rounded justify-content-center mt-4">
-                                    {% if products.has_previous %}
-                                    <li class="page-item">
-                                        <a href="?page={{ products.previous_page_number }}" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                    </li>
+                        {% if products.has_other_pages %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="pagination pagination-rounded justify-content-center mt-4">
+                                        {% if products.has_previous %}
+                                            <li class="page-item">
+                                                <a href="?page={{ products.previous_page_number }}" class="page-link"><i
+                                                        class="mdi mdi-chevron-left"></i></a>
+                                            </li>
                                         {% else %}
-                                        <li class="page-item disabled">
-                                        <a href="" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                    </li>
-                                    {% endif %}
-                                {% for i in products.paginator.page_range %}
-                                {% if products.number == i %}
-                                    <li class="page-item active">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% else %}
-                                    <li class="page-item">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% endif %}
-                                {% endfor %}
-                                {% if products.has_next %}
-                                    <li class="page-item">
-                                        <a href="?page={{ products.next_page_number }}" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                    </li>
-                                {% else %}
-                               <li class="page-item disabled">
-                                        <a href="" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                    </li>
-                                {% endif %}
-                                </ul>
+                                            <li class="page-item disabled">
+                                                <a href="" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                                            </li>
+                                        {% endif %}
+                                        {% for i in products.paginator.page_range %}
+                                            {% if products.number == i %}
+                                                <li class="page-item active">
+                                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if products.has_next %}
+                                            <li class="page-item">
+                                                <a href="?page={{ products.next_page_number }}" class="page-link"><i
+                                                        class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a href="" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                {% endif %}
+                            </div>
+                        {% endif %}
                 </div>
                 <!-- end row -->
             </div>
