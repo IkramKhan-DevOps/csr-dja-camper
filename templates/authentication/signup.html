@@ -1,12 +1,7 @@
-{% extends 'site_base.html' %}
-{% load  static %}
+{% load static %}
 {% load socialaccount %}
-{% block nav_bar %}
-{% endblock nav_bar %}
-{% block body_content %}
-    <div class="home-btn d-none d-sm-block">
-        <a href="/" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="account-pages my-5 pt-sm-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -21,6 +16,7 @@
                                     </div>
                                 </div>
                                 <div class="col-5 align-self-end">
+                                    <a class="close float-right" href="" data-dismiss="#signupModal">×</a>
                                     <img src="{% static 'images/profile-img.png' %}" alt="" class="img-fluid">
                                 </div>
                             </div>
@@ -39,7 +35,8 @@
                             <div class="p-2">
                                 {% if messages %}
                                     {% for message in messages %}
-                                        <div class="alert {% if message.tags == "error" %}alert-danger {% else %}alert-success{% endif %} text-center mb-4" role="alert">
+                                        <div class="alert {% if message.tags == "error" %}alert-danger {% else %}alert-success{% endif %} text-center mb-4"
+                                             role="alert">
                                             {{ message|safe }}
                                         </div>
                                     {% endfor %}
@@ -48,8 +45,8 @@
                                     {% csrf_token %}
                                     <div class="form-group">
                                         <label for="first_name">First Name</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name"
-                                           placeholder="First Name" required>
+                                        <input type="text" class="form-control" id="first_name" name="first_name"
+                                               placeholder="First Name" required>
 
                                     </div>
                                     <div class="form-group">
@@ -111,17 +108,19 @@
 
                         </div>
                     </div>
-                    <div class="mt-5 text-center">
-                        <p>Already have an account ? <a href="{% url 'Login' %}"
-                                                        class="font-weight-medium text-primary">
-                            Login</a></p>
-
-                    </div>
+{#                    <div class="mt-5 text-center">#}
+{#                        <p>Already have an account ? <a href="{% url 'Login' %}"#}
+{#                                                        class="font-weight-medium text-primary">#}
+{#                            Login</a></p>#}
+{##}
+{#                    </div>#}
                 </div>
             </div>
         </div>
 
     </div>
-{% endblock body_content %}
-{% block footer %}
-{% endblock footer %}
+</div>
+
+
+
+

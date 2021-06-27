@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Mailing App
     'post_office',
+    'newsletter',
 
     # Social Authenticator App
     "allauth",

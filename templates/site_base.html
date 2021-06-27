@@ -31,7 +31,10 @@
     </style>
 </head>
 <body data-spy="scroll" data-target="#topnav-menu" data-offset="60">
+ {% include 'authentication/login.html' %}
+ {% include 'authentication/signup.html' %}
 {% block nav_bar %}
+
     <nav class="navbar navbar-expand-lg navigation fixed-top sticky {% block extra_class_header %} bg-dark {% endblock extra_class_header %}">
         <div class="container">
             <a class="navbar-logo" href="/">
@@ -57,7 +60,8 @@
 
                     {% if user.is_authenticated is False %}
                         <li class="nav-item">
-                            <a href="{% url 'Sign Up' %}" class="nav-link">Register</a>
+{#                            <a href="{% url 'Sign Up' %}" class="nav-link">Register</a>#}
+                            <a href=""  data-toggle="modal" data-target="#signupModal" class="nav-link">Register</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -69,7 +73,8 @@
                 {% else %}
 
                     <div class="ml-lg-2">
-                        <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>
+{#                        <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>#}
+                        <a href="" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-success w-xs">Sign in</a>
                     </div>
 
                 {% endif %}
@@ -304,6 +309,17 @@
                 $('#message').html('<i class="fa fa-times-circle"></i>').css('color', 'red');
 
         });
+
+
+    var modal = document.getElementById('loginModal');
+    var signup_modal = document.getElementById('signupModal');
+
+{#// When the user clicks anywhere outside of the modal, close it#}
+{#window.onclick = function(event) {#}
+{#  if (event.target === modal || event.target === signup_modal) {#}
+{#    modal.style.display = "none";#}
+{#  }#}
+
     </script>
 {% endblock cutom_js %}
 </body>
