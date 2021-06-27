@@ -31,158 +31,166 @@
                 <div class="row">
 
                     <div class="col-lg-3">
-                        <form>
+                        <form method="post" enctype="multipart/form-data" action="">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Filter</h4> <button class="btn btn-success float-right">Filter</button>
+                                    <h4 class="card-title mb-4">Filter</h4>
+                                    <button class="btn btn-success float-right">Filter</button>
 
                                     <div>
                                         <h5 class="font-size-14 mb-3"></h5>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="newest_objects"
-                                                   name="order_type">
-                                            <label class="custom-control-label font-size-14 font-weight-bolder"
-                                                   for="newest_objects">Newest Objects</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold font-size-16">
+                                                All Products
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'products_time_filter' 'newest-products' %}"
+                                               class="text-decoration-none font-weight-bold font-size-16">
+                                                Newest Objects
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="popular_objects"
-                                                   name="order_type">
-                                            <label class="custom-control-label font-size-14 font-weight-bolder"
-                                                   for="popular_objects">Popular Objects</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'products_time_filter' 'popular-products' %}"
+                                               class="text-decoration-none font-weight-bold font-size-16">
+                                                Popular Objects
+                                            </a>
                                         </div>
 
                                     </div>
 
                                     <div class="mt-4 pt-3">
-                                        <h5 class="font-size-14 mb-3">All Categories</h5>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" name="categories"
-                                                   id="horses">
-                                            <label class="custom-control-label" for="horses">Horses</label>
+                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3">All Categories</h5>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'Horses' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Horses
+                                            </a>
                                         </div>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="horse_blankets" name="categories">
-                                            <label class="custom-control-label" for="horse_blankets">Horse
-                                                blankets</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'horse-blankets' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Horse blankets
+                                            </a>
                                         </div>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="gaiter_bandages"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="gaiter_bandages">Gaiters &
-                                                bandages</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'gaiter-and-bandages' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Gaiters & bandages
+                                            </a>
                                         </div>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="fly_protection"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="fly_protection">Fly
-                                                protection</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'fly-protection' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Fly protection
+                                            </a>
                                         </div>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="bridles_accessories"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="bridles_accessories">Bridles and
-                                                accessories</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'bridles-and-accessories' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Bridles and accessories
+                                            </a>
                                         </div>
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="snaffles"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="snaffles">Snaffles / bits</label>
-                                        </div>
-
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="saddle"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="saddle">Saddle</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'snaffles-bits' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Snaffles / bits
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="saddle_pads"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="saddle_pads">Saddle pads</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'saddle' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Saddle
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="saddle_accessories"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="saddle_accessories">Saddle
-                                                accessories</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'saddle-pads' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Saddle pads
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="lighting_articles"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="lighting_articles">Lighting
-                                                articles</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'saddle-accessories' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Saddle accessories
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input"
-                                                   id="lungeing_and_groundwork"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="lungeing_and_groundwork">Lungeing
-                                                and
-                                                groundwork</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'lighting-articles' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Lighting articles
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="transport"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="transport">Transport</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'lungeing-and-groundwork' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Lungeing and groundwork
+                                            </a>
                                         </div>
 
-                                        <div class="custom-control custom-checkbox mt-2">
-                                            <input type="radio" class="custom-control-input" id="scissors"
-                                                   name="categories">
-                                            <label class="custom-control-label" for="scissors">Scissors</label>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'transport' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Transport
+                                            </a>
                                         </div>
 
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'product_cate_filter' 'scissors' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+Scissors
+                                            </a>
+                                        </div>
 
                                     </div>
                                     <div class="mt-4 pt-3">
-                                        <h5 class="font-size-14 mb-3">Reiter</h5>
+                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3">Reiter</h5>
                                         <div>
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="ladies">
-                                                <label class="custom-control-label" for="ladies">Ladies
-                                                    equestrian items</label>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Ladies equestrian items
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Men's equestrian items
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="men">
-                                                <label class="custom-control-label" for="men">Men's
-                                                    equestrian items</label>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Children's equestrian items
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="children">
-                                                <label class="custom-control-label" for="children">Children's
-                                                    equestrian items</label>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Helmets & cylinders
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Safety vests
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="helmets">
-                                                <label class="custom-control-label" for="helmets">Helmets
-                                                    &
-                                                    cylinders</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="safety-vests">
-                                                <label class="custom-control-label" for="safety-vests">Safety
-                                                    vests</label>
-                                            </div>
-
-                                            <div class="custom-control custom-checkbox mt-2">
-                                                <input type="radio" class="custom-control-input" name="categories"
-                                                       id="shoes">
-                                                <label class="custom-control-label" for="shoes">Riding
-                                                    boots
-                                                    & riding shoes</label>
+                                            <div class="custom-control mt-2">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Riding boots & riding shoes
+                                                </a>
                                             </div>
 
                                         </div>
@@ -190,104 +198,95 @@
                                     <div class="mt-4 pt-3">
                                         <h5 class="font-size-14 mb-3"></h5>
                                         <div>
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="western"
-                                                       name="categories" value="western">
-                                                <label class="custom-control-label font-weight-bolder"
-                                                       for="western">Western</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Western
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="voltige"
-                                                       name="categories" value="voltige">
-                                                <label class="custom-control-label font-weight-bolder"
-                                                       for="voltige">Voltige</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Voltige
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Ponies
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Icelanders
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+foal
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="ponies"
-                                                       name="categories" value="ponies">
-                                                <label class="custom-control-label font-weight-bolder"
-                                                       for="ponies">Ponies</label>
-                                            </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="icelanders"
-                                                       name="categories" value="icelanders">
-                                                <label class="custom-control-label font-weight-bolder" for="icelanders">Icelanders</label>
-                                            </div>
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="foal"
-                                                       name="categories"
-                                                       value="foal">
-                                                <label class="custom-control-label font-weight-bolder"
-                                                       for="foal">foal</label>
-                                            </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input"
-                                                       id="therapy_and_regeneration" name="categories"
-                                                       value="therapy_and_regeneration">
-                                                <label class="custom-control-label font-weight-bolder"
-                                                       for="therapy_and_regeneration">Therapy & regeneration</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Therapy & regeneration
+                                                </a>
                                             </div>
 
                                         </div>
                                     </div>
                                     <div class="mt-4 pt-3">
-                                        <h5 class="font-size-14 mb-3 font-weight-bolder">Criteria</h5>
+                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">Criteria</h5>
                                         <div>
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input"
-                                                       id="immidiate_booking"
-                                                       name="criteria" value="Immediate booking">
-                                                <label class="custom-control-label" for="immidiate_booking">Immediate
-                                                    booking</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Immediate booking
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input"
-                                                       id="shipping_available"
-                                                       name="criteria" value="Shipping is possible">
-                                                <label class="custom-control-label" for="shipping_available">Shipping is
-                                                    possible</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Shipping is possible
+                                                </a>
                                             </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input"
-                                                       id="long_term_rental"
-                                                       name="criteria" value="Long term rental possible">
-                                                <label class="custom-control-label" for="long_term_rental">Long term
-                                                    rental
-                                                    possible</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'All Products' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Long term rental possible
+                                                </a>
                                             </div>
-
 
                                         </div>
                                     </div>
 
                                     <div class="mt-4 pt-3">
-                                        <h5 class="font-size-14 mb-3 font-weight-bolder">Brand</h5>
+                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">Brand</h5>
                                         <div>
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="bremer"
-                                                       name="brands" value="Bremer">
-                                                <label class="custom-control-label" for="bremer">Bremer</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'product_brand_filter' 'Bremer' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Bremer
+                                                </a>
+                                            </div>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'product_brand_filter' 'Franklin' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Franklin
+                                                </a>
                                             </div>
 
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="franklin"
-                                                       name="brands" value="Franklin">
-                                                <label class="custom-control-label" for="franklin">Franklin</label>
+                                            <div class="custom-control mt-3">
+                                                <a href="{% url 'product_brand_filter' 'Heiniger' %}"
+                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
+Heiniger
+                                                </a>
                                             </div>
-
-                                            <div class="custom-control custom-checkbox mt-3">
-                                                <input type="radio" class="custom-control-input" id="heiniger"
-                                                       name="brands" value="Heiniger">
-                                                <label class="custom-control-label" for="heiniger">Heiniger</label>
-                                            </div>
-
-
                                         </div>
                                     </div>
                                 </div>
@@ -319,11 +318,17 @@
                                                     class="bx bx-search-alt"></i></button>
                                         </li>
                                     </ul>
-
-
                                 </form>
                             </div>
                         </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">
+                                    <a class="close" href="" data-dismiss="alert">×</a>
+                                    {{ message|safe }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         <div class="row">
                             {% for data in products %}
                                 <div class="col-lg-4 col-sm-6 mb-4">
@@ -359,44 +364,46 @@
                         </div>
                         <!-- end row -->
 
-                    {% if products.has_other_pages %}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <ul class="pagination pagination-rounded justify-content-center mt-4">
-                                    {% if products.has_previous %}
-                                    <li class="page-item">
-                                        <a href="?page={{ products.previous_page_number }}" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                    </li>
+                        {% if products.has_other_pages %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="pagination pagination-rounded justify-content-center mt-4">
+                                        {% if products.has_previous %}
+                                            <li class="page-item">
+                                                <a href="?page={{ products.previous_page_number }}" class="page-link"><i
+                                                        class="mdi mdi-chevron-left"></i></a>
+                                            </li>
                                         {% else %}
-                                        <li class="page-item disabled">
-                                        <a href="" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
-                                    </li>
-                                    {% endif %}
-                                {% for i in products.paginator.page_range %}
-                                {% if products.number == i %}
-                                    <li class="page-item active">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% else %}
-                                    <li class="page-item">
-                                        <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-                                    </li>
-                                {% endif %}
-                                {% endfor %}
-                                {% if products.has_next %}
-                                    <li class="page-item">
-                                        <a href="?page={{ products.next_page_number }}" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                    </li>
-                                {% else %}
-                               <li class="page-item disabled">
-                                        <a href="" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
-                                    </li>
-                                {% endif %}
-                                </ul>
+                                            <li class="page-item disabled">
+                                                <a href="" class="page-link"><i class="mdi mdi-chevron-left"></i></a>
+                                            </li>
+                                        {% endif %}
+                                        {% for i in products.paginator.page_range %}
+                                            {% if products.number == i %}
+                                                <li class="page-item active">
+                                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item">
+                                                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if products.has_next %}
+                                            <li class="page-item">
+                                                <a href="?page={{ products.next_page_number }}" class="page-link"><i
+                                                        class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        {% else %}
+                                            <li class="page-item disabled">
+                                                <a href="" class="page-link"><i class="mdi mdi-chevron-right"></i></a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                {% endif %}
+                            </div>
+                        {% endif %}
                 </div>
                 <!-- end row -->
             </div>

@@ -59,113 +59,150 @@
                     </button>
                 </div>
 
-    {% if user.is_authenticated %}
-                <div class="dropdown d-inline-block">
-                    <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user"
-                                {% if social_account != "" %}
-                             src="{{ social_account.extra_data.picture }}"
-                                {% else %}
-                             src="{{ member.profile_picture.url }}"
-                                {% endif %}
-                             alt="Header Avatar">
-                        <span class="d-none d-xl-inline-block ml-1">
+                {% if user.is_authenticated %}
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user"
+                                    {% if social_account != "" %}
+                                 src="{{ social_account.extra_data.picture }}"
+                                    {% else %}
+                                 src="{{ member.profile_picture.url }}"
+                                    {% endif %}
+                                 alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ml-1">
                              {% if social_account != "" %}
                                  {{ social_account.extra_data.name }}
                              {% else %}
                                  {{ member.first_name }} {{ member.last_name }}
                              {% endif %}</span>
-                        <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <!-- item-->
-                        <a class="dropdown-item" href="{% url 'My Account' %}"><i
-                                class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <!-- item-->
+                            <a class="dropdown-item" href="{% url 'My Account' %}"><i
+                                    class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
 
-                        {% if member.role == "Landlord" %}
-                        <a class="dropdown-item" href="{% url 'switch_to_renter' %}"><i
-                                class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Renter</a>
-                        {% else %}
-                        <a class="dropdown-item" href="{% url 'switch_to_landlord' %}"><i
-                                class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Landlord</a>
-                        {% endif %}
+                            {% if member.role == "Landlord" %}
+                                <a class="dropdown-item" href="{% url 'switch_to_renter' %}"><i
+                                        class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Renter</a>
+                            {% else %}
+                                <a class="dropdown-item" href="{% url 'switch_to_landlord' %}"><i
+                                        class="bx bx-user font-size-16 align-middle mr-1"></i> Switch to Landlord</a>
+                            {% endif %}
 
-                        <a class="dropdown-item d-block" href="{% url 'Edit Profile' %}"><i
-                                class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
+                            <a class="dropdown-item d-block" href="{% url 'Edit Profile' %}"><i
+                                    class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
 
-                        <a class="dropdown-item text-danger" href="{% url 'Logout' %}"><i
-                                class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                            <a class="dropdown-item text-danger" href="{% url 'Logout' %}"><i
+                                    class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                        </div>
                     </div>
-                </div>
-{% endif %}
+                {% endif %}
             </div>
         </div>
     </header>
 
     <div class="topnav" style="background-color: #8EA9DB">
         <div class="container-fluid text-center">
-            <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-
             {% if user.is_authenticated %}
-                <div class="collapse navbar-collapse" id="topnav-menu-content">
-                    <ul class="navbar-nav">
+                <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                    <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        <ul class="navbar-nav">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'My Account' %}" role="button"
-                               data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-home-circle mr-2"></i>My Account
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'My Account' %}" role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-home-circle mr-2"></i>My Account
+                                </a>
+                            </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link  text-white" href="{% url 'Edit Profile' %}" id="topnav-uielement"
-                               role="button"
-                               data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-edit mr-2"></i>Edit Profile
-                            </a>
-                        </li>
+                            <li class="nav-item ">
+                                <a class="nav-link  text-white" href="{% url 'Edit Profile' %}" id="topnav-uielement"
+                                   role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-edit mr-2"></i>Edit Profile
+                                </a>
+                            </li>
 
-                        <li class="nav-item ">
-                            <a class="nav-link text-white" href="" id="topnav-pages" role="button"
-                               data-toggle="" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-menu mr-2"></i>My Bookings
-                            </a>
-                        </li>
+                            <li class="nav-item ">
+                                <a class="nav-link text-white" href="" id="topnav-pages" role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-menu mr-2"></i>My Bookings
+                                </a>
+                            </li>
 
-                         {% if member.role == "Landlord" %}
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'My Products' %}" id="" role="button">
-                                <i class="bx bx-collection mr-2"></i>My Products
-                            </a>
+                            {% if member.role == "Landlord" %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{% url 'My Products' %}" id="" role="button">
+                                        <i class="bx bx-collection mr-2"></i>My Products
+                                    </a>
 
-                        </li>
+                                </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'Add Product' %}" id="" role="button">
-                                <i class="bx bx-plus-circle mr-2"></i>Add Product
-                            </a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{% url 'Add Product' %}" id="" role="button">
+                                        <i class="bx bx-plus-circle mr-2"></i>Add Product
+                                    </a>
 
-                        </li>
-                             {% else %}
-                             <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
-                                <i class="bx bx-collection mr-2"></i>Shop
-                            </a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{% url 'All Products' %}" id="" role="button">
+                                        <i class="bx bx-collection mr-2"></i>Shop
+                                    </a>
 
-                        </li>
-                        {% endif %}
+                                </li>
+                            {% endif %}
 
-                     <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'Logout' %}" id="" role="button"
-                               aria-expanded="false">
-                                <i class="bx bx-log-out-circle mr-2"></i>Logout
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Logout' %}" id="" role="button"
+                                   aria-expanded="false">
+                                    <i class="bx bx-log-out-circle mr-2"></i>Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </nav>
+            {% else %}
+                <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                    <div class="collapse navbar-collapse justify-content-center" id="topnav-menu-content">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'All Products' %}" role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-home-circle mr-2"></i>Rent
+                                </a>
+                            </li>
+
+                            <li class="nav-item ">
+                                <a class="nav-link  text-white" href="{% url 'My Account' %}" id="topnav-uielement"
+                                   role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-edit mr-2"></i>Rent Out
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Sign Up' %}" id="topnav-pages" role="button"
+                                   data-toggle="" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-user-plus mr-2"></i>Register
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{% url 'Login' %}" id="" role="button">
+                                    <i class="bx bx-user-circle mr-2"></i>Sign in
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
             {% endif %}
-            </nav>
+
         </div>
     </div>
 </div>
