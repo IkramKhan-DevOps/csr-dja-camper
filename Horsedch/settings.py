@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     # Mailing App
     'post_office',
     'newsletter',
-
+    'easy_thumbnails',
     # Social Authenticator App
     "allauth",
     "allauth.account",
@@ -86,6 +86,14 @@ TEMPLATES = [
     },
 ]
 
+
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    'easy_thumbnails.processors.scale_and_crop',
+    #'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+)
 WSGI_APPLICATION = 'Horsedch.wsgi.application'
 
 # Database
@@ -163,7 +171,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'osmanamin689@gmail.com'
-EMAIL_HOST_PASSWORD = 'pggcziywzyrwelzm'
+EMAIL_HOST_PASSWORD = 'njtoasotfiycujnk'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -184,3 +192,6 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51I4VXzBZftcMcbw17MKX2VPqdOLFIWVKNkp7AUFCsGCPx
 STRIPE_SECRET_KEY = 'sk_test_51I4VXzBZftcMcbw1r4Es8h1XlpU4r06RGvREPKztp86MUCPZJsq1IB8dE76jxa3yNe5SBaxzU8j7U3t0EChE1yjA00WpzQbrzD'
 STRIPE_WEBHOOK_SECRET = "whsec_NxQLEqptBcpR2fWDbVmCGZzY45wtzfp8"
 STRIPE_CONNECT_CLIENT_ID = "ca_JUYeYqcKau0UEr0D16PUhjGSvEBBJe4M"
+
+# Using easy-thumbnails
+NEWSLETTER_THUMBNAIL = 'easy-thumbnails'

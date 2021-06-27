@@ -31,8 +31,8 @@
     </style>
 </head>
 <body data-spy="scroll" data-target="#topnav-menu" data-offset="60">
- {% include 'authentication/login.html' %}
- {% include 'authentication/signup.html' %}
+{% include 'authentication/login.html' %}
+{% include 'authentication/signup.html' %}
 {% block nav_bar %}
 
     <nav class="navbar navbar-expand-lg navigation fixed-top sticky {% block extra_class_header %} bg-dark {% endblock extra_class_header %}">
@@ -60,8 +60,8 @@
 
                     {% if user.is_authenticated is False %}
                         <li class="nav-item">
-{#                            <a href="{% url 'Sign Up' %}" class="nav-link">Register</a>#}
-                            <a href=""  data-toggle="modal" data-target="#signupModal" class="nav-link">Register</a>
+                            {#                            <a href="{% url 'Sign Up' %}" class="nav-link">Register</a>#}
+                            <a href="" data-toggle="modal" data-target="#signupModal" class="nav-link">Register</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -73,8 +73,9 @@
                 {% else %}
 
                     <div class="ml-lg-2">
-{#                        <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>#}
-                        <a href="" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-success w-xs">Sign in</a>
+                        {#                        <a href="{% url 'Login' %}" class="btn btn-outline-success w-xs">Sign in</a>#}
+                        <a href="" data-toggle="modal" data-target="#loginModal" class="btn btn-outline-success w-xs">Sign
+                            in</a>
                     </div>
 
                 {% endif %}
@@ -162,13 +163,23 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
                         <ul class="list-unstyled footer-list-menu">
-                            <li><a class="btn btn-lg btn-default" style="background-color: #FF7F23">Subscribe to
-                                Newsletter</a></li>
+                            <form enctype="multipart/form-data" method="post" action="/newsletter/test/subscribe/">
+                                {% csrf_token %}
+
+                                <input type="email" name="email_field" class="form-control" placeholder="Email Address"
+                                                                                   required=""
+                                                                                   id="id_email_field">
+                                <br>
+                                <li><button class="btn btn-lg btn-default" type="submit" style="background-color: #FF7F23; color: white">Subscribe
+                                    to
+                                    Newsletter</button></li>
+                            </form>
                             <a href="{% url 'Conditions' %}" class="">Terms & Conditions</a> | <a
                                 href="{% url 'Imprint' %}">Imprint</a> | <a href="{% url 'Data Policy' %}">Privacy
                             Policy</a>
                         </ul>
                     </div>
+
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
@@ -311,14 +322,14 @@
         });
 
 
-    var modal = document.getElementById('loginModal');
-    var signup_modal = document.getElementById('signupModal');
+        var modal = document.getElementById('loginModal');
+        var signup_modal = document.getElementById('signupModal');
 
-{#// When the user clicks anywhere outside of the modal, close it#}
-{#window.onclick = function(event) {#}
-{#  if (event.target === modal || event.target === signup_modal) {#}
-{#    modal.style.display = "none";#}
-{#  }#}
+        {#// When the user clicks anywhere outside of the modal, close it#}
+        {#window.onclick = function(event) {#}
+        {#  if (event.target === modal || event.target === signup_modal) {#}
+        {#    modal.style.display = "none";#}
+        {#  }#}
 
     </script>
 {% endblock cutom_js %}
