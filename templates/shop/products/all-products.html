@@ -29,271 +29,268 @@
 
 
                 <div class="row">
-
                     <div class="col-lg-3">
-                        <form method="post" enctype="multipart/form-data" action="">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Filter</h4>
-                                    <button class="btn btn-success float-right">Filter</button>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Filter</h4>
+                                <div>
+                                    <h5 class="font-size-14 mb-3"></h5>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'All Products' %}"
+                                           class="text-decoration-none font-weight-bold font-size-16">
+                                            All Products
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'products_time_filter' 'newest-products' %}"
+                                           class="text-decoration-none font-weight-bold font-size-16">
+                                            Newest Objects
+                                        </a>
+                                    </div>
 
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'products_time_filter' 'popular-products' %}"
+                                           class="text-decoration-none font-weight-bold font-size-16">
+                                            Popular Objects
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-16 font-weight-bold text-primary mb-3">All Categories</h5>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'Horses' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Horses
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'horse-blankets' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Horse blankets
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'gaiter-and-bandages' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Gaiters & bandages
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'fly-protection' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Fly protection
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'bridles-and-accessories' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Bridles and accessories
+                                        </a>
+                                    </div>
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'snaffles-bits' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Snaffles / bits
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'saddle' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Saddle
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'saddle-pads' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Saddle pads
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'saddle-accessories' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Saddle accessories
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'lighting-articles' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Lighting articles
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'lungeing-and-groundwork' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Lungeing and groundwork
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'transport' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Transport
+                                        </a>
+                                    </div>
+
+                                    <div class="custom-control mt-2">
+                                        <a href="{% url 'product_cate_filter' 'scissors' %}"
+                                           class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                            Scissors
+                                        </a>
+                                    </div>
+
+                                </div>
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-16 font-weight-bold text-primary mb-3">Reiter</h5>
                                     <div>
-                                        <h5 class="font-size-14 mb-3"></h5>
                                         <div class="custom-control mt-2">
                                             <a href="{% url 'All Products' %}"
-                                               class="text-decoration-none font-weight-bold font-size-16">
-                                                All Products
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Ladies equestrian items
                                             </a>
                                         </div>
                                         <div class="custom-control mt-2">
-                                            <a href="{% url 'products_time_filter' 'newest-products' %}"
-                                               class="text-decoration-none font-weight-bold font-size-16">
-                                                Newest Objects
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Men's equestrian items
                                             </a>
                                         </div>
 
                                         <div class="custom-control mt-2">
-                                            <a href="{% url 'products_time_filter' 'popular-products' %}"
-                                               class="text-decoration-none font-weight-bold font-size-16">
-                                                Popular Objects
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Children's equestrian items
+                                            </a>
+                                        </div>
+
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Helmets & cylinders
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Safety vests
+                                            </a>
+                                        </div>
+
+                                        <div class="custom-control mt-2">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Riding boots & riding shoes
                                             </a>
                                         </div>
 
                                     </div>
-
-                                    <div class="mt-4 pt-3">
-                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3">All Categories</h5>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'Horses' %}"
+                                </div>
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-14 mb-3"></h5>
+                                    <div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
                                                class="text-decoration-none font-weight-bold text-dark font-size-14">
-Horses
-                                            </a>
-                                        </div>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'horse-blankets' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Horse blankets
-                                            </a>
-                                        </div>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'gaiter-and-bandages' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Gaiters & bandages
-                                            </a>
-                                        </div>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'fly-protection' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Fly protection
-                                            </a>
-                                        </div>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'bridles-and-accessories' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Bridles and accessories
-                                            </a>
-                                        </div>
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'snaffles-bits' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Snaffles / bits
+                                                Western
                                             </a>
                                         </div>
 
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'saddle' %}"
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
                                                class="text-decoration-none font-weight-bold text-dark font-size-14">
-Saddle
+                                                Voltige
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Ponies
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Icelanders
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                foal
                                             </a>
                                         </div>
 
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'saddle-pads' %}"
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
                                                class="text-decoration-none font-weight-bold text-dark font-size-14">
-Saddle pads
-                                            </a>
-                                        </div>
-
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'saddle-accessories' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Saddle accessories
-                                            </a>
-                                        </div>
-
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'lighting-articles' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Lighting articles
-                                            </a>
-                                        </div>
-
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'lungeing-and-groundwork' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Lungeing and groundwork
-                                            </a>
-                                        </div>
-
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'transport' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Transport
-                                            </a>
-                                        </div>
-
-                                        <div class="custom-control mt-2">
-                                            <a href="{% url 'product_cate_filter' 'scissors' %}"
-                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
-Scissors
+                                                Therapy & regeneration
                                             </a>
                                         </div>
 
                                     </div>
-                                    <div class="mt-4 pt-3">
-                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3">Reiter</h5>
-                                        <div>
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Ladies equestrian items
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Men's equestrian items
-                                                </a>
-                                            </div>
-
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Children's equestrian items
-                                                </a>
-                                            </div>
-
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Helmets & cylinders
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Safety vests
-                                                </a>
-                                            </div>
-
-                                            <div class="custom-control mt-2">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Riding boots & riding shoes
-                                                </a>
-                                            </div>
-
+                                </div>
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">
+                                        Criteria</h5>
+                                    <div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Immediate booking
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="mt-4 pt-3">
-                                        <h5 class="font-size-14 mb-3"></h5>
-                                        <div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Western
-                                                </a>
-                                            </div>
 
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Voltige
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Ponies
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Icelanders
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-foal
-                                                </a>
-                                            </div>
-
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Therapy & regeneration
-                                                </a>
-                                            </div>
-
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Shipping is possible
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="mt-4 pt-3">
-                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">Criteria</h5>
-                                        <div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Immediate booking
-                                                </a>
-                                            </div>
-
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Shipping is possible
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'All Products' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Long term rental possible
-                                                </a>
-                                            </div>
-
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'All Products' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Long term rental possible
+                                            </a>
                                         </div>
+
                                     </div>
+                                </div>
 
-                                    <div class="mt-4 pt-3">
-                                        <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">Brand</h5>
-                                        <div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'product_brand_filter' 'Bremer' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Bremer
-                                                </a>
-                                            </div>
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'product_brand_filter' 'Franklin' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Franklin
-                                                </a>
-                                            </div>
+                                <div class="mt-4 pt-3">
+                                    <h5 class="font-size-16 font-weight-bold text-primary mb-3 font-weight-bolder">
+                                        Brand</h5>
+                                    <div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'product_brand_filter' 'Bremer' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Bremer
+                                            </a>
+                                        </div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'product_brand_filter' 'Franklin' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Franklin
+                                            </a>
+                                        </div>
 
-                                            <div class="custom-control mt-3">
-                                                <a href="{% url 'product_brand_filter' 'Heiniger' %}"
-                                                   class="text-decoration-none font-weight-bold text-dark font-size-14">
-Heiniger
-                                                </a>
-                                            </div>
+                                        <div class="custom-control mt-3">
+                                            <a href="{% url 'product_brand_filter' 'Heiniger' %}"
+                                               class="text-decoration-none font-weight-bold text-dark font-size-14">
+                                                Heiniger
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </div>
+                  
                     </div>
-
                     <div class="col-lg-9">
                         <div class="row mb-3">
                             <div class="col-xl-4 col-sm-6">

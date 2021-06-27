@@ -46,6 +46,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('shop/', include('Shop.urls')),
     path('', include('Authentication.urls')),
+    path('newsletter/', include('newsletter.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
