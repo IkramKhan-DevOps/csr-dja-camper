@@ -11,14 +11,11 @@ def index_view(request):
     box = Box.objects.all()
     about_us = AboutUs.objects.latest('heading')
     team = CustomerCare.objects.all()
-    general_faqs = GeneralFAQs.objects.all()
-    how_to_rent_faqs = HowToRentFAQs.objects.all()
-    how_to_list_faqs = HowToListFAQs.objects.all()
     how_it_works = HowItWork.objects.filter(is_active=True)
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
-    recent_products = Product.objects.all()[:4][::-1]
-    query = "SELECT Shop_order.id, Shop_order.product_id,count('Shop_order.product_id') AS total_order From Shop_order GROUP BY Shop_order.product_id LIMIT 4"
+    recent_products = Product.objects.all()[:3][::-1]
+    query = "SELECT Shop_order.id, Shop_order.product_id,count('Shop_order.product_id') AS total_order From Shop_order GROUP BY Shop_order.product_id LIMIT 3"
     popular_products = Order.objects.raw(query)
     context = {
         'how_it_works': how_it_works,
@@ -27,9 +24,6 @@ def index_view(request):
         'boxes': box,
         'about_us': about_us,
         'team': team,
-        'general_faqs': general_faqs,
-        'how_to_rent_faqs': how_to_rent_faqs,
-        'how_to_list_faqs': how_to_list_faqs,
         'social_links': social_links,
         'recent_products': recent_products,
         'popular_products': popular_products,
