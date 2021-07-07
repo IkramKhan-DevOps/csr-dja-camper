@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     'autoslug',
 
+    'crispy_forms',
+
     # Mailing App
     'post_office',
     'newsletter',
@@ -66,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 ROOT_URLCONF = 'Horsedch.urls'
 

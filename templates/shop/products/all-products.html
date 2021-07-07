@@ -330,7 +330,7 @@
                             {% for data in products %}
                                 <div class="col-lg-4 col-sm-6 mb-4">
                                     <div class="card" style="width: 18rem;">
-                                        <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                        <img class="card-img-top" src="{{ data.image_1.url }}" alt="Item Image" width="50" height="300">
                                         <div class="card-body">
                                             <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
                                             <p class="card-text">
@@ -351,9 +351,15 @@
                                             </p>
                                         </div>
                                         <div class="card-footer text-center">
-                                            <a href="{% url "single_product_details" data.product_slug %}"
+                                            {% if data.landlord.member == member %}
+                                            <a href="{% url "edit_my_product" data.id %}"
+                                               class="btn btn-warning">Edit
+                                                Product</a>
+                                                {% else %}
+                                                <a href="{% url "single_product_details" data.product_slug %}"
                                                class="btn btn-warning">Rent
                                                 Product</a>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

@@ -20,7 +20,7 @@ from post_office import mail
 
 from Horsedch import settings
 from Horsedch.bll import create_member
-from Horsedch.models import Member, Landlord, Renter
+from Horsedch.models import Member, Landlord, Renter, ContactInformation, SocialLinks
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 from Shop.models import Order
 
@@ -56,6 +56,7 @@ def sign_up_with_email(request):
                             user=User.objects.get(username=request.POST.get("email_address"))
                         )
                         Renter.objects.create(member=member)
+                        Landlord.objects.create(member=member)
                     except:
                         print("Problem in creating member")
 
@@ -340,6 +341,8 @@ def edit_profile(request):
 def my_account(request):
     member = ""
     social_account = ""
+    company_contact = ContactInformation.objects.latest('building_name')
+    social_links = SocialLinks.objects.latest('facebook')
 
     try:
         if Member.objects.filter(user=request.user).exists():
@@ -377,6 +380,8 @@ def my_account(request):
         "orders": orders,
         "total_revenue": total_revenue,
         "renter_orders": renter_orders,
+        "company_contact": company_contact,
+        "social_links": social_links,
     }
     return render(request, template_name="authentication/profile/my-account.html", context=context)
 

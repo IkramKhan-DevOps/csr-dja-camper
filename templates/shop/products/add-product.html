@@ -29,283 +29,313 @@
 
                 <div class="row">
                     <div class="col-12">
-                    <form method="post" class="form-horizontal" enctype="multipart/form-data">
-                    {% csrf_token %}
-                        <div class="card">
-                            <div class="card-body">
-                                {% if messages %}
-                                    <ul class="messages">
-                                        {% for message in messages %}
-                                            {% if message.tags == "error" %}
-                                                <div class="alert alert-danger">
-                                            {% else %}
-                                                <div class="alert alert-success">
-                                            {% endif %}
-                                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if messages %}
+                                        <ul class="messages">
+                                            {% for message in messages %}
+                                                {% if message.tags == "error" %}
+                                                    <div class="alert alert-danger">
+                                                {% else %}
+                                                    <div class="alert alert-success">
+                                                {% endif %}
+                                            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
 
-                                            <a class="close" data-dismiss="alert">×</a>
-                                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                                                Important: {% endif %}
-                                            {{ message }}
+                                                <a class="close" data-dismiss="alert">×</a>
+                                                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                                    Important: {% endif %}
+                                                {{ message }}
 
-                                        </li>
-                                        </div>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                                <h4 class="card-title">Basic Information</h4>
-                                <p class="card-title-desc">Fill all information below</p>
-
-
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="product_title">Product Title</label>
-                                            <input id="product_title" name="product_title" type="text"
-                                                   class="form-control" required>
-                                            <div class="invalid-feedback">
-                                                Please enter product title.
+                                            </li>
                                             </div>
-                                            <div class="valid-feedback">
-                                                looks good!
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="zip_code">Zip Code</label>
-                                                    <input id="zip_code" name="zip_code" type="text"
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-8">
-                                                <div class="form-group">
-                                                    <label for="city_name">City</label>
-                                                    <input id="city_name" name="city_name" type="text"
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="price">Price</label>
-                                                    <input id="price" name="price" type="number" step=".01"
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="control-label" for="rental_type">Per</label>
-                                                    <select class="form-control" id="rental_type"
-                                                            name="rental_type">
-                                                        <option>Select</option>
-                                                        <option value="Per Day">Per Day</option>
-                                                        <option value="Per Month">Per Month</option>
-                                                        <option value="Per Year">Per Year</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                    <h4 class="card-title">Basic Information</h4>
+                                    <p class="card-title-desc">Fill all information below</p>
 
 
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="brand">Brand</label>
-                                                    <input id="brand" name="brand" type="text"
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Category 1</label>
-                                                    <select class="form-control select" name="category_1" required>
-                                                        <option>Select</option>
-                                                        {% for category in categories %}
-                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Category 2</label>
-                                                    <select class="form-control select" name="category_2">
-                                                        <option>Select</option>
-                                                        {% for category in categories %}
-                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label class="control-label">Category 3</label>
-                                                    <select class="form-control select" name="category_3">
-                                                        <option>Select</option>
-                                                        {% for category in categories %}
-                                                            <option value="{{ category.id }}">{{ category.category_name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <p class="text-danger"> 1 Category is mandatory, You can select up to 3
-                                                Categories.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="available_from">Available From</label>
-                                                    <input id="available_from" name="available_from" type="date"
-                                                           class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 text-center">
-                                                <div class="form-group">
-                                                    <div><label>Hide Item</label></div>
-                                                    <input type="checkbox" id="hide_item" name="hide_item"
-                                                           switch="warning">
-                                                    <label for="hide_item" data-on-label="Yes"
-                                                           data-off-label="No"></label>
-                                                    <p class="text-info">Temporarily not showing the item for rent.
-                                                        The article is not visible to other users.</p>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="product_description">Product Description</label>
-                                            <textarea class="form-control" name="product_description"
-                                                      id="product_description" rows="5"
-                                                      maxlength="500">
-
-                                                </textarea>
-                                        </div>
-
-
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="offer_shipping" name="offer_shipping"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="offer_shipping">Offer
-                                                    Shipping?(you send the rental property and receive 10.- for
-                                                    postage)</label>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="pick_up" name="pick_up"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="pick_up">Pick up (the
-                                                    tenant picks up the goods from you)</label>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-3">Product Images</h4>
-                                <span class="text-muted mb-2">You can select upto 4 images of the product.</span>
-
-                                <div class="row mb-3">
-                                    <div class="col-lg-4">
-                                        <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="image_1"
-                                                   name="image_1" required>
-                                            <label class="custom-file-label" for="image_1">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row  mb-3">
-                                    <div class="col-lg-4">
-                                        <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="image_2"
-                                                   name="image_2">
-                                            <label class="custom-file-label" for="image_2">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row  mb-3">
-                                    <div class="col-lg-4">
-                                        <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="image_3"
-                                                   name="image_3">
-                                            <label class="custom-file-label" for="image_3">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row  mb-3">
-                                    <div class="col-lg-4">
-                                        <div class="form-group custom-file">
-                                            <input type="file" class="custom-file-input" id="image_4"
-                                                   name="image_4">
-                                            <label class="custom-file-label" for="image_4">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button type="submit" name="add-product"
-                                class="btn btn-primary mr-1 waves-effect waves-light">Save Changes
-                        </button>
-                        <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
-
-                            </div>
-                        </div> <!-- end card-->
-
-                        </form>
-                        <div class="card">
-                            <div class="card-body">
-
-                                <h4 class="card-title">Meta Data <br><span class="text-info mr-3">Note For Stakeholders: We will use this information for SEO (Search Engine Optimization) within our system. It will be helpful in ranking the products.</span>
-                                </h4>
-                                <p class="card-title-desc">Fill all information below</p>
-
-                                <form>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="metatitle">Meta title</label>
-                                                <input id="metatitle" name="meta_title" type="text"
-                                                       class="form-control">
+                                                <label for="product_title">Product Title</label>
+                                                <input id="product_title" name="product_title" type="text"
+                                                       class="form-control" value="{{ product_title }}" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter product title.
+                                                </div>
+                                                <div class="valid-feedback">
+                                                    looks good!
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="metakeywords">Meta Keywords</label>
-                                                <input id="metakeywords" name="meta_keywords" type="text"
-                                                       class="form-control">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="zip_code">Zip Code</label>
+                                                        <input id="zip_code" name="zip_code" type="text"
+                                                               value="{{ zip_code }}"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <div class="form-group">
+                                                        <label for="city_name">City</label>
+                                                        <input id="city_name" name="city_name" type="text"
+                                                               value="{{ city }}"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="price">Price</label>
+                                                        <input id="price" name="price" type="number" step=".01"
+                                                               value="{{ price }}"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="rental_type">Per</label>
+                                                        <select class="form-control" id="rental_type"
+                                                                name="rental_type">
+                                                            <option>Select</option>
+                                                            {% if per == "Per Day" %}
+                                                                <option value="Per Day" selected>Per Day</option>
+                                                                <option value="Per Week">Per Week</option>
+                                                                <option value="Per Month">Per Month</option>
+                                                            {% elif per == "Per Week" %}
+                                                                <option value="Per Day">Per Day</option>
+                                                                <option value="Per Week" selected>Per Week</option>
+                                                                <option value="Per Month">Per Month</option>
+                                                            {% elif per == "Per Month" %}
+                                                                <option value="Per Day">Per Day</option>
+                                                                <option value="Per Week">Per Week</option>
+                                                                <option value="Per Month" selected>Per Month</option>
+                                                            {% else %}
+                                                                <option value="Per Day">Per Day</option>
+                                                                <option value="Per Week">Per Week</option>
+                                                                <option value="Per Month">Per Month</option>
+                                                            {% endif %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="brand">Brand</label>
+                                                        <input id="brand" name="brand" type="text" value="{{ brand }}"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category 1</label>
+                                                        <select class="form-control select" name="category_1" required>
+                                                            <option>Select</option>
+                                                            {% for category in categories %}
+                                                                {{ category.id }}
+                                                                {% if cate_1 == category.id %}
+                                                                <option value="{{ category.id }}" selected>{{ category.category_name }}</option>
+                                                                {% else %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category 2</label>
+                                                        <select class="form-control select" name="category_2">
+                                                            <option value="1">Select</option>
+                                                            {% for category in categories %}
+                                                                {% if cate_2 == category.id %}
+                                                                <option value="{{ category.id }}" selected>{{ category.category_name }}</option>
+                                                                {% else %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Category 3</label>
+                                                        <select class="form-control select" name="category_3">
+                                                            <option value="1">Select</option>
+                                                            {% for category in categories %}
+                                                                {% if cate_3 == category.id %}
+                                                                <option value="{{ category.id }}" selected>{{ category.category_name }}</option>
+                                                                {% else %}
+                                                                <option value="{{ category.id }}">{{ category.category_name }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <p class="text-danger"> 1 Category is mandatory, You can select up to 3
+                                                    Categories.</p>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="metadescription">Meta Description</label>
-                                                <textarea class="form-control" id="metadescription"
-                                                          name="meta_description" rows="5"></textarea>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label for="available_from">Available From</label>
+                                                        <input id="available_from" name="available_from" type="date"
+                                                               value="{{ av_date }}"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 text-center">
+                                                    <div class="form-group">
+                                                        <div><label>Hide Item</label></div>
+                                                        <input type="checkbox" id="hide_item" name="hide_item" {% if hide %} checked {% endif %}
+                                                               switch="warning">
+                                                        <label for="hide_item" data-on-label="Yes"
+                                                               data-off-label="No"></label>
+                                                        <p class="text-info">Temporarily not showing the item for rent.
+                                                            The article is not visible to other users.</p>
+
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="product_description">Product Description</label>
+                                                <textarea class="form-control" name="product_description"
+                                                          id="product_description" rows="5"
+                                                          maxlength="500">{{ description }}
+                                                </textarea>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" id="offer_shipping" name="offer_shipping" {% if shipping == "on" %} checked {% endif %}
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="offer_shipping">Offer
+                                                        Shipping?(you send the rental property and receive 10.- for
+                                                        postage)</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" id="pick_up" name="pick_up" {% if pickup == "on" %} checked {% endif %}
+                                                           class="custom-control-input">
+                                                    <label class="custom-control-label" for="pick_up">Pick up (the
+                                                        tenant picks up the goods from you)</label>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save
-                                        Changes
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-3">Product Images</h4>
+                                    <span class="text-muted mb-2">You can select upto 4 images of the product.</span>
+
+                                    <div class="row mb-3">
+                                        <div class="col-lg-4">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image_1"
+                                                       name="image_1" required>
+                                                <label class="custom-file-label" for="image_1">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row  mb-3">
+                                        <div class="col-lg-4">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image_2"
+                                                       name="image_2">
+                                                <label class="custom-file-label" for="image_2">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row  mb-3">
+                                        <div class="col-lg-4">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image_3"
+                                                       name="image_3">
+                                                <label class="custom-file-label" for="image_3">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row  mb-3">
+                                        <div class="col-lg-4">
+                                            <div class="form-group custom-file">
+                                                <input type="file" class="custom-file-input" id="image_4"
+                                                       name="image_4">
+                                                <label class="custom-file-label" for="image_4">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" name="add-product"
+                                            class="btn btn-primary mr-1 waves-effect waves-light">Save Changes
                                     </button>
                                     <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
 
-                                </form>
+                                </div>
+                            </div> <!-- end card-->
 
-                            </div>
-                        </div>
+                        </form>
+                        {#                        <div class="card">#}
+                        {#                            <div class="card-body">#}
+                        {##}
+                        {#                                <h4 class="card-title">Meta Data <br><span class="text-info mr-3">Note For Stakeholders: We will use this information for SEO (Search Engine Optimization) within our system. It will be helpful in ranking the products.</span>#}
+                        {#                                </h4>#}
+                        {#                                <p class="card-title-desc">Fill all information below</p>#}
+                        {##}
+                        {#                                <form>#}
+                        {#                                    <div class="row">#}
+                        {#                                        <div class="col-sm-6">#}
+                        {#                                            <div class="form-group">#}
+                        {#                                                <label for="metatitle">Meta title</label>#}
+                        {#                                                <input id="metatitle" name="meta_title" type="text"#}
+                        {#                                                       class="form-control">#}
+                        {#                                            </div>#}
+                        {#                                            <div class="form-group">#}
+                        {#                                                <label for="metakeywords">Meta Keywords</label>#}
+                        {#                                                <input id="metakeywords" name="meta_keywords" type="text"#}
+                        {#                                                       class="form-control">#}
+                        {#                                            </div>#}
+                        {#                                        </div>#}
+                        {##}
+                        {#                                        <div class="col-sm-6">#}
+                        {#                                            <div class="form-group">#}
+                        {#                                                <label for="metadescription">Meta Description</label>#}
+                        {#                                                <textarea class="form-control" id="metadescription"#}
+                        {#                                                          name="meta_description" rows="5"></textarea>#}
+                        {#                                            </div>#}
+                        {#                                        </div>#}
+                        {#                                    </div>#}
+                        {##}
+                        {#                                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save#}
+                        {#                                        Changes#}
+                        {#                                    </button>#}
+                        {#                                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>#}
+                        {##}
+                        {#                                </form>#}
+                        {##}
+                        {#                            </div>#}
+                        {#                        </div>#}
                     </div>
                 </div>
                 <!-- end row -->

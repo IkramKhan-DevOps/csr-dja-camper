@@ -1,5 +1,6 @@
 {% extends 'shop_base.html' %}
 {% load static %}
+{% block title %}Edit Profile{% endblock title %}
 {% block content %}
     <div class="main-content">
 
@@ -189,7 +190,7 @@
                         </div>
 
                         {#                        Bank Account Information           #}
-                        {% if member.role == "Landlord" %}
+
                             {% block bank_account_details %}
                                 <div class="card">
                                     <div class="card-body">
@@ -335,11 +336,10 @@
                                     </div>
                                 </div>
                             {% endblock bank_account_details %}
-                        {% endif %}
+
 
                         {#                        Additional Information              #}
 
-                        {% if member.role == "Landlord" %}
                             {% block additional_information %}
                                 <div class="card">
                                     <div class="card-body">
@@ -553,7 +553,7 @@
                                     </div>
                                 </div>
                             {% endblock additional_information %}
-                        {% endif %}
+
 
                         {#                        Account Login Setting                 #}
 

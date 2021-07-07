@@ -17,7 +17,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 from Horsedch import settings
 from Horsedch.bll import has_social_account, get_member
-from Horsedch.models import Member, Landlord
+from Horsedch.models import Member, Landlord, SocialLinks, ContactInformation
 from Landlord.models import Language, LandlordBankAccount
 from Shop.forms import ProductForm, OrderCheckOutDetailsForm
 from Shop.helpers import get_or_create_customer
@@ -27,8 +27,25 @@ import stripe
 
 @login_required()
 def add_product(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
+
     social_account = ""
     member = ""
+    product_title = ""
+    zip_code = ""
+    city = ""
+    price = 0
+    brand = ""
+    per = ""
+    cate_1 = 0
+    cate_2 = 0
+    cate_3 = 0
+    shipping = False
+    pickup = False
+    av_date = ""
+    description = ""
+    hide = False
     try:
         social_account = has_social_account(request.user)
     except:
@@ -50,12 +67,39 @@ def add_product(request):
                 messages.success(request, "Action Completed Successfully!")
 
             else:
+                product_title = form.data['product_title']
+                zip_code = form.data['zip_code']
+                city = form.data['city_name']
+                price = form.data['price']
+                brand = form.data['brand']
+                per = form.data['rental_type']
+                cate_1 = form.data['category_1']
+                cate_2 = form.data['category_2']
+                cate_3 = form.data['category_3']
+                av_date = form.data['available_from']
+                description = form.data['product_description']
                 messages.error(request, form.errors)
 
     context = {
+        'company_contact': company_contact,
+        'social_links': social_links,
         'categories': category,
         'social_account': social_account,
         'member': member,
+        'product_title': product_title,
+        'zip_code': zip_code,
+        'city': city,
+        'brand': brand,
+        'per': per,
+        'cate_1': cate_1,
+        'cate_2': cate_2,
+        'cate_3': cate_3,
+        'shipping': shipping,
+        'price': price,
+        'pickup': pickup,
+        'av_date': av_date,
+        'description': description,
+        'hide': hide,
     }
     return render(request, template_name="shop/products/add-product.html", context=context)
 
@@ -158,7 +202,9 @@ def products_category_filter(request, cate_name):
     try:
         category = Category.objects.get(category_name=cate_name)
 
-        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.category_1_id="+str(category.pk)+" OR Shop_product.category_2_id="+str(category.pk)+" OR Shop_product.category_3_id="+str(category.pk)+" GROUP BY Shop_product.id "
+        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.category_1_id=" + str(
+            category.pk) + " OR Shop_product.category_2_id=" + str(
+            category.pk) + " OR Shop_product.category_3_id=" + str(category.pk) + " GROUP BY Shop_product.id "
         products = Product.objects.raw(query)
         if not products:
             messages.info(request, "Unfortunately, we don't have your required item.")
@@ -192,7 +238,7 @@ def products_brand_filter(request, brand):
             member = get_member(request.user)
 
     try:
-        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.brand='"+brand+"' GROUP BY Shop_product.id "
+        query = "SELECT Shop_product.id,Shop_product.product_slug, Shop_product.product_title, Shop_product.price, Shop_product.rental_type, Shop_product.image_1, avg(Shop_order.stars_by_renter) AS stars FROM Shop_product LEFT JOIN Shop_order ON Shop_product.id=Shop_order.product_id WHERE Shop_product.brand='" + brand + "' GROUP BY Shop_product.id "
         products = Product.objects.raw(query)
         if not products:
             messages.info(request, "Unfortunately, we don't have your required item.")
@@ -213,7 +259,6 @@ def products_brand_filter(request, brand):
         'products': products,
     }
     return render(request, template_name="shop/products/all-products.html", context=context)
-
 
 
 @login_required()
@@ -248,6 +293,16 @@ def edit_product(request, p_id):
     social_account = ""
     member = ""
     categories = ""
+
+    product_title = ""
+    zip_code = ""
+    city = ""
+    price = 0
+    brand = ""
+    per = ""
+    av_date = ""
+    description = ""
+    hide = False
     try:
         social_account = has_social_account(request.user)
     except:
@@ -256,46 +311,49 @@ def edit_product(request, p_id):
     try:
         product = Product.objects.get(id=p_id, landlord__member__user=request.user)
         categories = Category.objects.all()
+        product_title = product.product_title
+        zip_code = product.zip_code
+        city = product.city_name
+        price = product.price
+        brand = product.brand
+        per = product.rental_type
+        av_date = product.available_from
+        description = product.product_description
+        hide = product.hide_item
+
     except:
         print("No product exists")
         # return to 404
 
     if request.method == "POST":
-        product.product_title = request.POST.get("product_title")
-        product.zip_code = request.POST.get("zip_code")
-        product.city_name = request.POST.get("city_name")
-        product.price = request.POST.get("price")
-        product.rental_type = request.POST["rental_type"]
-        product.brand = request.POST.get("brand")
-        product.available_from = request.POST.get("available_from")
-        product.hide_item = request.POST["hide_item"]
-        product.product_description = request.POST.get("product_description")
-        product.offer_shipping = request.POST["offer_shipping"]
-        product.pick_up = request.POST["pick_up"]
-        product.image_1 = request.POST["image_1"]
-        product.image_2 = request.POST["image_2"]
-        product.image_3 = request.POST["image_3"]
-        product.image_4 = request.POST["image_4"]
-
-        if request.POST["category_1"] != "Select":
-            product.category_1 = request.POST["category_1"]
-            messages.success(request, "Action Completed Successfully!")
+        form = ProductForm(data=request.POST, files=request.FILES, instance=product)
+        if form.is_valid():
+            landlord = Landlord.objects.get(member__user=request.user)
+            product = form.save(commit=False)
+            product.landlord = landlord
+            form.save()
+            messages.success(request, "Product updated successfully")
         else:
-            messages.error(request, "Please select product category.")
-        if request.POST["category_2"] != "Select":
-            product.category_2 = request.POST["category_2"]
-        if request.POST["category_3"] != "Select":
-            product.category_3 = request.POST["category_3"]
-        product.save()
+            messages.error(request, form.errors)
 
     context = {
         "product": product,
         'social_account': social_account,
         'member': member,
         'categories': categories,
+
+        'product_title': product_title,
+        'zip_code': zip_code,
+        'city': city,
+        'brand': brand,
+        'per': per,
+        'price': price,
+        'av_date': av_date,
+        'description': description,
+        'hide': hide,
     }
 
-    return render(request, template_name="shop/products/edit-product.html", context=context)
+    return render(request, template_name="shop/products/add-product.html", context=context)
 
 
 @login_required()
