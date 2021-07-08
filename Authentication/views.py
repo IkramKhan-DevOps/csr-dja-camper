@@ -6,7 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -20,6 +20,7 @@ from post_office import mail
 
 from Horsedch import settings
 from Horsedch.bll import create_member
+from Horsedch.forms import MemberForm
 from Horsedch.models import Member, Landlord, Renter, ContactInformation, SocialLinks
 from Landlord.models import LandlordBankAccount, Language, SocialMediaLinks
 from Shop.models import Order
@@ -194,8 +195,7 @@ def edit_profile(request):
     except ObjectDoesNotExist:
         social_account = ""
     try:
-        if member.role == "Landlord":
-            bank_account = LandlordBankAccount.objects.get(landlord__member=member)
+        bank_account = LandlordBankAccount.objects.get(landlord__member=member)
     except:
         bank_account = ""
 
@@ -210,24 +210,14 @@ def edit_profile(request):
 
     if request.method == "POST":
         if "basic-information" in request.POST:
-            try:
-                profile_picture = request.FILES['profile_pic']
-            except MultiValueDictKeyError:
-                profile_picture = ""
-
             member_update = Member.objects.get(email_address=request.user.email)
-            member_update.first_name = request.POST.get("first_name")
-            member_update.last_name = request.POST.get("last_name")
-            member_update.phone_number = request.POST.get("phone_number")
-            member_update.street_address = request.POST.get("street_address")
-            member_update.house_number = request.POST.get("house_number")
-            member_update.zip_code = request.POST.get("zip_code")
-            member_update.city = request.POST.get("city_name")
-            member_update.country = request.POST.get("country_name")
-            member_update.profile_picture = profile_picture
-            member_update.save()
-            messages.success(request, "Basic information updated successfully!")
-            return redirect('Edit Profile')
+            member_form = MemberForm(data=request.POST, files=request.FILES, instance=member_update)
+            if member_form.is_valid():
+                member_form.save()
+                messages.success(request, "Basic information updated successfully!")
+                return redirect('Edit Profile')
+            else:
+                messages.error(request, member_form.errors)
 
         elif "bank-information" in request.POST:
             landlord = Landlord.objects.get(member=member)
@@ -315,9 +305,12 @@ def edit_profile(request):
 
         elif "account-settings" in request.POST:
             user = User.objects.get(username=request.user.username)
-            user.set_password(request.POST.get("password"))
-            user.save()
-            messages.success(request, "Password updated successfully!")
+            try:
+                user.set_password(request.POST.get("password"))
+                user.save()
+                messages.success(request, "Password updated successfully!")
+            except ValidationError:
+                print('error')
 
         elif "disconnect-social-account" in request.POST:
             user = User.objects.get(username=request.user.username)

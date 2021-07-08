@@ -31,7 +31,7 @@
                         {% for data in products %}
                             <div class="col-lg-3">
                                 <div class="card" style="width: 18rem;">
-                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Card image cap">
+                                    <img class="card-img-top" src="{{ data.image_1.url }}" alt="Item Image" width="50" height="300">
                                     <div class="card-body">
                                         <p class="card-title font-size-16 text-center mb-3">{{ data.product_title }}</p>
                                         <p class="card-text">
@@ -49,7 +49,7 @@
                                                     rated
                                                 {% endif %}
                                             </span>
-                                        </p>
+                                        </p>.
                                     </div>
                                     <div class="card-footer text-center">
                                         <a href="{% url "edit_my_product" data.id %}" class="btn btn-warning">Edit

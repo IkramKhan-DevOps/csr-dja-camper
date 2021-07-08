@@ -275,14 +275,17 @@ class Member(models.Model):
     profile_status = models.BooleanField(default=False)
     profile_picture = models.ImageField(upload_to="images/users/", null=True, blank=True, default="no-image-icon.png")
     self_description = models.TextField(max_length=500, null=True, blank=True)
-    role = models.CharField(choices=ROLE_CHOICES, max_length=20)
+
+    #Deffered
+    role = models.CharField(choices=ROLE_CHOICES, max_length=20, null=True, blank=True)
 
     email_verified = models.BooleanField(default=False)
     phone_verified = models.BooleanField(default=False)
 
+    #Deffered
     is_landlord_active = models.BooleanField(default=False)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
         return str(self.email_address)
