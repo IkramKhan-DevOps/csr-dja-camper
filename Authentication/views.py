@@ -184,6 +184,8 @@ def update_member_role(request, role):
 
 
 def edit_profile(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     bank_account = ""
     member = ""
     try:
@@ -204,9 +206,9 @@ def edit_profile(request):
     except:
         language = ""
     try:
-        social_links = SocialMediaLinks.objects.get(landlord__member=member)
+        user_links = SocialMediaLinks.objects.get(landlord__member=member)
     except ObjectDoesNotExist:
-        social_links = ""
+        user_links = ""
 
     if request.method == "POST":
         if "basic-information" in request.POST:
@@ -324,7 +326,9 @@ def edit_profile(request):
         "social_account": social_account,
         "bank_account": bank_account,
         "language": language,
-        "social_links": social_links,
+        "user_links": user_links,
+        'company_contact': company_contact,
+        'social_links': social_links,
 
     }
     return render(request, template_name="authentication/profile/edit-profile.html", context=context)

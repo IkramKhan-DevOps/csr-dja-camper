@@ -265,6 +265,9 @@ def products_brand_filter(request, brand):
 def my_products(request):
     social_account = ""
     member = ""
+
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     try:
         social_account = has_social_account(request.user)
     except:
@@ -284,6 +287,8 @@ def my_products(request):
         "products": products,
         'social_account': social_account,
         'member': member,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
     return render(request, template_name="shop/products/my-products.html", context=context)
 
@@ -366,6 +371,8 @@ def rate_rental_experience(request):
 
 @login_required()
 def checkout(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     social_account = ""
     member = ""
     product = ""
@@ -408,13 +415,17 @@ def checkout(request):
         'duration_days': duration_days,
         'rent_amount': rent_amount,
         'service_charges': service_charges,
-        'key': settings.STRIPE_PUBLISHABLE_KEY
+        'key': settings.STRIPE_PUBLISHABLE_KEY,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
 
     return render(request, template_name="shop/take_on_rent/checkout.html", context=context)
 
 
 def single_product_details(request, slug):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = ContactInformation.objects.latest('building_name')
     social_account = ""
     member = ""
     product = ""
@@ -444,6 +455,8 @@ def single_product_details(request, slug):
         'language': language,
         'social_account': social_account,
         'member': member,
+        'social_links': social_links,
+        'company_contact': company_contact,
     }
     return render(request, template_name="shop/take_on_rent/product_details.html", context=context)
 
@@ -549,11 +562,3 @@ class RentChargeView(View):
         except stripe.error.StripeError as e:
             print(e)
             return JsonResponse({'status': 'error'}, status=500)
-
-# def search_product(request):
-#     if request.method == "POST":
-#         products = Product.objects.filter(product_title__search=request.POST.get("product_title_search"))
-#
-#     context = {
-#         'products': products
-#     }
