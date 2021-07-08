@@ -37,12 +37,12 @@
                 </div>
             </div>
             <div class="row align-items-center">
-                {% if fair_play and fair_play.is_active %}
-                    <p class="font-size-16 text-wrap text-justify">{{ fair_play.description|safe }}
+                {% if insurance and insurance.is_active %}
+                    <p class="font-size-16 text-wrap text-justify">{{ insurance.description|safe }}
                         {% else %}
 
                     <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
-                        <strong>Nothing to show!</strong> There is no fair play yet.
+                        <strong>Nothing to show!</strong> There is no insurance data yet.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

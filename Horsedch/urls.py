@@ -33,6 +33,8 @@ urlpatterns = [
     path('faqs/', views.faqs, name="FAQs"),
     path('faqs/object-owners/', views.faqs_object_owners, name="FAQs_Object_Owners"),
     path('partners/', views.our_partners, name="Partners"),
+    path('insurance/', views.insurance, name="Insurance"),
+    path('insurance-conditions/', views.insurance_conditions, name="Insurance_Conditions"),
 
     path('accounts/login/', auth_views.auth_login, name="Login"),
     path('logout', LogoutView.as_view(), name="Logout"),

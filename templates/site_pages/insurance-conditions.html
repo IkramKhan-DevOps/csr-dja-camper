@@ -1,6 +1,6 @@
 {% extends 'site_base.html' %}
 {% load static %}
-{% block title %}Fairplay | Horsed{% endblock title %}
+{% block title %}Insurance Conditions | Horsed{% endblock title %}
 {% block extra_class_header %} {% endblock extra_class_header %}
 {% block body_content %}
     <!-- hero section start -->
@@ -16,7 +16,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12 text-center">
                     <div class="text-white-50 ">
-                        <h1 class="text-white font-weight-semibold mb-3 hero-title">Fairplay</h1>
+                        <h1 class="text-white font-weight-semibold mb-3 hero-title">Insurance Conditions</h1>
                     </div>
                 </div>
             </div>
@@ -31,18 +31,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center mb-5">
-                        <div class="small-title">Fairplay</div>
+                        <div class="small-title">Insurance Conditions</div>
 
                     </div>
                 </div>
             </div>
             <div class="row align-items-center">
-                {% if fair_play and fair_play.is_active %}
-                    <p class="font-size-16 text-wrap text-justify">{{ fair_play.description|safe }}
+                {% if insurance_conditions and insurance_conditions.is_active %}
+                    <p class="font-size-16 text-wrap text-justify">{{ insurance_conditions.description|safe }}
                         {% else %}
 
                     <div class="mt-4 alert alert-info alert-dismissible fade show" role="alert">
-                        <strong>Nothing to show!</strong> There is no fair play yet.
+                        <strong>Nothing to show!</strong> There are no insurance conditions yet.
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>

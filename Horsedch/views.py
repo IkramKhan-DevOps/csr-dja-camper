@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from Horsedch.models import HowItWork, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team, ObjectOwnerFAQs, Partner, \
-    CustomerCare
+    CustomerCare, Insurance, InsuranceConditions
 from Shop.models import Product, Order
 
 
@@ -152,6 +152,42 @@ def imprint(request):
     }
     return render(request, template_name="site_pages/imprint.html", context=context)
 
+
+def insurance(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = None
+    try:
+        company_contact = ContactInformation.objects.latest('id')
+        insurance_data = Insurance.objects.latest('id')
+    except:
+        insurance_data = None
+        if company_contact is None:
+            company_contact = None
+    context = {
+        'insurance': insurance_data,
+        'company_contact': company_contact,
+        'social_links': social_links,
+    }
+    return render(request, template_name="site_pages/insurance.html", context=context)
+
+
+
+def insurance_conditions(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = None
+    try:
+        company_contact = ContactInformation.objects.latest('id')
+        insurance_conditions_data = InsuranceConditions.objects.latest('id')
+    except:
+        insurance_conditions_data = None
+        if company_contact is None:
+            company_contact = None
+    context = {
+        'insurance_conditions': insurance_conditions_data,
+        'company_contact': company_contact,
+        'social_links': social_links,
+    }
+    return render(request, template_name="site_pages/insurance-conditions.html", context=context)
 
 def test(request):
     return render(request, template_name="site_pages/index.html")
