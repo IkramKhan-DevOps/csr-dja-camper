@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from Horsedch.models import HowItWork, WhyHorsedCh, SocialLinks, ContactInformation, Condition, DataPolicy, FairPlay, \
     Imprint, HeroSection, Box, AboutUs, Team, GeneralFAQs, HowToRentFAQs, HowToListFAQs, ObjectOwnerFAQs, Partner, \
-    CustomerCare
+    CustomerCare, Insurance, InsuranceConditions
 from Shop.models import Product, Category
 
 admin.site.site_header = "Horsed Administration Panel"
@@ -88,7 +88,7 @@ class DataPolicyAdmin(admin.ModelAdmin):
 
 
 class FairPlayAdmin(admin.ModelAdmin):
-    list_display = ['title','is_active']
+    list_display = ['title', 'is_active']
 
     def has_add_permission(self, *args, **kwargs):
         return not FairPlay.objects.exists()
@@ -103,6 +103,20 @@ class ImprintAdmin(admin.ModelAdmin):
 
 class CustomerCareAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'designation', 'person_img']
+
+
+class InsuranceAdmin(admin.ModelAdmin):
+    list_display = ['title', 'is_active']
+
+    def has_add_permission(self, *args, **kwargs):
+        return not Insurance.objects.exists()
+
+
+class InsuranceConditionsAdmin(admin.ModelAdmin):
+    list_display = ['title', 'is_active']
+
+    def has_add_permission(self, *args, **kwargs):
+        return not InsuranceConditions.objects.exists()
 
 
 admin.site.register(HeroSection, HeroSectionAdmin)
@@ -123,6 +137,7 @@ admin.site.register(Condition, ConditionAdmin)
 admin.site.register(DataPolicy, DataPolicyAdmin)
 admin.site.register(FairPlay, FairPlayAdmin)
 admin.site.register(Imprint, ImprintAdmin)
+admin.site.register(Insurance, InsuranceAdmin)
+admin.site.register(InsuranceConditions, InsuranceConditionsAdmin)
 admin.site.register(Product)
 admin.site.register(Category)
-

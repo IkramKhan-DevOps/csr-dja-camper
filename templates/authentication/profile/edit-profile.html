@@ -1,5 +1,6 @@
 {% extends 'shop_base.html' %}
 {% load static %}
+{% block title %}Edit Profile{% endblock title %}
 {% block content %}
     <div class="main-content">
 
@@ -45,6 +46,7 @@
 
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
+                                <input type="text" name="user" value="{{ request.user.pk }}" hidden>
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="row">
@@ -130,18 +132,17 @@
                                             </div>
 
 
-                                            <div class="form-group">
-                                                <label class="control-label" for="country_name">Country</label>
-                                                <select class="form-control select2" id="country_name"
-                                                        name="country_name"
-                                                        aria-selected="{{ bank_account.country|default_if_none:"" }}">
-                                                    <option>Select</option>
-                                                    <option value="AK">Alaska</option>
-                                                    <option value="HI">Hawaii</option>
-                                                </select>
+
+                                                <div class="form-group">
+                                                    <label for="self_description">Tell us who you are and with what
+                                                        aim
+                                                        you
+                                                        registered at horsed.ch.</label>
+                                                    <textarea class="form-control" id="self_description" maxlength="500" name="self_description"
+                                                              rows="5">{{ member.self_description }}</textarea>
+                                                </div>
 
 
-                                            </div>
                                         </div>
 
                                         <div class="col-sm-6 text-center d-flex justify-content-center">
@@ -160,7 +161,7 @@
                                                     <div class="form-group">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input"
-                                                                   name="profile_pic"
+                                                                   name="profile_picture"
                                                                    id="profile_pic" accept="image/*"
 
                                                                     {% if social_account != "" %}
@@ -189,7 +190,7 @@
                         </div>
 
                         {#                        Bank Account Information           #}
-                        {% if member.role == "Landlord" %}
+
                             {% block bank_account_details %}
                                 <div class="card">
                                     <div class="card-body">
@@ -335,11 +336,10 @@
                                     </div>
                                 </div>
                             {% endblock bank_account_details %}
-                        {% endif %}
+
 
                         {#                        Additional Information              #}
 
-                        {% if member.role == "Landlord" %}
                             {% block additional_information %}
                                 <div class="card">
                                     <div class="card-body">
@@ -524,21 +524,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="col-sm-6">
 
-                                                </div>
-
-                                                <div class="col-sm-6">
-                                                    <div class="form-group">
-                                                        <label for="metadescription">Tell us who you are and with what
-                                                            aim
-                                                            you
-                                                            registered at horsed.ch.</label>
-                                                        <textarea class="form-control" id="metadescription"
-                                                                  rows="5"></textarea>
-                                                    </div>
-
-                                                </div>
                                             </div>
 
                                             <button type="submit" name="additional-information"
@@ -553,7 +539,7 @@
                                     </div>
                                 </div>
                             {% endblock additional_information %}
-                        {% endif %}
+
 
                         {#                        Account Login Setting                 #}
 

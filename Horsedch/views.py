@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 from Horsedch.models import HowItWork, ContactInformation, Condition, DataPolicy, FairPlay, Imprint, \
     HeroSection, Box, AboutUs, GeneralFAQs, HowToRentFAQs, HowToListFAQs, SocialLinks, Team, ObjectOwnerFAQs, Partner, \
-    CustomerCare
+    CustomerCare, Insurance, InsuranceConditions
 from Shop.models import Product, Order
 
 
@@ -11,14 +11,11 @@ def index_view(request):
     box = Box.objects.all()
     about_us = AboutUs.objects.latest('heading')
     team = CustomerCare.objects.all()
-    general_faqs = GeneralFAQs.objects.all()
-    how_to_rent_faqs = HowToRentFAQs.objects.all()
-    how_to_list_faqs = HowToListFAQs.objects.all()
     how_it_works = HowItWork.objects.filter(is_active=True)
     social_links = SocialLinks.objects.latest('facebook')
     company_contact = ContactInformation.objects.latest('building_name')
-    recent_products = Product.objects.all()[:4][::-1]
-    query = "SELECT Shop_order.id, Shop_order.product_id,count('Shop_order.product_id') AS total_order From Shop_order GROUP BY Shop_order.product_id LIMIT 4"
+    recent_products = Product.objects.all()[:3][::-1]
+    query = "SELECT Shop_order.id, Shop_order.product_id,count('Shop_order.product_id') AS total_order From Shop_order GROUP BY Shop_order.product_id LIMIT 3"
     popular_products = Order.objects.raw(query)
     context = {
         'how_it_works': how_it_works,
@@ -27,9 +24,6 @@ def index_view(request):
         'boxes': box,
         'about_us': about_us,
         'team': team,
-        'general_faqs': general_faqs,
-        'how_to_rent_faqs': how_to_rent_faqs,
-        'how_to_list_faqs': how_to_list_faqs,
         'social_links': social_links,
         'recent_products': recent_products,
         'popular_products': popular_products,
@@ -158,6 +152,42 @@ def imprint(request):
     }
     return render(request, template_name="site_pages/imprint.html", context=context)
 
+
+def insurance(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = None
+    try:
+        company_contact = ContactInformation.objects.latest('id')
+        insurance_data = Insurance.objects.latest('id')
+    except:
+        insurance_data = None
+        if company_contact is None:
+            company_contact = None
+    context = {
+        'insurance': insurance_data,
+        'company_contact': company_contact,
+        'social_links': social_links,
+    }
+    return render(request, template_name="site_pages/insurance.html", context=context)
+
+
+
+def insurance_conditions(request):
+    social_links = SocialLinks.objects.latest('facebook')
+    company_contact = None
+    try:
+        company_contact = ContactInformation.objects.latest('id')
+        insurance_conditions_data = InsuranceConditions.objects.latest('id')
+    except:
+        insurance_conditions_data = None
+        if company_contact is None:
+            company_contact = None
+    context = {
+        'insurance_conditions': insurance_conditions_data,
+        'company_contact': company_contact,
+        'social_links': social_links,
+    }
+    return render(request, template_name="site_pages/insurance-conditions.html", context=context)
 
 def test(request):
     return render(request, template_name="site_pages/index.html")

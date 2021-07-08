@@ -37,7 +37,7 @@
 
     <nav class="navbar navbar-expand-lg navigation fixed-top sticky {% block extra_class_header %} bg-dark {% endblock extra_class_header %}">
         <div class="container">
-            <a class="navbar-logo" href="/">
+            <a class="navbar-logo" href="/" style="margin-left: -135px">
                 <img src="{% static 'images/logo/logo-large.png' %}" alt="" height="30"
                      class="logo logo-dark">
                 <img src="{% static 'images/logo/logo-large.png' %}" alt="" height="30"
@@ -56,6 +56,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'My Account' %}">Rent Out</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'My Account' %}">My Account</a>
                     </li>
 
                     {% if user.is_authenticated is False %}
@@ -91,46 +94,30 @@
 
 {% block footer %}
     <!-- Footer start -->
-    <footer class="landing-footer">
+    <footer class="landing-footer justify-content-center">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-3 col-sm-6" style="">
                     <div class="mb-4 mb-lg-0">
-
                         <h5 class="mb-3 footer-list-title">Rent</h5>
                         <ul class="list-unstyled footer-list-menu">
-                            <li><a href="#">Insurance</a></li>
+                            <li><a href="{% url 'Insurance' %}">Insurance</a></li>
                             <li><a href="{% url 'Fair Play' %}">Fair Play</a></li>
                             <li><a href="{% url 'FAQs' %}">FAQs</a></li>
                         </ul>
 
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
-
                         <h5 class="mb-3 footer-list-title">Rent Out</h5>
                         <ul class="list-unstyled footer-list-menu">
-                            <li><a href="#">Insurance Conditions</a></li>
+                            <li><a href="{% url 'Insurance_Conditions' %}">Insurance Conditions</a></li>
                             <li><a href="{% url 'FAQs_Object_Owners' %}">FAQs Landlord</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-sm-6">
-                    <div class="mb-4 mb-lg-0">
-                        <h5 class="mb-3 footer-list-title">Social Media</h5>
-                        <ul class="list-unstyled footer-list-menu">
-                            <li><a href="{{ social_links.facebook }}" target="_blank"><i
-                                    class="bx bxl-facebook-square font-size-20"></i> Facebook</a></li>
-                            <li><a href="{{ social_links.instagram }}" target="_blank"><i
-                                    class="bx bxl-instagram font-size-20"></i>
-                                Instagram</a></li>
-                            <li><a href="{{ social_links.linkedIn }}" target="_blank"><i
-                                    class="bx bxl-linkedin-square font-size-20"></i>
-                                LinkedIn</a></li>
-                        </ul>
-                    </div>
-                </div>
+
 
                 <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
@@ -144,7 +131,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 col-sm-6">
+                <div class="col-lg-3 col-sm-6">
                     <div class="mb-4 mb-lg-0">
                         <h5 class="mb-3 footer-list-title">Contact</h5>
                         <ul class="list-unstyled footer-list-menu">
@@ -167,12 +154,16 @@
                                 {% csrf_token %}
 
                                 <input type="email" name="email_field" class="form-control" placeholder="Email Address"
-                                                                                   required=""
-                                                                                   id="id_email_field">
+                                       required=""
+                                       id="id_email_field">
                                 <br>
-                                <li><button class="btn btn-lg btn-default" type="submit" style="background-color: #FF7F23; color: white">Subscribe
-                                    to
-                                    Newsletter</button></li>
+                                <li>
+                                    <button class="btn btn-lg btn-default" type="submit"
+                                            style="background-color: #FF7F23; color: white">Subscribe
+                                        to
+                                        Newsletter
+                                    </button>
+                                </li>
                             </form>
                             <a href="{% url 'Conditions' %}" class="">Terms & Conditions</a> | <a
                                 href="{% url 'Imprint' %}">Imprint</a> | <a href="{% url 'Data Policy' %}">Privacy
@@ -193,6 +184,21 @@
                         <ul class="list-unstyled footer-list-menu">
                             <li></li>
                         </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-6">
+                    <div class="mb-4 mb-lg-0">
+
+
+                        <a href="{{ social_links.facebook }}" target="_blank"><i
+                                class="bx bxl-facebook-square font-size-24 text-white"></i></a>
+                        <a href="{{ social_links.instagram }}" target="_blank"><i
+                                class="bx bxl-instagram font-size-24 text-white"></i>
+                        </a></li>
+                        <a href="{{ social_links.linkedIn }}" target="_blank"><i
+                                class="bx bxl-linkedin-square font-size-24 text-white"></i>
+                        </a>
+
                     </div>
                 </div>
             </div>
